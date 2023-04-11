@@ -1,0 +1,89 @@
+import 'package:flutter/material.dart';
+import 'package:pay_cutter/data/models/group.model.dart';
+import 'package:pay_cutter/modules/analysis/analysis.page.dart';
+import 'package:pay_cutter/modules/chat/detail_chat.page.dart';
+import 'package:pay_cutter/modules/chat/share_chat.page.dart';
+import 'package:pay_cutter/modules/core/core.page.dart';
+import 'package:pay_cutter/modules/create/create_category.page.dart';
+import 'package:pay_cutter/modules/create/create_expense.page.dart';
+import 'package:pay_cutter/modules/login/login_page.dart';
+import 'package:pay_cutter/modules/onboard/onboard_page.dart';
+import 'package:pay_cutter/modules/splash/splash.page.dart';
+import 'package:pay_cutter/modules/chat/chat.page.dart';
+
+abstract class AppRouters {
+  static const core = '/core';
+  static const login = '/login';
+  static const onBoarding = '/onBoarding';
+  static const register = '/register';
+  static const splash = '/splash';
+  static const analysis = '/analysis';
+  static const chat = '/chat';
+  static const detail = '/detail';
+  static const shareChat = '/share_chat';
+  static const createExpense = '/create_expense';
+  static const createCategory = '/create_category';
+
+  static Route? onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case splash:
+        return MaterialPageRoute(
+          builder: (_) => const SplashPage(),
+        );
+      case core:
+        return MaterialPageRoute(
+          builder: (_) => const CorePage(),
+        );
+      case login:
+        return MaterialPageRoute(
+          builder: (_) => const LoginPage(),
+        );
+      case onBoarding:
+        return MaterialPageRoute(
+          builder: (_) => const OnBoardingPage(),
+        );
+      case register:
+        return MaterialPageRoute(
+          builder: (_) => const Placeholder(),
+        );
+      case analysis:
+        return MaterialPageRoute(
+          builder: (_) => const AnalysisPage(),
+        );
+      case chat:
+        GroupModel group = settings.arguments as GroupModel;
+        return MaterialPageRoute(
+          builder: (_) => ChatPage(
+            group: group,
+          ),
+        );
+      case detail:
+        GroupModel group = settings.arguments as GroupModel;
+        return MaterialPageRoute(
+          builder: (_) => DetailChatPage(
+            group: group,
+          ),
+        );
+      case shareChat:
+        int id = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (_) => ShareChat(
+            id: id,
+          ),
+        );
+      case createExpense:
+        int id = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (_) => CreateExpensePage(id: id.toString()),
+        );
+      case createCategory:
+        return MaterialPageRoute(
+          builder: (_) => const CreateCategoryPage(),
+        );
+      default:
+        return MaterialPageRoute(
+          builder: (_) => const Placeholder(),
+        );
+    }
+  }
+}

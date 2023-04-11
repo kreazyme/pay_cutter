@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1089832021850",
+    "project_id": "paycutter-1e395",
+    "storage_bucket": "paycutter-1e395.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089832021850:android:0dbb9d67d95d565c7c4d63",
+        "android_client_info": {
+          "package_name": "com.pay.cutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089832021850-ealsnc1ivu18d8ehc8tvljnrvn06qdua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pay.cutter",
+            "certificate_hash": "33ac75283a298d69cba46e41f13d1294e9fcc4c9"
+          }
+        },
+        {
+          "client_id": "1089832021850-6pvt428niml2d4neiekuishmdde39h7b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfjgH6jQ-I4xhO1--I3whoCduJcLqK2_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089832021850-6pvt428niml2d4neiekuishmdde39h7b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
