@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\error\\.413af7625b30f1fc883e4353c36b570c4d9b4fd4-audit.json",
+    "files": [
+        {
+            "date": 1681435105305,
+            "name": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\error\\2023-04-14.log",
+            "hash": "eea11f2fa8e65fdcd8f17375b8fd1c434f92529c553084cdc07628e053a33129"
+        }
+    ],
+    "hashType": "sha256"
+}
