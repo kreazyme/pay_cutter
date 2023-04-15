@@ -1,0 +1,96 @@
+2023-04-14 08:18:29 error: uncaughtException: Cannot find module 'E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+Require stack:
+- E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js
+- E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\controllers\auth.controller.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\routes\auth.route.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\server.ts
+Error: Cannot find module 'E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+Require stack:
+- E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js
+- E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\controllers\auth.controller.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\routes\auth.route.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue (E:\WorkingFolder\MoneyDivider\backend\node_modules\@cspotcode\source-map-support\source-map-support.js:811:30)
+    at Function.Module._resolveFilename (E:\WorkingFolder\MoneyDivider\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js:6:16)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1608:43)
+2023-04-14 08:18:49 error: uncaughtException: Cannot find module 'E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+Require stack:
+- E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js
+- E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\controllers\auth.controller.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\routes\auth.route.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\server.ts
+Error: Cannot find module 'E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+Require stack:
+- E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js
+- E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\controllers\auth.controller.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\routes\auth.route.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue (E:\WorkingFolder\MoneyDivider\backend\node_modules\@cspotcode\source-map-support\source-map-support.js:811:30)
+    at Function.Module._resolveFilename (E:\WorkingFolder\MoneyDivider\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js:6:16)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1608:43)
+2023-04-14 08:43:09 error: uncaughtException: Cannot find module 'E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+Require stack:
+- E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js
+- E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\controllers\auth.controller.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\routes\auth.route.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\server.ts
+Error: Cannot find module 'E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+Require stack:
+- E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js
+- E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\controllers\auth.controller.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\routes\auth.route.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue (E:\WorkingFolder\MoneyDivider\backend\node_modules\@cspotcode\source-map-support\source-map-support.js:811:30)
+    at Function.Module._resolveFilename (E:\WorkingFolder\MoneyDivider\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js:6:16)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1608:43)
+2023-04-14 08:43:20 error: uncaughtException: Cannot find module 'E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+Require stack:
+- E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js
+- E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\controllers\auth.controller.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\routes\auth.route.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\server.ts
+Error: Cannot find module 'E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\lib\binding\napi-v3\bcrypt_lib.node'
+Require stack:
+- E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js
+- E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\controllers\auth.controller.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\routes\auth.route.ts
+- E:\WorkingFolder\MoneyDivider\backend\src\server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)
+    at Function.Module._resolveFilename.sharedData.moduleResolveFilenameHook.installedValue (E:\WorkingFolder\MoneyDivider\backend\node_modules\@cspotcode\source-map-support\source-map-support.js:811:30)
+    at Function.Module._resolveFilename (E:\WorkingFolder\MoneyDivider\backend\node_modules\tsconfig-paths\src\register.ts:115:36)
+    at Function.Module._load (node:internal/modules/cjs/loader:778:27)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\bcrypt\bcrypt.js:6:16)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1608:43)
