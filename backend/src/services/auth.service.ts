@@ -32,7 +32,7 @@ export class AuthService extends Repository<UserEntity> {
     return createUserData;
   }
 
-  public async login(userData: User): Promise<{ cookie: string; findUser: User }> {
+  public async login(userData: User): Promise<{ cookie: string; findUser: User, token: string }> {
     const findUser: User = await UserEntity.findOne({ where: { email: userData.email } });
     if (!findUser) throw new HttpException(409, `This email ${userData.email} was not found`);
 
@@ -41,8 +41,9 @@ export class AuthService extends Repository<UserEntity> {
 
     const tokenData = createToken(findUser);
     const cookie = createCookie(tokenData);
+    const token = tokenData.token;
 
-    return { cookie, findUser };
+    return { cookie, findUser, token };
   }
 
   public async logout(userData: User): Promise<User> {
