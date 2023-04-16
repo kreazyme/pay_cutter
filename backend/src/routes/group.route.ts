@@ -15,5 +15,9 @@ export class GroupRoute implements Routes{
     private initRoutes(){
         this.router.get(`${this.path}`, AuthMiddleware, this.group.getMyGroups);
         this.router.get(`${this.path}/:id(\\d+)`, AuthMiddleware, this.group.getGroupById);
+        this.router.post(`${this.path}`, AuthMiddleware, this.group.createGroup);
+        this.router.delete(`${this.path}/:id(\\d+)`, AuthMiddleware, this.group.leaveGroup);
+        this.router.put(`${this.path}/:id(\\d+)`, AuthMiddleware, this.group.joinGroup);
+        
     }
 }

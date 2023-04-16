@@ -1,6 +1,7 @@
 import { Group } from "@/interfaces/group.interface";
 import { IsNotEmpty } from "class-validator";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn,  } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn,  } from "typeorm";
+import { UserEntity } from "./users.entity";
 
 @Entity()
 export class GroupEntity extends BaseEntity implements Group{
@@ -15,14 +16,19 @@ export class GroupEntity extends BaseEntity implements Group{
     description: string;
 
     @Column()
+    joinCode?: string;
+
+    @Column()
+    joinCodeExpires?: Date;
+
+    @Column()
+    @CreateDateColumn()
     createdAt?: Date;
 
     @Column()
-    @IsNotEmpty()
-    @CreateDateColumn()
     updatedAt?: Date;
 
     @Column()
-    @UpdateDateColumn()
-    participants?: number;
+    @ManyToMany(() => UserEntity, (user) => user.groups)
+    participants: UserEntity[];
 }
