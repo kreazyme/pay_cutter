@@ -1,0 +1,39 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    max_build_duration: 120
+    environment:
+      android_signing:
+        - keystore_reference
+      groups:
+        - google_play
+      vars:
+        PACKAGE_NAME: "io.codemagic.fluttersample"
+        GOOGLE_PLAY_TRACK: alpha
+      flutter: stable
+    scripts:
+      - name: change directory
+        script: | 
+          cd $CM_BUILD_DIR/mobile
+      - name: Set up local.properties
+        script: | 
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/mobile/android/local.properties"
+      - name: Get Flutter packages
+        script: | 
+          flutter pub get
+      - name: Build APK with Flutter
+        script: | 
+          flutter build apk --release -t lib/root/main_staging.dart -- flavor staging \
+            --build-name=1.0.$BUILD_NUMBER \
+            --build-number=$BUILD_NUMBER
+    artifacts:
+      - build/**/outputs/**/*.apk
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - th.thoong@gmail.com
+        notify:
+          success: true
+          failure: false
