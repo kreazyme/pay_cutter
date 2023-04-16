@@ -10,4 +10,9 @@ class GroupDataSource {
     await Future.delayed(const Duration(seconds: 4));
     return GroupMock.getListGroup();
   }
+
+  Future<GroupModel> createGroup(String name) async {
+    await Future.delayed(const Duration(seconds: 2));
+    return GroupMock.getGroup();
+  }
 }

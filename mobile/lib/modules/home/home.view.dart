@@ -4,6 +4,7 @@ import 'package:pay_cutter/common/widgets/animation/app_loading.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
 import 'package:pay_cutter/data/repository/group_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
+import 'package:pay_cutter/modules/home/widgets/home_fab.widget.dart';
 import 'package:pay_cutter/modules/home/widgets/list_chat_group.widget.dart';
 
 import 'bloc/home.bloc.dart';
@@ -37,26 +38,29 @@ class _HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) => RefreshIndicator(
-        child: Builder(
-          builder: (context) {
-            if (state.status.isLoading) {
-              return const Center(
-                child: AppCustomLoading(),
-              );
-            }
-            if (state.status.isError) {
-              ToastUlti.showError(context, state.error!);
-              const Center(
-                child: Text('Error'),
-              );
-            }
-            return ListChatGroup(groups: state.groups);
-          },
+      builder: (context, state) => Scaffold(
+        body: RefreshIndicator(
+          child: Builder(
+            builder: (context) {
+              if (state.status.isLoading) {
+                return const Center(
+                  child: AppCustomLoading(),
+                );
+              }
+              if (state.status.isError) {
+                ToastUlti.showError(context, state.error!);
+                const Center(
+                  child: Text('Error'),
+                );
+              }
+              return ListChatGroup(groups: state.groups);
+            },
+          ),
+          onRefresh: () async => context.read<HomeBloc>().add(
+                const HomeStarted(),
+              ),
         ),
-        onRefresh: () async => context.read<HomeBloc>().add(
-              const HomeStarted(),
-            ),
+        floatingActionButton: const HomeFABWidget(),
       ),
     );
   }

@@ -10,6 +10,7 @@ class CustomButtonWidget extends StatelessWidget {
     this.textStyle,
     this.isDiable,
     this.icon,
+    this.isLoading,
   }) : super(key: key);
 
   final Function? onPressed;
@@ -18,6 +19,7 @@ class CustomButtonWidget extends StatelessWidget {
   final Color? color;
   final bool? isDiable;
   final Icon? icon;
+  final bool? isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +31,14 @@ class CustomButtonWidget extends StatelessWidget {
           : color ?? AppColors.primaryColor,
       child: Row(children: [
         if (icon != null) icon!,
-        Text(
-          content,
-          style: const TextStyle(
-            color: Colors.white,
-          ).merge(textStyle),
+        Expanded(
+          child: Text(
+            isLoading == true ? 'Loading...' : content,
+            style: const TextStyle(
+              color: Colors.white,
+            ).merge(textStyle),
+            textAlign: TextAlign.center,
+          ),
         )
       ]),
     );

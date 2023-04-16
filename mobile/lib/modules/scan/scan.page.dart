@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pay_cutter/common/extensions/regex.dart';
 import 'package:pay_cutter/modules/scan/barcode_painter.dart';
 import 'package:pay_cutter/modules/scan/bloc/scan.bloc.dart';
+import 'package:tiengviet/tiengviet.dart';
 
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});
@@ -42,7 +44,7 @@ class _ScanViewState extends State<_ScanView> {
   bool _canProcess = true;
 
   CustomPaint? _customPaint;
-  String? _text;
+  String? _text = '';
 
   Future<void> _takePicture() async {
     final ImagePicker picker = ImagePicker();
@@ -55,8 +57,8 @@ class _ScanViewState extends State<_ScanView> {
       log('set state');
       image = photo;
     });
-    if (photo?.path != null) {
-      processImage(InputImage.fromFilePath(photo!.path));
+    if (photo.path != null) {
+      processImage(InputImage.fromFilePath(photo.path));
     }
   }
 
@@ -73,14 +75,34 @@ class _ScanViewState extends State<_ScanView> {
         inputImage.inputImageData?.imageRotation != null) {
       log('start painted');
       final painter = TextRecognizerPainter(
-          recognizedText,
-          inputImage.inputImageData!.size,
-          inputImage.inputImageData!.imageRotation);
+        recognizedText,
+        inputImage.inputImageData!.size,
+        inputImage.inputImageData!.imageRotation,
+      );
       _customPaint = CustomPaint(painter: painter);
     } else {
       log('________________________');
+      log('regtxt.toString()');
+      recognizedText.blocks
+          .sort((a, b) => a.boundingBox.top.compareTo(b.boundingBox.top));
+      recognizedText.blocks.forEach((block) async {
+        String txtsss = TiengViet.parse(block.text);
+        if (checkBill.hasMatch(txtsss)) {
+          log('_________');
+          log(txtsss);
+          String? txtBill = recognizedText
+              .blocks[recognizedText.blocks.indexOf(block) + 1].text;
+          if (txtBill.isNotEmpty) {
+            String? txt123 = isMoney
+                .firstMatch(txtBill.split(',').join().split('.').join())
+                ?.group(0);
+            _text = txt123 ?? 'No text found';
+          }
+          log('_________');
+        }
+      });
       log(recognizedText.text);
-      _text = recognizedText.text;
+      // _text = recognizedText.text;
       _customPaint = null;
     }
     _isBusy = false;
@@ -100,7 +122,13 @@ class _ScanViewState extends State<_ScanView> {
           : SingleChildScrollView(
               child: Column(
                 children: [
-                  Text(_text ?? 'No text found'),
+                  const Divider(
+                    height: 20,
+                  ),
+                  Text(
+                    _text ?? 'No text found',
+                    style: const TextStyle(fontSize: 20),
+                  ),
                   MaterialButton(
                     onPressed: _takePicture,
                     child: const Text('Scan'),
