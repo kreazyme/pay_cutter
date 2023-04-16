@@ -23,6 +23,7 @@ workflows:
           toucn .env.example
           touch .env.prod
           touch .env
+          ls
           flutter build apk --release -t lib/root/main_staging.dart -- flavor staging \
             --build-name=1.0.$BUILD_NUMBER \
             --build-number=$BUILD_NUMBER
