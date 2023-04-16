@@ -18,6 +18,10 @@ workflows:
       - name: Build APK with Flutter
         script: | 
           cd $CM_BUILD_DIR/mobile
+          touch env.staging
+          touch env.dev
+          toucn env.example
+          touch env.prod
           flutter build apk --release -t lib/root/main_staging.dart -- flavor staging \
             --build-name=1.0.$BUILD_NUMBER \
             --build-number=$BUILD_NUMBER
