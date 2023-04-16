@@ -13,9 +13,11 @@ workflows:
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/mobile/android/local.properties"
       - name: Get Flutter packages
         script: | 
+          cd $CM_BUILD_DIR/mobile
           flutter pub get
       - name: Build APK with Flutter
         script: | 
+          cd $CM_BUILD_DIR/mobile
           flutter build apk --release -t lib/root/main_staging.dart -- flavor staging \
             --build-name=1.0.$BUILD_NUMBER \
             --build-number=$BUILD_NUMBER
