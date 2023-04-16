@@ -8,7 +8,15 @@ abstract class CreateExpenseEvent extends Equatable {
 }
 
 class CreateExpenseStarted extends CreateExpenseEvent {
-  const CreateExpenseStarted();
+  final String groupID;
+  const CreateExpenseStarted({
+    required this.groupID,
+  });
+
+  @override
+  List<Object> get props => [
+        groupID,
+      ];
 }
 
 class CreateExpenseSubmit extends CreateExpenseEvent {
@@ -18,5 +26,17 @@ class CreateExpenseSubmit extends CreateExpenseEvent {
   @override
   List<Object> get props => [
         data,
+      ];
+}
+
+class CreateExpenseCategorySubmit extends CreateExpenseEvent {
+  final CategoryModel category;
+  const CreateExpenseCategorySubmit({
+    required this.category,
+  });
+
+  @override
+  List<Object> get props => [
+        category,
       ];
 }

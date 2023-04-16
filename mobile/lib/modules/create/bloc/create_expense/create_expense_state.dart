@@ -5,12 +5,14 @@ abstract class CreateExpenseState extends Equatable {
   final String? error;
   final List<CategoryModel>? categories;
   final HandleStatus? categoryStatus;
+  final CategoryModel? categorySelected;
 
   const CreateExpenseState({
     this.status,
     this.error,
     this.categories,
     this.categoryStatus,
+    this.categorySelected,
   });
 
   @override
@@ -18,6 +20,8 @@ abstract class CreateExpenseState extends Equatable {
         status,
         categories,
         categoryStatus,
+        categorySelected,
+        error,
       ];
 }
 
@@ -65,4 +69,22 @@ class CreateExpenseCategoryFailure extends CreateExpenseState {
   }) : super(
           error: error,
         );
+}
+
+class CreateExpenseCategorySelected extends CreateExpenseState {
+  const CreateExpenseCategorySelected({
+    required CategoryModel categorySelected,
+    super.categoryStatus = HandleStatus.success,
+    required List<CategoryModel> categories,
+  }) : super(
+          categorySelected: categorySelected,
+          categories: categories,
+        );
+
+  @override
+  List<Object?> get props => [
+        categorySelected,
+        categories,
+        categoryStatus,
+      ];
 }

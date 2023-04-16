@@ -6,8 +6,10 @@ import 'package:pay_cutter/modules/chat/share_chat.page.dart';
 import 'package:pay_cutter/modules/core/core.page.dart';
 import 'package:pay_cutter/modules/create/create_category.page.dart';
 import 'package:pay_cutter/modules/create/create_expense.page.dart';
+import 'package:pay_cutter/modules/create/create_group.page.dart';
 import 'package:pay_cutter/modules/login/login_page.dart';
 import 'package:pay_cutter/modules/onboard/onboard_page.dart';
+import 'package:pay_cutter/modules/qr_scan/qr_scan.page.dart';
 import 'package:pay_cutter/modules/splash/splash.page.dart';
 import 'package:pay_cutter/modules/chat/chat.page.dart';
 
@@ -23,6 +25,8 @@ abstract class AppRouters {
   static const shareChat = '/share_chat';
   static const createExpense = '/create_expense';
   static const createCategory = '/create_category';
+  static const qrScan = '/qr_scan';
+  static const createGroup = '/create_group';
 
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -79,6 +83,14 @@ abstract class AppRouters {
       case createCategory:
         return MaterialPageRoute(
           builder: (_) => const CreateCategoryPage(),
+        );
+      case qrScan:
+        return MaterialPageRoute(
+          builder: (_) => const QRScanPage(),
+        );
+      case createGroup:
+        return MaterialPageRoute(
+          builder: (_) => const CreateGroupPage(),
         );
       default:
         return MaterialPageRoute(
