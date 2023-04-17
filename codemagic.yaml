@@ -1,23 +1,19 @@
 workflows:
   android-workflow:
     name: Android Workflow
+    working_directory: mobile
     max_build_duration: 120
     environment:
       flutter: stable
     scripts:
-      - name: change directory
-        script: | 
-          cd $CM_BUILD_DIR/mobile
       - name: Set up local.properties
         script: | 
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/mobile/android/local.properties"
       - name: Get Flutter packages
         script: | 
-          cd $CM_BUILD_DIR/mobile
           flutter pub get
       - name: Build APK with Flutter
         script: | 
-          cd $CM_BUILD_DIR/mobile
           touch .env.staging
           touch .env.dev
           toucn .env.example
