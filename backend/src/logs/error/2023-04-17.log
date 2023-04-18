@@ -1,0 +1,104 @@
+2023-04-17 07:30:23 error: [GET] /groups >> StatusCode:: 404, Message:: Authentication token missing
+2023-04-17 07:30:30 error: [POST] /groups >> StatusCode:: 404, Message:: Authentication token missing
+2023-04-17 07:30:46 error: [POST] /groups >> StatusCode:: 500, Message:: invalid input syntax for type integer: "NaN"
+2023-04-17 07:33:52 error: uncaughtException: Gro is not defined
+ReferenceError: Gro is not defined
+    at GroupRoute.initRoutes (E:\WorkingFolder\MoneyDivider\backend\src\routes\group.route.ts:17:61)
+    at new GroupRoute (E:\WorkingFolder\MoneyDivider\backend\src\routes\group.route.ts:13:14)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:12:5)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+2023-04-17 07:34:28 error: [POST] /groups >> StatusCode:: 400, Message:: name should not be empty,name must be a string
+2023-04-17 07:34:47 error: [POST] /groups >> StatusCode:: 500, Message:: invalid input syntax for type integer: "NaN"
+2023-04-17 07:41:33 error: [POST] /groups >> StatusCode:: 400, Message:: description must be a string, userID should not be empty,userID must be a string
+2023-04-17 07:41:46 error: [POST] /groups >> StatusCode:: 400, Message:: description must be a string
+2023-04-17 07:42:11 error: [POST] /groups >> StatusCode:: 400, Message:: description must be a string
+2023-04-17 07:42:27 error: [POST] /groups >> StatusCode:: 500, Message:: invalid input syntax for type integer: "NaN"
+2023-04-17 14:27:24 error: [POST] /groups >> StatusCode:: 404, Message:: Authentication token missing
+2023-04-17 14:27:41 error: [POST] /groups >> StatusCode:: 500, Message:: null value in column "description" of relation "group_entity" violates not-null constraint
+2023-04-17 14:28:18 error: [POST] /groups >> StatusCode:: 500, Message:: null value in column "description" of relation "group_entity" violates not-null constraint
+2023-04-17 14:28:20 error: [POST] /groups >> StatusCode:: 500, Message:: null value in column "description" of relation "group_entity" violates not-null constraint
+2023-04-17 14:29:55 error: [POST] /groups >> StatusCode:: 500, Message:: null value in column "description" of relation "group_entity" violates not-null constraint
+2023-04-17 14:34:08 error: [POST] /groups >> StatusCode:: 500, Message:: null value in column "description" of relation "group_entity" violates not-null constraint
+2023-04-17 14:36:40 error: [POST] /groups >> StatusCode:: 500, Message:: null value in column "joinCode" of relation "group_entity" violates not-null constraint
+2023-04-17 14:37:07 error: [POST] /groups >> StatusCode:: 500, Message:: null value in column "updatedAt" of relation "group_entity" violates not-null constraint
+2023-04-17 14:44:00 error: [POST] /groups >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'ownerColumns')
+2023-04-17 14:44:21 error: [POST] /groups >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'ownerColumns')
+2023-04-17 14:45:07 error: [POST] /groups >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'ownerColumns')
+2023-04-17 14:52:50 error: [POST] /groups >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'ownerColumns')
+2023-04-17 15:04:55 error: uncaughtException: Exclu is not defined
+ReferenceError: Exclu is not defined
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\entities\users.entity.ts:18:4)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\auth.service.ts:6:1)
+2023-04-17 15:12:02 error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/entities/users.entity.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS1136: [0mProperty assignment expected.
+
+[7m22[0m   )
+[7m  [0m [91m  ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/entities/users.entity.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS1136: [0mProperty assignment expected.
+
+[7m22[0m   )
+[7m  [0m [91m  ~[0m
+
+    at createTSError (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:863:19)
+    at E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1379:34
+    at Object.compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1458:13)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+2023-04-17 15:32:35 error: [POST] /groups >> StatusCode:: 404, Message:: Authentication token missing
+2023-04-17 15:40:14 error: [GET] /groups >> StatusCode:: 500, Message:: No entity column "userID" was found.
+2023-04-17 15:40:19 error: [GET] /groups >> StatusCode:: 500, Message:: No entity column "userID" was found.
+2023-04-17 15:43:12 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 15:47:00 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 15:48:12 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 15:51:47 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 15:52:27 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 15:53:46 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 15:55:32 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 16:08:25 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 16:10:13 error: [GET] /groups >> StatusCode:: 500, Message:: Relation with property path photos in entity was not found.
+2023-04-17 16:18:01 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 16:22:30 error: [GET] /groups >> StatusCode:: 500, Message:: Cannot query across many-to-many for property participants
+2023-04-17 16:29:01 error: [GET] /groups >> StatusCode:: 500, Message:: column "joincode" does not exist
+2023-04-17 16:31:43 error: [GET] /groups >> StatusCode:: 500, Message:: column groups.userEntityId does not exist
+2023-04-17 16:34:19 error: [GET] /groups >> StatusCode:: 500, Message:: invalid reference to FROM-clause entry for table "participants"
+2023-04-17 16:34:51 error: [GET] /groups >> StatusCode:: 500, Message:: column participants.name does not exist
+2023-04-17 16:35:53 error: [GET] /groups >> StatusCode:: 500, Message:: invalid reference to FROM-clause entry for table "participants"
+2023-04-17 16:43:16 error: [GET] /groups >> StatusCode:: 500, Message:: invalid reference to FROM-clause entry for table "participants"
+2023-04-17 16:49:23 error: [GET] /groups >> StatusCode:: 500, Message:: column groups.groupEntityId does not exist
+2023-04-17 16:50:25 error: [GET] /groups >> StatusCode:: 500, Message:: column groups.groupEntityId does not exist
+2023-04-17 16:55:32 error: [POST] /login >> StatusCode:: 500, Message:: data and hash arguments required
+2023-04-17 17:08:56 error: [GET] /groups/9 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'find')
+2023-04-17 17:09:36 error: [GET] /groups/9 >> StatusCode:: 401, Message:: Wrong authentication token
+2023-04-17 17:10:11 error: [GET] /groups/9 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'find')
+2023-04-17 17:10:29 error: [GET] /groups/9 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'find')
+2023-04-17 17:12:15 error: [GET] /groups/10 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'find')
+2023-04-17 17:12:24 error: [GET] /groups/7 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'find')
+2023-04-17 17:13:07 error: [GET] /groups/7 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'filter')
+2023-04-17 17:14:11 error: [GET] /groups/7 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'length')
+2023-04-17 17:14:26 error: [GET] /groups/7 >> StatusCode:: 401, Message:: Wrong authentication token
+2023-04-17 17:14:42 error: [GET] /groups/10 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'filter')
+2023-04-17 17:14:57 error: [GET] /groups/10 >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'filter')
+2023-04-17 17:16:39 error: [POST] /login >> StatusCode:: 500, Message:: data and hash arguments required
+2023-04-17 17:16:41 error: [POST] /login >> StatusCode:: 409, Message:: This email email1@email.com was not found
+2023-04-17 17:16:44 error: [POST] /login >> StatusCode:: 500, Message:: data and hash arguments required

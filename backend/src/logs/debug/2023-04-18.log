@@ -1,0 +1,405 @@
+2023-04-18 06:34:15 info: =================================
+2023-04-18 06:34:15 info: ======= ENV: development =======
+2023-04-18 06:34:15 info: 🚀 App listening on the port 3000
+2023-04-18 06:34:15 info: =================================
+2023-04-18 06:34:54 info: [0mGET /groups/10 [32m200[0m 150.132 ms - 399[0m
+2023-04-18 06:35:08 info: [0mGET /groups/9 [32m200[0m 87.969 ms - 398[0m
+2023-04-18 06:35:21 info: [0mPOST /login [32m200[0m 234.322 ms - 361[0m
+2023-04-18 06:35:29 info: [0mGET /groups/9 [32m200[0m 19.467 ms - 33[0m
+2023-04-18 06:37:21 info: =================================
+2023-04-18 06:37:21 info: ======= ENV: development =======
+2023-04-18 06:37:21 info: 🚀 App listening on the port 3000
+2023-04-18 06:37:21 info: =================================
+2023-04-18 06:37:44 info: =================================
+2023-04-18 06:37:44 info: ======= ENV: development =======
+2023-04-18 06:37:44 info: 🚀 App listening on the port 3000
+2023-04-18 06:37:44 info: =================================
+2023-04-18 06:38:03 info: =================================
+2023-04-18 06:38:03 info: ======= ENV: development =======
+2023-04-18 06:38:03 info: 🚀 App listening on the port 3000
+2023-04-18 06:38:03 info: =================================
+2023-04-18 06:38:09 error: [GET] /groups/9 >> StatusCode:: 401, Message:: Unauthorized
+2023-04-18 06:38:09 info: [0mGET /groups/9 [33m401[0m 50.740 ms - 26[0m
+2023-04-18 06:38:21 error: [GET] /groups/99 >> StatusCode:: 404, Message:: Group not found
+2023-04-18 06:38:21 info: [0mGET /groups/99 [33m404[0m 79.633 ms - 29[0m
+2023-04-18 06:38:26 error: [GET] /groups/98 >> StatusCode:: 404, Message:: Group not found
+2023-04-18 06:38:26 info: [0mGET /groups/98 [33m404[0m 10.454 ms - 29[0m
+2023-04-18 06:38:28 error: [GET] /groups/9 >> StatusCode:: 401, Message:: Unauthorized
+2023-04-18 06:38:28 info: [0mGET /groups/9 [33m401[0m 15.874 ms - 26[0m
+2023-04-18 06:38:29 error: [GET] /groups/10 >> StatusCode:: 401, Message:: Unauthorized
+2023-04-18 06:38:29 info: [0mGET /groups/10 [33m401[0m 17.313 ms - 26[0m
+2023-04-18 06:38:33 error: [GET] /groups/10 >> StatusCode:: 401, Message:: Unauthorized
+2023-04-18 06:38:33 info: [0mGET /groups/10 [33m401[0m 12.680 ms - 26[0m
+2023-04-18 06:38:44 info: [0mPOST /login [32m200[0m 195.597 ms - 362[0m
+2023-04-18 06:38:52 info: [0mGET /groups/10 [32m200[0m 16.855 ms - 399[0m
+2023-04-18 06:39:14 info: =================================
+2023-04-18 06:39:14 info: ======= ENV: development =======
+2023-04-18 06:39:14 info: 🚀 App listening on the port 3000
+2023-04-18 06:39:14 info: =================================
+2023-04-18 06:39:44 info: =================================
+2023-04-18 06:39:44 info: ======= ENV: development =======
+2023-04-18 06:39:44 info: 🚀 App listening on the port 3000
+2023-04-18 06:39:44 info: =================================
+2023-04-18 06:39:58 info: =================================
+2023-04-18 06:39:58 info: ======= ENV: development =======
+2023-04-18 06:39:58 info: 🚀 App listening on the port 3000
+2023-04-18 06:39:58 info: =================================
+2023-04-18 06:41:30 info: =================================
+2023-04-18 06:41:30 info: ======= ENV: development =======
+2023-04-18 06:41:30 info: 🚀 App listening on the port 3000
+2023-04-18 06:41:30 info: =================================
+2023-04-18 06:42:33 info: =================================
+2023-04-18 06:42:33 info: ======= ENV: development =======
+2023-04-18 06:42:33 info: 🚀 App listening on the port 3000
+2023-04-18 06:42:33 info: =================================
+2023-04-18 06:43:31 info: =================================
+2023-04-18 06:43:31 info: ======= ENV: development =======
+2023-04-18 06:43:31 info: 🚀 App listening on the port 3000
+2023-04-18 06:43:31 info: =================================
+2023-04-18 06:43:41 info: =================================
+2023-04-18 06:43:41 info: ======= ENV: development =======
+2023-04-18 06:43:41 info: 🚀 App listening on the port 3000
+2023-04-18 06:43:41 info: =================================
+2023-04-18 06:43:56 info: =================================
+2023-04-18 06:43:56 info: ======= ENV: development =======
+2023-04-18 06:43:56 info: 🚀 App listening on the port 3000
+2023-04-18 06:43:56 info: =================================
+2023-04-18 06:44:04 info: =================================
+2023-04-18 06:44:04 info: ======= ENV: development =======
+2023-04-18 06:44:04 info: 🚀 App listening on the port 3000
+2023-04-18 06:44:04 info: =================================
+2023-04-18 06:45:43 info: =================================
+2023-04-18 06:45:43 info: ======= ENV: development =======
+2023-04-18 06:45:43 info: 🚀 App listening on the port 3000
+2023-04-18 06:45:43 info: =================================
+2023-04-18 06:46:45 info: =================================
+2023-04-18 06:46:45 info: ======= ENV: development =======
+2023-04-18 06:46:45 info: 🚀 App listening on the port 3000
+2023-04-18 06:46:45 info: =================================
+2023-04-18 06:47:16 info: [0mPOST /groups/joins/10 [33m404[0m 8.639 ms - 155[0m
+2023-04-18 06:47:20 error: [POST] /groups/join/10 >> StatusCode:: 400, Message:: id should not be empty,id must be a number conforming to the specified constraints
+2023-04-18 06:47:20 info: [0mPOST /groups/join/10 [33m400[0m 10.829 ms - 96[0m
+2023-04-18 06:47:39 info: [0mPOST /groups/join [33m404[0m 18.546 ms - 151[0m
+2023-04-18 06:47:57 info: =================================
+2023-04-18 06:47:57 info: ======= ENV: development =======
+2023-04-18 06:47:57 info: 🚀 App listening on the port 3000
+2023-04-18 06:47:57 info: =================================
+2023-04-18 06:47:58 error: [POST] /groups/join >> StatusCode:: 400, Message:: id must be a number conforming to the specified constraints
+2023-04-18 06:47:58 info: [0mPOST /groups/join [33m400[0m 33.954 ms - 73[0m
+2023-04-18 06:48:08 info: [0mPOST /groups/join [32m200[0m 87.827 ms - 32[0m
+2023-04-18 06:48:55 info: =================================
+2023-04-18 06:48:55 info: ======= ENV: development =======
+2023-04-18 06:48:55 info: 🚀 App listening on the port 3000
+2023-04-18 06:48:55 info: =================================
+2023-04-18 06:48:56 info: [0mPOST /groups/join [32m200[0m 55.058 ms - 398[0m
+2023-04-18 06:49:25 info: [0mGET /groups/10 [32m200[0m 76.250 ms - 399[0m
+2023-04-18 06:49:38 info: =================================
+2023-04-18 06:49:38 info: ======= ENV: development =======
+2023-04-18 06:49:38 info: 🚀 App listening on the port 3000
+2023-04-18 06:49:38 info: =================================
+2023-04-18 06:49:40 info: [0mPOST /groups/join [32m200[0m 52.987 ms - 398[0m
+2023-04-18 06:49:54 info: =================================
+2023-04-18 06:49:54 info: ======= ENV: development =======
+2023-04-18 06:49:54 info: 🚀 App listening on the port 3000
+2023-04-18 06:49:54 info: =================================
+2023-04-18 06:49:56 info: [0mPOST /groups/join [32m200[0m 54.087 ms - 398[0m
+2023-04-18 06:54:17 info: =================================
+2023-04-18 06:54:17 info: ======= ENV: development =======
+2023-04-18 06:54:17 info: 🚀 App listening on the port 3000
+2023-04-18 06:54:17 info: =================================
+2023-04-18 06:55:49 info: [0mPOST /groups/join [32m200[0m 134.328 ms - 398[0m
+2023-04-18 06:56:10 info: =================================
+2023-04-18 06:56:10 info: ======= ENV: development =======
+2023-04-18 06:56:10 info: 🚀 App listening on the port 3000
+2023-04-18 06:56:10 info: =================================
+2023-04-18 06:58:51 info: =================================
+2023-04-18 06:58:51 info: ======= ENV: development =======
+2023-04-18 06:58:51 info: 🚀 App listening on the port 3000
+2023-04-18 06:58:51 info: =================================
+2023-04-18 06:59:20 info: =================================
+2023-04-18 06:59:20 info: ======= ENV: development =======
+2023-04-18 06:59:20 info: 🚀 App listening on the port 3000
+2023-04-18 06:59:20 info: =================================
+2023-04-18 06:59:23 info: [0mPOST /groups/join [32m200[0m 58.857 ms - 398[0m
+2023-04-18 06:59:28 info: [0mPOST /groups/join [32m200[0m 7.999 ms - 398[0m
+2023-04-18 07:01:05 info: =================================
+2023-04-18 07:01:05 info: ======= ENV: development =======
+2023-04-18 07:01:05 info: 🚀 App listening on the port 3000
+2023-04-18 07:01:05 info: =================================
+2023-04-18 07:01:24 info: =================================
+2023-04-18 07:01:24 info: ======= ENV: development =======
+2023-04-18 07:01:24 info: 🚀 App listening on the port 3000
+2023-04-18 07:01:24 info: =================================
+2023-04-18 07:01:29 info: =================================
+2023-04-18 07:01:29 info: ======= ENV: development =======
+2023-04-18 07:01:29 info: 🚀 App listening on the port 3000
+2023-04-18 07:01:29 info: =================================
+2023-04-18 07:01:40 info: [0mPOST /groups/join [32m200[0m 123.322 ms - 398[0m
+2023-04-18 07:08:11 info: [0mGET /groups/10 [32m200[0m 81.040 ms - 399[0m
+2023-04-18 07:08:26 info: =================================
+2023-04-18 07:08:26 info: ======= ENV: development =======
+2023-04-18 07:08:26 info: 🚀 App listening on the port 3000
+2023-04-18 07:08:26 info: =================================
+2023-04-18 07:08:29 info: [0mGET /groups/10 [32m200[0m 43.283 ms - 399[0m
+2023-04-18 07:08:46 info: =================================
+2023-04-18 07:08:46 info: ======= ENV: development =======
+2023-04-18 07:08:46 info: 🚀 App listening on the port 3000
+2023-04-18 07:08:46 info: =================================
+2023-04-18 07:08:49 info: [0mGET /groups/10 [32m200[0m 34.765 ms - 399[0m
+2023-04-18 07:09:59 info: =================================
+2023-04-18 07:09:59 info: ======= ENV: development =======
+2023-04-18 07:09:59 info: 🚀 App listening on the port 3000
+2023-04-18 07:09:59 info: =================================
+2023-04-18 07:10:01 info: [0mGET /groups/10 [32m200[0m 35.087 ms - 399[0m
+2023-04-18 07:10:13 info: =================================
+2023-04-18 07:10:13 info: ======= ENV: development =======
+2023-04-18 07:10:13 info: 🚀 App listening on the port 3000
+2023-04-18 07:10:13 info: =================================
+2023-04-18 07:10:28 info: =================================
+2023-04-18 07:10:28 info: ======= ENV: development =======
+2023-04-18 07:10:28 info: 🚀 App listening on the port 3000
+2023-04-18 07:10:28 info: =================================
+2023-04-18 07:10:29 info: [0mPOST /groups/join [32m200[0m 116.602 ms - 398[0m
+2023-04-18 07:10:40 info: [0mGET /groups/10 [32m200[0m 75.044 ms - 399[0m
+2023-04-18 07:16:18 info: [0mPOST /groups/join [32m200[0m 86.014 ms - 398[0m
+2023-04-18 07:17:24 info: [0mGET /groups/10 [32m200[0m 83.188 ms - 399[0m
+2023-04-18 07:17:50 info: =================================
+2023-04-18 07:17:50 info: ======= ENV: development =======
+2023-04-18 07:17:50 info: 🚀 App listening on the port 3000
+2023-04-18 07:17:50 info: =================================
+2023-04-18 07:17:52 info: [0mPOST /groups/join [32m200[0m 103.103 ms - 424[0m
+2023-04-18 07:18:05 info: =================================
+2023-04-18 07:18:05 info: ======= ENV: development =======
+2023-04-18 07:18:05 info: 🚀 App listening on the port 3000
+2023-04-18 07:18:05 info: =================================
+2023-04-18 07:18:05 info: [0mGET /groups/10 [32m200[0m 38.118 ms - 425[0m
+2023-04-18 07:18:08 info: [0mPOST /groups/join [32m200[0m 67.829 ms - 430[0m
+2023-04-18 07:18:22 info: [0mPOST /groups/join [32m200[0m 96.033 ms - 430[0m
+2023-04-18 07:18:23 info: [0mPOST /groups/join [32m200[0m 19.918 ms - 430[0m
+2023-04-18 07:19:50 info: =================================
+2023-04-18 07:19:50 info: ======= ENV: development =======
+2023-04-18 07:19:50 info: 🚀 App listening on the port 3000
+2023-04-18 07:19:50 info: =================================
+2023-04-18 07:20:14 info: =================================
+2023-04-18 07:20:14 info: ======= ENV: development =======
+2023-04-18 07:20:14 info: 🚀 App listening on the port 3000
+2023-04-18 07:20:14 info: =================================
+2023-04-18 07:20:23 info: =================================
+2023-04-18 07:20:23 info: ======= ENV: development =======
+2023-04-18 07:20:23 info: 🚀 App listening on the port 3000
+2023-04-18 07:20:23 info: =================================
+2023-04-18 07:20:24 info: [0mPOST /groups/join [32m200[0m 89.257 ms - 42[0m
+2023-04-18 07:20:26 info: [0mPOST /groups/join [32m200[0m 32.567 ms - 42[0m
+2023-04-18 07:21:04 info: =================================
+2023-04-18 07:21:04 info: ======= ENV: development =======
+2023-04-18 07:21:04 info: 🚀 App listening on the port 3000
+2023-04-18 07:21:04 info: =================================
+2023-04-18 07:30:20 info: =================================
+2023-04-18 07:30:20 info: ======= ENV: development =======
+2023-04-18 07:30:20 info: 🚀 App listening on the port 3000
+2023-04-18 07:30:20 info: =================================
+2023-04-18 07:30:38 info: =================================
+2023-04-18 07:30:38 info: ======= ENV: development =======
+2023-04-18 07:30:38 info: 🚀 App listening on the port 3000
+2023-04-18 07:30:38 info: =================================
+2023-04-18 07:31:04 info: =================================
+2023-04-18 07:31:04 info: ======= ENV: development =======
+2023-04-18 07:31:04 info: 🚀 App listening on the port 3000
+2023-04-18 07:31:04 info: =================================
+2023-04-18 07:31:29 info: [0mPUT /groups/join/10 [32m200[0m 110.566 ms - 32[0m
+2023-04-18 07:31:35 info: [0mPUT /groups/join/10 [32m200[0m 10.193 ms - 32[0m
+2023-04-18 07:31:51 info: =================================
+2023-04-18 07:31:51 info: ======= ENV: development =======
+2023-04-18 07:31:51 info: 🚀 App listening on the port 3000
+2023-04-18 07:31:51 info: =================================
+2023-04-18 07:31:56 info: [0mPUT /groups/join/10 [32m200[0m 42.392 ms - 32[0m
+2023-04-18 07:32:09 info: =================================
+2023-04-18 07:32:09 info: ======= ENV: development =======
+2023-04-18 07:32:09 info: 🚀 App listening on the port 3000
+2023-04-18 07:32:09 info: =================================
+2023-04-18 07:32:11 info: [0mPUT /groups/join/10 [32m200[0m 28.500 ms - 32[0m
+2023-04-18 07:32:25 info: =================================
+2023-04-18 07:32:25 info: ======= ENV: development =======
+2023-04-18 07:32:25 info: 🚀 App listening on the port 3000
+2023-04-18 07:32:25 info: =================================
+2023-04-18 07:32:25 info: [0mPUT /groups/join/10 [32m200[0m 31.886 ms - 32[0m
+2023-04-18 07:32:26 info: [0mPUT /groups/join/10 [32m200[0m 10.983 ms - 32[0m
+2023-04-18 07:32:30 info: [0mPUT /groups/join/10 [32m200[0m 7.159 ms - 32[0m
+2023-04-18 07:32:41 info: =================================
+2023-04-18 07:32:41 info: ======= ENV: development =======
+2023-04-18 07:32:41 info: 🚀 App listening on the port 3000
+2023-04-18 07:32:41 info: =================================
+2023-04-18 07:32:42 info: [0mPUT /groups/join/10 [32m200[0m 27.886 ms - 32[0m
+2023-04-18 07:32:54 info: =================================
+2023-04-18 07:32:54 info: ======= ENV: development =======
+2023-04-18 07:32:54 info: 🚀 App listening on the port 3000
+2023-04-18 07:32:54 info: =================================
+2023-04-18 07:32:55 info: [0mPUT /groups/join/10 [32m200[0m 27.948 ms - 32[0m
+2023-04-18 07:32:56 info: [0mPUT /groups/join/10 [32m200[0m 7.741 ms - 32[0m
+2023-04-18 07:33:49 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'find')
+2023-04-18 07:33:49 info: [0mPUT /groups/join/1C5GNIGVF2LU [31m500[0m 82.418 ms - 66[0m
+2023-04-18 07:34:14 info: =================================
+2023-04-18 07:34:14 info: ======= ENV: development =======
+2023-04-18 07:34:14 info: 🚀 App listening on the port 3000
+2023-04-18 07:34:14 info: =================================
+2023-04-18 07:34:17 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'filter')
+2023-04-18 07:34:17 info: [0mPUT /groups/join/1C5GNIGVF2LU [31m500[0m 37.012 ms - 68[0m
+2023-04-18 07:35:09 info: =================================
+2023-04-18 07:35:09 info: ======= ENV: development =======
+2023-04-18 07:35:09 info: 🚀 App listening on the port 3000
+2023-04-18 07:35:09 info: =================================
+2023-04-18 07:36:02 info: =================================
+2023-04-18 07:36:02 info: ======= ENV: development =======
+2023-04-18 07:36:02 info: 🚀 App listening on the port 3000
+2023-04-18 07:36:02 info: =================================
+2023-04-18 07:36:04 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'filter')
+2023-04-18 07:36:04 info: [0mPUT /groups/join/1C5GNIGVF2LU [31m500[0m 53.234 ms - 68[0m
+2023-04-18 07:37:06 info: =================================
+2023-04-18 07:37:06 info: ======= ENV: development =======
+2023-04-18 07:37:06 info: 🚀 App listening on the port 3000
+2023-04-18 07:37:06 info: =================================
+2023-04-18 07:37:08 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 409, Message:: User already in group
+2023-04-18 07:37:08 info: [0mPUT /groups/join/1C5GNIGVF2LU [33m409[0m 57.367 ms - 35[0m
+2023-04-18 07:37:27 info: [0mPOST /login [32m200[0m 188.625 ms - 361[0m
+2023-04-18 07:37:38 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 409, Message:: User already in group
+2023-04-18 07:37:38 info: [0mPUT /groups/join/1C5GNIGVF2LU [33m409[0m 87.825 ms - 35[0m
+2023-04-18 07:38:09 info: =================================
+2023-04-18 07:38:09 info: ======= ENV: development =======
+2023-04-18 07:38:09 info: 🚀 App listening on the port 3000
+2023-04-18 07:38:09 info: =================================
+2023-04-18 07:38:11 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 409, Message:: User already in group
+2023-04-18 07:38:11 info: [0mPUT /groups/join/1C5GNIGVF2LU [33m409[0m 55.408 ms - 35[0m
+2023-04-18 07:38:39 info: =================================
+2023-04-18 07:38:39 info: ======= ENV: development =======
+2023-04-18 07:38:39 info: 🚀 App listening on the port 3000
+2023-04-18 07:38:39 info: =================================
+2023-04-18 07:38:42 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 409, Message:: User already in group
+2023-04-18 07:38:42 info: [0mPUT /groups/join/1C5GNIGVF2LU [33m409[0m 73.471 ms - 35[0m
+2023-04-18 07:41:56 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 409, Message:: User already in group
+2023-04-18 07:41:56 info: [0mPUT /groups/join/1C5GNIGVF2LU [33m409[0m 92.702 ms - 35[0m
+2023-04-18 07:42:20 info: =================================
+2023-04-18 07:42:20 info: ======= ENV: development =======
+2023-04-18 07:42:20 info: 🚀 App listening on the port 3000
+2023-04-18 07:42:20 info: =================================
+2023-04-18 07:42:21 info: [0mPUT /groups/join/1C5GNIGVF2LU [32m200[0m 120.502 ms - 617[0m
+2023-04-18 07:42:26 error: [PUT] /groups/join/1C5GNIGVF2LU >> StatusCode:: 409, Message:: User already in group
+2023-04-18 07:42:26 info: [0mPUT /groups/join/1C5GNIGVF2LU [33m409[0m 20.648 ms - 35[0m
+2023-04-18 07:42:51 info: =================================
+2023-04-18 07:42:51 info: ======= ENV: development =======
+2023-04-18 07:42:51 info: 🚀 App listening on the port 3000
+2023-04-18 07:42:51 info: =================================
+2023-04-18 07:43:07 info: =================================
+2023-04-18 07:43:07 info: ======= ENV: development =======
+2023-04-18 07:43:07 info: 🚀 App listening on the port 3000
+2023-04-18 07:43:07 info: =================================
+2023-04-18 07:43:20 info: =================================
+2023-04-18 07:43:20 info: ======= ENV: development =======
+2023-04-18 07:43:20 info: 🚀 App listening on the port 3000
+2023-04-18 07:43:20 info: =================================
+2023-04-18 07:43:28 info: =================================
+2023-04-18 07:43:28 info: ======= ENV: development =======
+2023-04-18 07:43:28 info: 🚀 App listening on the port 3000
+2023-04-18 07:43:28 info: =================================
+2023-04-18 07:43:29 error: [PUT] /groups/join >> StatusCode:: 400, Message:: joinCode should not be empty,joinCode must be a string
+2023-04-18 07:43:29 info: [0mPUT /groups/join [33m400[0m 14.771 ms - 68[0m
+2023-04-18 07:43:49 info: [0mPUT /groups/join [32m200[0m 224.762 ms - 32[0m
+2023-04-18 07:44:40 info: =================================
+2023-04-18 07:44:40 info: ======= ENV: development =======
+2023-04-18 07:44:40 info: 🚀 App listening on the port 3000
+2023-04-18 07:44:40 info: =================================
+2023-04-18 07:44:51 info: =================================
+2023-04-18 07:44:51 info: ======= ENV: development =======
+2023-04-18 07:44:51 info: 🚀 App listening on the port 3000
+2023-04-18 07:44:51 info: =================================
+2023-04-18 07:44:51 error: [PUT] /groups/join >> StatusCode:: 401, Message:: Wrong authentication token
+2023-04-18 07:44:51 info: [0mPUT /groups/join [33m401[0m 66.573 ms - 40[0m
+2023-04-18 07:45:04 error: [PUT] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:45:04 info: [0mPUT /groups/join [33m404[0m 100.526 ms - 29[0m
+2023-04-18 07:45:16 error: [PUT] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:45:16 info: [0mPUT /groups/join [33m404[0m 187.678 ms - 29[0m
+2023-04-18 07:45:17 error: [PUT] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:45:17 info: [0mPUT /groups/join [33m404[0m 11.909 ms - 29[0m
+2023-04-18 07:45:42 info: =================================
+2023-04-18 07:45:42 info: ======= ENV: development =======
+2023-04-18 07:45:42 info: 🚀 App listening on the port 3000
+2023-04-18 07:45:42 info: =================================
+2023-04-18 07:45:44 error: [PUT] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:45:44 info: [0mPUT /groups/join [33m404[0m 66.847 ms - 29[0m
+2023-04-18 07:46:03 info: =================================
+2023-04-18 07:46:03 info: ======= ENV: development =======
+2023-04-18 07:46:03 info: 🚀 App listening on the port 3000
+2023-04-18 07:46:03 info: =================================
+2023-04-18 07:46:04 error: [PUT] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:46:04 info: [0mPUT /groups/join [33m404[0m 83.182 ms - 29[0m
+2023-04-18 07:46:14 error: [PUT] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:46:14 info: [0mPUT /groups/join [33m404[0m 89.093 ms - 29[0m
+2023-04-18 07:46:52 info: =================================
+2023-04-18 07:46:52 info: ======= ENV: development =======
+2023-04-18 07:46:52 info: 🚀 App listening on the port 3000
+2023-04-18 07:46:52 info: =================================
+2023-04-18 07:46:53 error: [PUT] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:46:53 info: [0mPUT /groups/join [33m404[0m 66.859 ms - 29[0m
+2023-04-18 07:47:04 info: =================================
+2023-04-18 07:47:04 info: ======= ENV: development =======
+2023-04-18 07:47:04 info: 🚀 App listening on the port 3000
+2023-04-18 07:47:04 info: =================================
+2023-04-18 07:47:04 error: [PUT] /groups/join >> StatusCode:: 409, Message:: User already in group
+2023-04-18 07:47:04 info: [0mPUT /groups/join [33m409[0m 136.831 ms - 35[0m
+2023-04-18 07:48:02 info: =================================
+2023-04-18 07:48:02 info: ======= ENV: development =======
+2023-04-18 07:48:02 info: 🚀 App listening on the port 3000
+2023-04-18 07:48:02 info: =================================
+2023-04-18 07:48:23 info: =================================
+2023-04-18 07:48:23 info: ======= ENV: development =======
+2023-04-18 07:48:23 info: 🚀 App listening on the port 3000
+2023-04-18 07:48:23 info: =================================
+2023-04-18 07:48:49 info: =================================
+2023-04-18 07:48:49 info: ======= ENV: development =======
+2023-04-18 07:48:49 info: 🚀 App listening on the port 3000
+2023-04-18 07:48:49 info: =================================
+2023-04-18 07:49:57 info: =================================
+2023-04-18 07:49:57 info: ======= ENV: development =======
+2023-04-18 07:49:57 info: 🚀 App listening on the port 3000
+2023-04-18 07:49:57 info: =================================
+2023-04-18 07:50:07 info: =================================
+2023-04-18 07:50:07 info: ======= ENV: development =======
+2023-04-18 07:50:07 info: 🚀 App listening on the port 3000
+2023-04-18 07:50:07 info: =================================
+2023-04-18 07:50:41 info: =================================
+2023-04-18 07:50:41 info: ======= ENV: development =======
+2023-04-18 07:50:41 info: 🚀 App listening on the port 3000
+2023-04-18 07:50:41 info: =================================
+2023-04-18 07:52:24 info: =================================
+2023-04-18 07:52:24 info: ======= ENV: development =======
+2023-04-18 07:52:24 info: 🚀 App listening on the port 3000
+2023-04-18 07:52:24 info: =================================
+2023-04-18 07:52:53 info: [0mDELETE /groups/join/2 [33m404[0m 12.741 ms - 155[0m
+2023-04-18 07:53:10 info: =================================
+2023-04-18 07:53:10 info: ======= ENV: development =======
+2023-04-18 07:53:10 info: 🚀 App listening on the port 3000
+2023-04-18 07:53:10 info: =================================
+2023-04-18 07:53:25 info: =================================
+2023-04-18 07:53:25 info: ======= ENV: development =======
+2023-04-18 07:53:25 info: 🚀 App listening on the port 3000
+2023-04-18 07:53:25 info: =================================
+2023-04-18 07:53:30 info: [0mDELETE /groups/join/2 [33m404[0m 31.713 ms - 155[0m
+2023-04-18 07:53:32 info: [0mDELETE /groups/join/2 [33m404[0m 5.188 ms - 155[0m
+2023-04-18 07:53:41 error: [DELETE] /groups/join >> StatusCode:: 500, Message:: invalid input syntax for type integer: "NaN"
+2023-04-18 07:53:41 info: [0mDELETE /groups/join [31m500[0m 159.453 ms - 60[0m
+2023-04-18 07:54:13 info: =================================
+2023-04-18 07:54:13 info: ======= ENV: development =======
+2023-04-18 07:54:13 info: 🚀 App listening on the port 3000
+2023-04-18 07:54:13 info: =================================
+2023-04-18 07:54:13 error: [DELETE] /groups/join >> StatusCode:: 401, Message:: Wrong authentication token
+2023-04-18 07:54:13 info: [0mDELETE /groups/join [33m401[0m 44.313 ms - 40[0m
+2023-04-18 07:54:27 info: [0mPOST /login [32m200[0m 235.944 ms - 361[0m
+2023-04-18 07:54:43 error: [DELETE] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:54:43 info: [0mDELETE /groups/join [33m404[0m 99.532 ms - 29[0m
+2023-04-18 07:55:12 info: =================================
+2023-04-18 07:55:12 info: ======= ENV: development =======
+2023-04-18 07:55:12 info: 🚀 App listening on the port 3000
+2023-04-18 07:55:12 info: =================================
+2023-04-18 07:55:12 error: [DELETE] /groups/join >> StatusCode:: 401, Message:: Wrong authentication token
+2023-04-18 07:55:12 info: [0mDELETE /groups/join [33m401[0m 63.723 ms - 40[0m
+2023-04-18 07:55:22 error: [DELETE] /groups/join >> StatusCode:: 404, Message:: Group not found
+2023-04-18 07:55:22 info: [0mDELETE /groups/join [33m404[0m 34.076 ms - 29[0m

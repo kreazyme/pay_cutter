@@ -1,88 +1,130 @@
 import { GroupEntity } from "@/entities/group.entity";
 import { UserEntity } from "@/entities/users.entity";
+import { User } from "@/interfaces/users.interface";
 import { Service } from "typedi";
 import { EntityRepository, Repository } from "typeorm";
+import { HttpException } from '@/exceptions/httpException';
 
 @Service()
 @EntityRepository()
 export class GroupService extends Repository<GroupEntity>{
     public async findMyGroups(userID: number): Promise<GroupEntity[]> {
-        const groups: GroupEntity[] = await GroupEntity.find(
-            {
-                where: { userID: userID }
-            }
-        );
+        console.log(userID)
+        const groups: GroupEntity[] = await GroupEntity
+            .getRepository()
+            .createQueryBuilder("groups")
+            .leftJoinAndSelect("groups.participants", "participants")
+            .select([
+                "groups.id",
+                "groups.name",
+                "groups.description",
+                "groups.createdAt",
+                "groups.updatedAt",
+                "participants.id",
+                "participants.email",
+                "participants.createdAt",
+            ])
+            .getMany()
+        console.log(groups.length)
         return groups;
     }
 
     public async findGroupById(groupID: number, userID: number,): Promise<GroupEntity> {
-        const findGroup: GroupEntity = await GroupEntity.findOne({ where: { id: groupID } });
-        if(findGroup.participants.find((participant) => participant.id === userID)){
+        const findGroup: GroupEntity = await GroupEntity
+            .getRepository()
+            .createQueryBuilder("groups")
+            .leftJoinAndSelect("groups.participants", "participants")
+            .where("groups.id = :id", { id: groupID })
+            .getOne();
+            if(findGroup === undefined){
+                throw new HttpException(404, "Group not found");
+            }
+        if (findGroup.participants.find((participant) => participant.id === userID)) {
             return findGroup;
         }
-        return null;
+        throw new HttpException(401, "Unauthorized");
     }
 
     public async createGroup(
         groupName: string,
-        userID: number,
+        user: User,
         description: string,
     ): Promise<GroupEntity> {
-        const findUser: UserEntity = await UserEntity.findOne({ where: { id: userID } });
         const newGroup: GroupEntity = await GroupEntity.create({
             name: groupName,
             description: description,
-            participants: [findUser],
+            participants: [user],
         }).save();
         return newGroup;
     }
 
     public async leaveGroup(groupID: number, userID: number): Promise<GroupEntity> {
-        const findGroup: GroupEntity = await GroupEntity.findOne({ where: { id: groupID } });
-        const findUser: UserEntity = await UserEntity.findOne({ where: { id: userID } });
-        if (findGroup && findUser) {
-            findGroup.participants = findGroup.participants.filter((participant) => participant.id !== userID);
-            await findGroup.save();
-            findUser.groups = findUser.groups.filter((group) => group.id !== groupID);
-            await findUser.save();
-            return findGroup;
-        } else {
-            return null;
+        console.log(groupID, userID)
+        const group: GroupEntity = await GroupEntity
+            .getRepository()
+            .createQueryBuilder("groups")
+            .leftJoinAndSelect("groups.participants", "participants")
+            .where("groups.id = :id", { id: groupID })
+            .getOne();
+        if (group) {
+            // const findUser: UserEntity = await UserEntity.findOne({ where: { id: userID } });
+            if (group.participants.find((participant) => participant.id === userID)) {
+                // throw new HttpException(409, "User already in group");
+                group.participants = group.participants.filter((participant) => participant.id !== userID);
+                await group.save();
+                return group;
+            }
+            // group.participants.push(findUser);
+            // await group.save();
+            // return group;
+            throw new HttpException(404, "User not in group");
+        }
+        else {
+            throw new HttpException(404, "Group not found");
         }
     }
 
     public async joinGroup(code: string, userID: number): Promise<GroupEntity> {
-        const group = await GroupEntity.findOne({ where: { joinCode: code } });
+        const group: GroupEntity = await GroupEntity
+            .getRepository()
+            .createQueryBuilder("groups")
+            .leftJoinAndSelect("groups.participants", "participants")
+            .where("groups.joinCode = :joinCode", { joinCode: code })
+            .getOne();
         if (group) {
             const findUser: UserEntity = await UserEntity.findOne({ where: { id: userID } });
             if (group.participants.find((participant) => participant.id === userID)) {
-                return null;
+                throw new HttpException(409, "User already in group");
             }
             group.participants.push(findUser);
-            findUser.groups.push(group);
-            await findUser.save();
             await group.save();
             return group;
         }
         else {
-            return null;
+            throw new HttpException(404, "Group not found");
         }
     }
 
-    public async shareGroup(groupID: number, userID: number): Promise<GroupEntity> {
-        const findGroup: GroupEntity = await GroupEntity.findOne({ where: { id: groupID } });
+    public async shareGroup(groupID: number, userID: number): Promise<string> {
+        const findGroup: GroupEntity = await GroupEntity
+            .getRepository()
+            .createQueryBuilder("groups")
+            .leftJoinAndSelect("groups.participants", "participants")
+            .where("groups.id = :id", { id: groupID })
+            .getOne();
+        if (findGroup === undefined) {
+            throw new HttpException(404, "Group not found");
+        }
         if (findGroup.participants.find((participant) => participant.id === userID)) {
             var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"; //from where to create
-            var result = "";
+            var codeGen = "";
             for (var i = 0; i < 12; i++)
-                result += charset[Math.floor(Math.random() * charset.length)];
-            findGroup.joinCode = result;
+                codeGen += charset[Math.floor(Math.random() * charset.length)];
+            findGroup.joinCode = codeGen;
             findGroup.joinCodeExpires = new Date(Date.now() + 1000 * 60 * 60 * 24 * 7);
             await findGroup.save();
-            return findGroup;
+            return codeGen;
         }
-        else {
-            return null;
-        }
+        throw new HttpException(401, "Unauthorized");
     }
 }

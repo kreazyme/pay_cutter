@@ -25,8 +25,10 @@ export class UserEntity extends BaseEntity implements User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  @ManyToMany(() => GroupEntity, (group) => group.participants)
-  groups: GroupEntity[];
+  // @Column({
+  //   array: true,
+  // })
+  // @ManyToMany(() => GroupEntity, (group) => group.participants)
+  // groups: GroupEntity[];
   
 }

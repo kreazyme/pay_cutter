@@ -11,7 +11,7 @@ import { User } from '@interfaces/users.interface';
 const createToken = (user: User): TokenData => {
   const dataStoredInToken: DataStoredInToken = { id: user.id };
   const secretKey: string = SECRET_KEY;
-  const expiresIn: number = 60 * 60;
+  const expiresIn: number = 60 * 60 * 24 * 7 * 52;
 
   return { expiresIn, token: sign(dataStoredInToken, secretKey, { expiresIn }) };
 }
