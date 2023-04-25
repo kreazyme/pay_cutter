@@ -1,0 +1,7 @@
+  Username:    postgres
+  Password:    gJW2HZ7OpyhgFLA
+  Hostname:    pay-cutter-db.internal
+  Flycast:     fdaa:2:4e9:0:1::6
+  Proxy port:  5432
+  Postgres port:  5433
+  Connection string: postgres://postgres:gJW2HZ7OpyhgFLA@pay-cutter-db.flycast:5432

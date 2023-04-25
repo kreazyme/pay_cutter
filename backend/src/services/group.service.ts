@@ -25,7 +25,6 @@ export class GroupService extends Repository<GroupEntity>{
                 "participants.createdAt",
             ])
             .getMany()
-        console.log(groups.length)
         return groups;
     }
 
