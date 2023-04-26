@@ -20,4 +20,8 @@ class AuthenRepo {
   Future<String> loginFacebook() async {
     return await _authDataSource.loginFacebook();
   }
+
+  Future<void> logout() async {
+    return await _authDataSource.signout();
+  }
 }

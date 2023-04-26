@@ -27,15 +27,21 @@ class CreateGroupPage extends StatelessWidget {
     CreateGroupState state,
   ) {
     if (state is CreateGroupSuccess) {
-      Navigator.pushNamed(context, AppRouters.chat, arguments: state.group);
+      Navigator.popAndPushNamed(context, AppRouters.chat,
+          arguments: state.group);
     }
   }
 }
 
 // ignore: must_be_immutable
-class _CreateGroupView extends StatelessWidget {
+class _CreateGroupView extends StatefulWidget {
   _CreateGroupView();
 
+  @override
+  State<_CreateGroupView> createState() => _CreateGroupViewState();
+}
+
+class _CreateGroupViewState extends State<_CreateGroupView> {
   String _groupName = '';
 
   @override
@@ -55,12 +61,15 @@ class _CreateGroupView extends StatelessWidget {
                 hintText: 'Group Name',
                 labelText: 'Group Name',
                 onChanged: (value) {
-                  _groupName = value;
+                  setState(() {
+                    _groupName = value;
+                  });
                 },
               ),
               CustomButtonWidget(
                 content: 'Create',
                 isLoading: state.status.isLoading,
+                isDiable: state.status.isLoading || _groupName == '',
                 onPressed: () {
                   context.read<CreateGroupBloc>().add(CreateGroupSubmit(
                         name: _groupName,

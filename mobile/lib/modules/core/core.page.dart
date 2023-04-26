@@ -4,6 +4,7 @@ import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/modules/core/bloc/core.bloc.dart';
 import 'package:pay_cutter/modules/core/widgets/app_bottom_item.widget.dart';
 import 'package:pay_cutter/modules/home/home.view.dart';
+import 'package:pay_cutter/modules/profile/profile.view.dart';
 import 'package:pay_cutter/modules/scan/scan.page.dart';
 
 class CorePage extends StatelessWidget {
@@ -55,7 +56,7 @@ class _CoreView extends StatelessWidget {
           index: state.indexBottom,
           children: const [
             HomePage(),
-            ScanPage(),
+            ProfilePage(),
           ],
         ),
         drawer: Container(
