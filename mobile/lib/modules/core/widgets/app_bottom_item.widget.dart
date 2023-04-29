@@ -14,12 +14,12 @@ class AppBottomNavigation extends StatelessWidget {
   List<BottomNavigationBarItem> _renderItem() {
     return [
       BottomNavigationBarItem(
-        icon: Icon(Icons.home),
+        icon: const Icon(Icons.home),
         label: 'Home',
         backgroundColor: AppColors.primaryColor,
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.person_rounded),
+        icon: const Icon(Icons.person_rounded),
         label: 'Profile',
         backgroundColor: AppColors.primaryColor,
       ),

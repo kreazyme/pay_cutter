@@ -18,7 +18,7 @@ class CreateGroupPage extends StatelessWidget {
             ),
         child: BlocListener<CreateGroupBloc, CreateGroupState>(
           listener: _onListner,
-          child: _CreateGroupView(),
+          child: const _CreateGroupView(),
         ));
   }
 
@@ -33,9 +33,8 @@ class CreateGroupPage extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
 class _CreateGroupView extends StatefulWidget {
-  _CreateGroupView();
+  const _CreateGroupView();
 
   @override
   State<_CreateGroupView> createState() => _CreateGroupViewState();

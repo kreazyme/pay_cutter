@@ -11,12 +11,12 @@ abstract class UserMock {
 
   static List<UserModel> getUsers() => List.generate(
         4,
-        (index) => const UserModel(
+        (index) => UserModel(
           avatarUrl:
               'https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg',
           email: 'email@email.com',
-          name: 'Full name',
-          userID: 12,
+          name: 'Full name $index',
+          userID: index + 2,
         ),
       );
 }
