@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/modules/core/bloc/core.bloc.dart';
 
 class AppBottomNavigation extends StatelessWidget {
@@ -11,16 +12,16 @@ class AppBottomNavigation extends StatelessWidget {
   final int currentIndex;
 
   List<BottomNavigationBarItem> _renderItem() {
-    return const [
+    return [
       BottomNavigationBarItem(
-        icon: Icon(Icons.home),
+        icon: const Icon(Icons.home),
         label: 'Home',
-        backgroundColor: Colors.blue,
+        backgroundColor: AppColors.primaryColor,
       ),
       BottomNavigationBarItem(
-        icon: Icon(Icons.qr_code),
-        label: 'Scan',
-        backgroundColor: Colors.blue,
+        icon: const Icon(Icons.person_rounded),
+        label: 'Profile',
+        backgroundColor: AppColors.primaryColor,
       ),
     ];
   }

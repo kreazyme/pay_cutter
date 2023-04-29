@@ -23,6 +23,10 @@ class CreateGroupInitial extends CreateGroupState {
       : super(
           status: HandleStatus.initial,
         );
+  @override
+  List<Object?> get props => [
+        status,
+      ];
 }
 
 class CreateGroupSuccess extends CreateGroupState {
@@ -35,6 +39,7 @@ class CreateGroupSuccess extends CreateGroupState {
   @override
   List<Object?> get props => [
         group,
+        status,
       ];
 }
 
@@ -48,5 +53,14 @@ class CreateGroupFailure extends CreateGroupState {
   @override
   List<Object?> get props => [
         error,
+        status,
+      ];
+}
+
+class CreateGroupLoading extends CreateGroupState {
+  const CreateGroupLoading() : super(status: HandleStatus.loading);
+  @override
+  List<Object?> get props => [
+        status,
       ];
 }

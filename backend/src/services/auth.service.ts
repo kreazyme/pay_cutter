@@ -24,7 +24,11 @@ const createCookie = (tokenData: TokenData): string => {
 @EntityRepository()
 export class AuthService extends Repository<UserEntity> {
   public async signup(userData: User): Promise<User> {
-    const findUser: User = await UserEntity.findOne({ where: { email: userData.email } });
+    const findUser: User = await UserEntity
+      .createQueryBuilder('user')
+      .where('user.email = :email', { email: userData.email })
+      .addSelect('user.password')
+      .getOne();
     if (findUser) throw new HttpException(409, `This email ${userData.email} already exists`);
 
     const hashedPassword = await hash(userData.password, 10);
@@ -33,7 +37,11 @@ export class AuthService extends Repository<UserEntity> {
   }
 
   public async login(userData: User): Promise<{ cookie: string; findUser: User, token: string }> {
-    const findUser: User = await UserEntity.findOne({ where: { email: userData.email } });
+    const findUser: User = await UserEntity
+      .createQueryBuilder('user')
+      .where('user.email = :email', { email: userData.email })
+      .addSelect('user.password')
+      .getOne();
     if (!findUser) throw new HttpException(409, `This email ${userData.email} was not found`);
 
     const isPasswordMatching: boolean = await compare(userData.password, findUser.password);
@@ -47,7 +55,13 @@ export class AuthService extends Repository<UserEntity> {
   }
 
   public async logout(userData: User): Promise<User> {
-    const findUser: User = await UserEntity.findOne({ where: { email: userData.email, password: userData.password } });
+    // const findUser: User = await UserEntity.findOne({ where: { email: userData.email, password: userData.password } });
+    const findUser: User = await UserEntity
+      .createQueryBuilder('user')
+      .where('user.email = :email', { email: userData.email })
+      .where('user.password = :password', { password: userData.password })
+      .addSelect('user.password')
+      .getOne();
     if (!findUser) throw new HttpException(409, "User doesn't exist");
 
     return findUser;

@@ -40,3 +40,27 @@ class CreateExpenseCategorySubmit extends CreateExpenseEvent {
         category,
       ];
 }
+
+class CreateExpenseRemoveUser extends CreateExpenseEvent {
+  final int index;
+  const CreateExpenseRemoveUser({
+    required this.index,
+  });
+
+  @override
+  List<Object> get props => [
+        index,
+      ];
+}
+
+class CreateExpenseAddUser extends CreateExpenseEvent {
+  final int index;
+  const CreateExpenseAddUser({
+    required this.index,
+  });
+
+  @override
+  List<Object> get props => [
+        index,
+      ];
+}

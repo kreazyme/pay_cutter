@@ -3,7 +3,9 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateC
 import { User } from '@interfaces/users.interface';
 import { GroupEntity } from './group.entity';
 
-@Entity()
+@Entity({
+  name: 'user_entity',
+})
 export class UserEntity extends BaseEntity implements User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -13,7 +15,9 @@ export class UserEntity extends BaseEntity implements User {
   @Unique(['email'])
   email: string;
 
-  @Column()
+  @Column({
+    select: false,
+  })
   @IsNotEmpty()
   password: string;
 

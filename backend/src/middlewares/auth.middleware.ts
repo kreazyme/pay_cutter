@@ -21,7 +21,11 @@ export const AuthMiddleware = async (req: RequestWithUser, res: Response, next: 
 
     if (Authorization) {
       const { id } = (await verify(Authorization, SECRET_KEY)) as DataStoredInToken;
-      const findUser = await UserEntity.findOne(id, { select: ['id', 'email', 'password'] });
+      const findUser = await UserEntity.
+        createQueryBuilder('user')
+        .where('user.id = :id', { id })
+        .addSelect('user.password')
+        .getOne();
 
       if (findUser) {
         req.user = findUser;

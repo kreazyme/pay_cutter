@@ -1,9 +1,12 @@
 import { Group } from "@/interfaces/group.interface";
 import { IsNotEmpty } from "class-validator";
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn,  } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn,  } from "typeorm";
 import { UserEntity } from "./users.entity";
+import { ExpenseEntity } from "./expense.entity";
 
-@Entity()
+@Entity({
+    name: "group_entity",
+})
 export class GroupEntity extends BaseEntity implements Group{
     @PrimaryGeneratedColumn()
     id: number;
@@ -39,4 +42,5 @@ export class GroupEntity extends BaseEntity implements Group{
     @ManyToMany(() => UserEntity)
     @JoinTable()
     participants: UserEntity[];
+
 }

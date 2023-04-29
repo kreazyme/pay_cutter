@@ -12,6 +12,7 @@ import 'package:pay_cutter/data/repository/category_repo.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/create/bloc/create_expense/create_expense_bloc.dart';
+import 'package:pay_cutter/modules/create/widgets/expense/expense_for_whom.widget.dart';
 import 'package:pay_cutter/modules/create/widgets/expense/expense_image.widget.dart';
 
 class CreateExpensePage extends StatelessWidget {
@@ -36,10 +37,10 @@ class CreateExpensePage extends StatelessWidget {
   }
 
   void _onListener(BuildContext context, CreateExpenseState state) {
-    if (state is CreateExpenseFailure) {
+    if (state.status?.isError == true) {
       ToastUlti.showError(context, state.error!);
     }
-    if (state is CreateExpenseSuccess) {
+    if (state.status?.isSuccess == true) {
       ToastUlti.showSuccess(context, 'Create Expense Success');
       Navigator.pop(context);
     }
@@ -80,12 +81,56 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
         .toList();
   }
 
-  Widget _getDivider() {
-    return const Divider(
-      height: 20,
-      color: Colors.transparent,
+  Widget _amoutInput() {
+    return TextField(
+      controller: _amountController,
+      style: TextStyles.title.copyWith(
+        color: AppColors.primaryColor,
+      ),
+      decoration: InputDecoration(
+        label: Text(
+          'Expense Amount',
+          style: TextStyles.body.copyWith(
+            color: AppColors.textColor,
+          ),
+        ),
+        hintText: '0',
+        hintStyle: TextStyles.title.copyWith(
+          color: AppColors.primaryColor,
+        ),
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(
+          color: AppColors.primaryColor,
+        )),
+      ),
+      keyboardType: TextInputType.number,
     );
   }
+
+  Widget _datetimeSelect() => Container(
+        alignment: Alignment.centerLeft,
+        child: GestureDetector(
+          onTap: () async {
+            final DateTime? picked = await showDatePicker(
+              context: context,
+              initialDate: _selectedDate,
+              firstDate: DateTime(2015, 8),
+              lastDate: DateTime(2101),
+            );
+            if (picked != null && picked != _selectedDate) {
+              setState(() {
+                _selectedDate = picked;
+              });
+            }
+          },
+          child: Text(
+            _selectedDate.toFullDayWeek(),
+            style: TextStyles.body.copyWith(
+              color: AppColors.textColor,
+            ),
+          ),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -99,30 +144,11 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                TextField(
-                  controller: _amountController,
-                  style: TextStyles.title.copyWith(
-                    color: AppColors.primaryColor,
-                  ),
-                  decoration: InputDecoration(
-                    label: Text(
-                      'Expense Amount',
-                      style: TextStyles.body.copyWith(
-                        color: AppColors.textColor,
-                      ),
-                    ),
-                    hintText: '0',
-                    hintStyle: TextStyles.title.copyWith(
-                      color: AppColors.primaryColor,
-                    ),
-                    border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                      color: AppColors.primaryColor,
-                    )),
-                  ),
-                  keyboardType: TextInputType.number,
+                _amoutInput(),
+                const Divider(
+                  height: 20,
+                  color: Colors.transparent,
                 ),
-                _getDivider(),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: DropdownButtonHideUnderline(
@@ -154,6 +180,15 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                   color: AppColors.textColor,
                   height: 2,
                 ),
+                ExpenseForWhomWidget(
+                  userSelected: state.userSelected ?? [],
+                  users: state.users ?? [],
+                  amount: double.parse(
+                    _amountController.text.isEmpty
+                        ? '0'
+                        : _amountController.text,
+                  ),
+                ),
                 TextField(
                   controller: _descriptionController,
                   style: TextStyles.body.copyWith(
@@ -170,43 +205,29 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                     )),
                   ),
                 ),
-                _getDivider(),
-                _getDivider(),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: GestureDetector(
-                    onTap: () async {
-                      final DateTime? picked = await showDatePicker(
-                        context: context,
-                        initialDate: _selectedDate,
-                        firstDate: DateTime(2015, 8),
-                        lastDate: DateTime(2101),
-                      );
-                      if (picked != null && picked != _selectedDate) {
-                        setState(() {
-                          _selectedDate = picked;
-                        });
-                      }
-                    },
-                    child: Text(
-                      _selectedDate.toFullDayWeek(),
-                      style: TextStyles.body.copyWith(
-                        color: AppColors.textColor,
-                      ),
-                    ),
-                  ),
+                const Divider(
+                  height: 20,
+                  color: Colors.transparent,
                 ),
-                _getDivider(),
+                _datetimeSelect(),
+                const Divider(
+                  height: 20,
+                  color: Colors.transparent,
+                ),
                 const ExpenseImageWidget(),
-                _getDivider(),
+                const Divider(
+                  height: 20,
+                  color: Colors.transparent,
+                ),
                 CustomButtonWidget(
                   content: 'Create',
-                  isLoading: state.status?.isLoading ?? false,
+                  isLoading: state.categoryStatus?.isLoading ?? false,
                   isDiable: _amountController.text == '' ||
                       state.status?.isLoading == true ||
+                      state.categoryStatus?.isLoading == true ||
+                      state.userSelected!.isEmpty ||
                       state.categorySelected == null,
                   onPressed: () {
-                    // print(_amountController.text);
                     BlocProvider.of<CreateExpenseBloc>(context).add(
                       CreateExpenseSubmit(
                           data: ExpenseDTO(
@@ -214,7 +235,6 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                         description: _descriptionController.text,
                         date: _selectedDate,
                         name: 'Name',
-                        // category: state.categorySelected,
                       )),
                     );
                   },

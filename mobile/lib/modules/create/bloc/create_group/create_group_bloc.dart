@@ -21,6 +21,7 @@ class CreateGroupBloc extends Bloc<CreateGroupEvent, CreateGroupState> {
     Emitter<CreateGroupState> emitter,
   ) async {
     try {
+      emitter(const CreateGroupLoading());
       GroupModel result = await _groupRepository.createGroup(
         event.name,
       );
