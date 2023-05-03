@@ -1,7 +1,7 @@
 import { ExpenseEntity } from "@/entities/expense.entity";
 import { GroupEntity } from "@/entities/group.entity";
 import { UserEntity } from "@/entities/users.entity";
-import { HttpException } from "@exceptions/httpException";
+import { HttpException } from "@exceptions/HttpException";
 import { Service } from "typedi";
 import { EntityRepository, Repository } from "typeorm";
 
