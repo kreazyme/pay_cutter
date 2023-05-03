@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
 import 'package:pay_cutter/data/repository/auth_repo.dart';
+import 'package:pay_cutter/data/repository/user_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/login/bloc/login.bloc.dart';
 import 'package:pay_cutter/modules/login/widgets/login_bottom.widget.dart';
@@ -16,6 +17,7 @@ class LoginPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => LoginBloc(
         authenRepo: getIt.get<AuthenRepo>(),
+        userRepo: getIt.get<UserRepo>(),
       ),
       child: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) => _onListener(

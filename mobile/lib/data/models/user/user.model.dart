@@ -13,7 +13,7 @@ class UserModel {
   @JsonKey(name: 'email')
   final String email;
 
-  @JsonKey(name: 'avatar_url')
+  @JsonKey(name: 'photoUrl')
   final String avatarUrl;
 
   const UserModel({
