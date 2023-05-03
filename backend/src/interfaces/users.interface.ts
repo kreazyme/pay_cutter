@@ -4,6 +4,8 @@ import { Group } from "./group.interface";
 export interface User {
   id?: number;
   email: string;
-  password: string;
+  name: string;
+  photoUrl?: string;
   groups?: GroupEntity[];
+  googleToken?: string;
 }

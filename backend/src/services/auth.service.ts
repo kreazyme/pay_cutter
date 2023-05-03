@@ -7,6 +7,7 @@ import { UserEntity } from '@entities/users.entity';
 import { HttpException } from '@/exceptions/httpException';
 import { DataStoredInToken, TokenData } from '@interfaces/auth.interface';
 import { User } from '@interfaces/users.interface';
+import { XMLHttpRequest } from 'xmlhttprequest';
 
 const createToken = (user: User): TokenData => {
   const dataStoredInToken: DataStoredInToken = { id: user.id };
@@ -24,6 +25,9 @@ const createCookie = (tokenData: TokenData): string => {
 @EntityRepository()
 export class AuthService extends Repository<UserEntity> {
   public async signup(userData: User): Promise<User> {
+
+
+
     const findUser: User = await UserEntity
       .createQueryBuilder('user')
       .where('user.email = :email', { email: userData.email })
