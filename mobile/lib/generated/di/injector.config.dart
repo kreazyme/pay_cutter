@@ -65,13 +65,16 @@ Future<_i1.GetIt> initGetIt(
   gh.lazySingleton<_i12.GroupDataSource>(() => _i12.GroupDataSource());
   gh.lazySingleton<_i13.GroupRepository>(
       () => _i13.GroupRepository(groupDataSource: gh<_i12.GroupDataSource>()));
-  gh.lazySingleton<_i14.UserDataSource>(() => _i14.UserDataSource());
+  gh.lazySingleton<_i14.UserDataSource>(
+      () => _i14.UserDataSource(dioHelper: gh<_i8.DioHelper>()));
   gh.lazySingleton<_i15.UserLocalDatasource>(() => _i15.UserLocalDatasource(
         box: gh<_i3.Box<dynamic>>(instanceName: 'divider_app_hive_box'),
         dioHelper: gh<_i8.DioHelper>(),
       ));
-  gh.lazySingleton<_i16.UserRepo>(
-      () => _i16.UserRepo(userLocalDatasource: gh<_i15.UserLocalDatasource>()));
+  gh.lazySingleton<_i16.UserRepo>(() => _i16.UserRepo(
+        userLocalDatasource: gh<_i15.UserLocalDatasource>(),
+        userDataSource: gh<_i14.UserDataSource>(),
+      ));
   gh.lazySingleton<_i17.AuthenRepo>(
       () => _i17.AuthenRepo(authDataSource: gh<_i11.FirebaseAuthDataSource>()));
   return getIt;

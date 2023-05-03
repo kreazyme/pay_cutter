@@ -15,11 +15,12 @@ export class UserEntity extends BaseEntity implements User {
   @Unique(['email'])
   email: string;
 
-  @Column({
-    select: false,
-  })
+  @Column()
   @IsNotEmpty()
-  password: string;
+  name: string;
+
+  @Column()
+  photoUrl?: string;
 
   @Column()
   @CreateDateColumn()

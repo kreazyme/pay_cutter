@@ -3,3 +3,14 @@ Dockerfile
 .dockerignore
 node_modules
 .git
+node_modules
+build
+dist
+config
+docs
+*.log
+.git
+.vscode
+yarn.lock
+\yarn.lock
+/yarn.lock

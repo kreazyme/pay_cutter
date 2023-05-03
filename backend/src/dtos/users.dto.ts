@@ -6,9 +6,11 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(9)
-  @MaxLength(32)
-  public password: string;
+  public name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  public googleToken: string;
 }
 
 export class UpdateUserDto {

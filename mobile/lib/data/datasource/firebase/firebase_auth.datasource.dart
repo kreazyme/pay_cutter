@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pay_cutter/data/models/dto/user.dto.dart';
 
 @lazySingleton
 class FirebaseAuthDataSource {
@@ -11,10 +12,10 @@ class FirebaseAuthDataSource {
     return user != null;
   }
 
-  Future<bool> loginGoogle() async {
+  Future<UserDTO?> loginGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return false;
+      if (googleUser == null) return null;
 
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
@@ -23,11 +24,16 @@ class FirebaseAuthDataSource {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-
       await _auth.signInWithCredential(credential);
-      return true;
+      User? user = _auth.currentUser;
+      return UserDTO(
+        name: user?.displayName ?? '',
+        email: user?.email ?? '',
+        avatarURL: user?.photoURL ?? '',
+        googleToken: googleAuth.accessToken ?? '',
+      );
     } catch (error) {
-      return false;
+      return null;
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/data/datasource/firebase/firebase_auth.datasource.dart';
+import 'package:pay_cutter/data/models/dto/user.dto.dart';
 
 @lazySingleton
 class AuthenRepo {
@@ -13,7 +14,7 @@ class AuthenRepo {
     return await _authDataSource.checkLogin();
   }
 
-  Future<bool> loginGoogle() async {
+  Future<UserDTO?> loginGoogle() async {
     return await _authDataSource.loginGoogle();
   }
 
