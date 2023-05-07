@@ -1,0 +1,11 @@
+2023-05-02 10:04:26 error: [POST] /users/ >> StatusCode:: 500, Message:: axios_1.Axios.get is not a function
+2023-05-02 10:05:19 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:56:17)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)

@@ -31,7 +31,7 @@ export class App {
     this.initializeSwagger();
     this.initializeErrorHandling();
   }
-  
+
   public listen() {
     this.app.listen(this.port, () => {
       logger.info(`=================================`);
@@ -46,11 +46,10 @@ export class App {
   }
 
   private async connectToDatabase() {
-    try{
-      await createConnection(dbConnection)
-    }
-    catch(e){
-      console.log(e)
+    try {
+      await createConnection(dbConnection);
+    } catch (e) {
+      console.log(e);
     }
   }
 

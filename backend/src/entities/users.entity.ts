@@ -35,5 +35,4 @@ export class UserEntity extends BaseEntity implements User {
   // })
   // @ManyToMany(() => GroupEntity, (group) => group.participants)
   // groups: GroupEntity[];
-  
 }

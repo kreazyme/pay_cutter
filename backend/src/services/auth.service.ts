@@ -14,21 +14,17 @@ const createToken = (user: User): TokenData => {
   const expiresIn: number = 60 * 60 * 24 * 7 * 52;
 
   return { expiresIn, token: sign(dataStoredInToken, secretKey, { expiresIn }) };
-}
+};
 
 const createCookie = (tokenData: TokenData): string => {
   return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`;
-}
+};
 
 @Service()
 @EntityRepository()
 export class AuthService extends Repository<UserEntity> {
   public async signup(userData: User): Promise<User> {
-
-
-
-    const findUser: User = await UserEntity
-      .createQueryBuilder('user')
+    const findUser: User = await UserEntity.createQueryBuilder('user')
       .where('user.email = :email', { email: userData.email })
       .addSelect('user.password')
       .getOne();
@@ -39,16 +35,15 @@ export class AuthService extends Repository<UserEntity> {
     return createUserData;
   }
 
-  public async login(userData: User): Promise<{ cookie: string; findUser: User, token: string }> {
-    const findUser: User = await UserEntity
-      .createQueryBuilder('user')
+  public async login(userData: User): Promise<{ cookie: string; findUser: User; token: string }> {
+    const findUser: User = await UserEntity.createQueryBuilder('user')
       .where('user.email = :email', { email: userData.email })
       .addSelect('user.password')
       .getOne();
     if (!findUser) throw new HttpException(409, `This email ${userData.email} was not found`);
 
     const isPasswordMatching: boolean = await compare(userData.password, findUser.password);
-    if (!isPasswordMatching) throw new HttpException(409, "Password not matching");
+    if (!isPasswordMatching) throw new HttpException(409, 'Password not matching');
 
     const tokenData = createToken(findUser);
     const cookie = createCookie(tokenData);
@@ -59,8 +54,7 @@ export class AuthService extends Repository<UserEntity> {
 
   public async logout(userData: User): Promise<User> {
     // const findUser: User = await UserEntity.findOne({ where: { email: userData.email, password: userData.password } });
-    const findUser: User = await UserEntity
-      .createQueryBuilder('user')
+    const findUser: User = await UserEntity.createQueryBuilder('user')
       .where('user.email = :email', { email: userData.email })
       .where('user.password = :password', { password: userData.password })
       .addSelect('user.password')

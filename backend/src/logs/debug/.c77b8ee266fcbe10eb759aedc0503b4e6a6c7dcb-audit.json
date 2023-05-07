@@ -1,0 +1,40 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\debug\\.c77b8ee266fcbe10eb759aedc0503b4e6a6c7dcb-audit.json",
+    "files": [
+        {
+            "date": 1682479103032,
+            "name": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\debug\\2023-04-26.log",
+            "hash": "9ffcc2e3f5e5bc672c8782c6d3e8b1f652ce03c191365ad9aeb6bca5a4aeeaec"
+        },
+        {
+            "date": 1682867040708,
+            "name": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\debug\\2023-04-30.log",
+            "hash": "c594f844a84bceab90ca84b3a1bc3edbf6b37152ba621d764581864f4aa7991b"
+        },
+        {
+            "date": 1682905802054,
+            "name": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\debug\\2023-05-01.log",
+            "hash": "b767d443602cc52be86273a03a0bb65aaab91d7624faff100a0746fd671692a9"
+        },
+        {
+            "date": 1682996644930,
+            "name": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\debug\\2023-05-02.log",
+            "hash": "918930188cf3bdbc5d3281134cf5b18ce5aa6e704ab8001449972e76654937fc"
+        },
+        {
+            "date": 1683069558021,
+            "name": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\debug\\2023-05-03.log",
+            "hash": "1c4f5875a272424f46be2ea674b8f1fffd6135d6b41bdabdb06880a62aab6115"
+        },
+        {
+            "date": 1683443598220,
+            "name": "E:\\WorkingFolder\\MoneyDivider\\backend\\src\\logs\\debug\\2023-05-07.log",
+            "hash": "9ff49ede41bc893c53645b44e7bab97226207f1a8844f5939dae58488bfa8015"
+        }
+    ],
+    "hashType": "sha256"
+}

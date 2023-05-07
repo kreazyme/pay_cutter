@@ -1,5 +1,5 @@
-import { GroupEntity } from "@/entities/group.entity";
-import { Group } from "./group.interface";
+import { GroupEntity } from '@/entities/group.entity';
+import { Group } from './group.interface';
 
 export interface User {
   id?: number;
