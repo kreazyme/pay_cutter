@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/modules/core/bloc/core.bloc.dart';
 import 'package:pay_cutter/modules/core/widgets/app_bottom_item.widget.dart';
 import 'package:pay_cutter/modules/home/home.view.dart';
-import 'package:pay_cutter/modules/scan/scan.page.dart';
+import 'package:pay_cutter/modules/profile/profile.view.dart';
 
 class CorePage extends StatelessWidget {
   const CorePage({super.key});
@@ -34,7 +35,12 @@ class _CoreView extends StatelessWidget {
     return BlocBuilder<CoreBloc, CoreState>(
       builder: (context, state) => Scaffold(
         appBar: AppBar(
-            title: const Text('Core Page'),
+            title: Text(
+              'Core Page',
+              style: TextStyles.title.copyWith(
+                color: Colors.white,
+              ),
+            ),
             leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(
@@ -49,7 +55,7 @@ class _CoreView extends StatelessWidget {
           index: state.indexBottom,
           children: const [
             HomePage(),
-            ScanPage(),
+            ProfilePage(),
           ],
         ),
         drawer: Container(

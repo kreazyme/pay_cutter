@@ -1,0 +1,14 @@
+2023-04-26 10:18:24 error: uncaughtException: listen EADDRINUSE: address already in use :::8080
+Error: listen EADDRINUSE: address already in use :::8080
+    at Server.setupListenHandle [as _listen2] (node:net:1372:16)
+    at listenInCluster (node:net:1420:12)
+    at Server.listen (node:net:1508:7)
+    at Function.listen (E:\WorkingFolder\MoneyDivider\backend\node_modules\express\lib\application.js:635:24)
+    at App.listen (E:\WorkingFolder\MoneyDivider\backend\src\app.ts:36:14)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:16:5)
+    at Module._compile (node:internal/modules/cjs/loader:1105:14)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1618:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1621:12)
+2023-04-26 10:27:09 error: [PUT] /expenses/24 >> StatusCode:: 401, Message:: Wrong authentication token
+2023-04-26 10:27:26 error: [POST] /login >> StatusCode:: 500, Message:: No repository for "UserEntity" was found. Looks like this entity is not registered in current "default" connection?

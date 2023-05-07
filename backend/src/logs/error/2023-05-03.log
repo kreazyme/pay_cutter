@@ -1,0 +1,7 @@
+2023-05-03 06:21:51 error: [POST] /users/ >> StatusCode:: 500, Message:: Request failed with status code 400
+2023-05-03 06:22:58 error: [POST] /users/ >> StatusCode:: 409, Message:: Token doesn't match email
+2023-05-03 06:33:55 error: [POST] /users/ >> StatusCode:: 409, Message:: Token doesn't match email
+2023-05-03 08:33:13 error: [POST] /users/ >> StatusCode:: 409, Message:: Token doesn't match email
+2023-05-03 08:57:35 error: [POST] /users >> StatusCode:: 500, Message:: null value in column "name" of relation "user_entity" violates not-null constraint
+2023-05-03 08:59:05 error: [POST] /users >> StatusCode:: 400, Message:: name should not be empty,name must be a string
+2023-05-03 08:59:16 error: [POST] /users >> StatusCode:: 500, Message:: null value in column "photoUrl" of relation "user_entity" violates not-null constraint

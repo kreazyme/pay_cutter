@@ -15,6 +15,10 @@ abstract class TextStyles {
   );
   static const TextStyle subTitle = TextStyle(
     fontSize: 16,
+    fontWeight: FontWeight.normal,
+  );
+  static const TextStyle subTitleBold = TextStyle(
+    fontSize: 16,
     fontWeight: FontWeight.bold,
   );
   static const TextStyle body = TextStyle(

@@ -6,8 +6,8 @@ part 'expense.dto.g.dart';
 class ExpenseDTO {
   final String name;
   final String description;
-  final String amount;
-  final String date;
+  final double amount;
+  final DateTime date;
 
   ExpenseDTO({
     required this.name,

@@ -10,3 +10,5 @@ class ProfileEvent extends Equatable {
 class ProfileSuccess extends ProfileEvent {}
 
 class ProfileStarted extends ProfileEvent {}
+
+class ProfileLogout extends ProfileEvent {}

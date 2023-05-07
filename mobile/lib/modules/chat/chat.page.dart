@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/widgets/animation/app_loading.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_app_error.widget.dart';
+import 'package:pay_cutter/common/widgets/custom_icon.widget.dart';
+import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/repository/chat_repo.dart';
@@ -48,18 +49,17 @@ class _ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(group.name),
-        backgroundColor: AppColors.primaryColor,
+      appBar: CustomAppbar(
+        title: group.name,
         actions: [
           IconButton(
-            icon: const Icon(Icons.info_outline_rounded),
+            icon: const CustomIcon(iconData: Icons.info_outline),
             onPressed: () => Navigator.pushNamed(
               context,
               AppRouters.detail,
               arguments: group,
             ),
-          ),
+          )
         ],
       ),
       body: BlocBuilder<ChatBloc, ChatState>(
@@ -69,6 +69,29 @@ class _ChatView extends StatelessWidget {
               child: AppCustomLoading(),
             );
           } else if (state is ChatSuccessful) {
+            if (state.chats!.isEmpty) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Center(
+                    child: Text('No chat found!'),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        AppRouters.shareChat,
+                        arguments: group.id,
+                      ),
+                      child: const Text('Share this group to others'),
+                    ),
+                  ),
+                ],
+              );
+            }
             return ListChatsWidget(
               chats: state.chats!,
               group: group,

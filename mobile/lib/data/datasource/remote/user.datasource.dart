@@ -1,4 +1,21 @@
 import 'package:injectable/injectable.dart';
+import 'package:pay_cutter/common/endpoints.dart';
+import 'package:pay_cutter/common/helper/dio_helper.dart';
+import 'package:pay_cutter/data/models/dto/user.dto.dart';
+import 'package:pay_cutter/data/models/user/user.model.dart';
 
 @lazySingleton
-class UserDataSource {}
+class UserDataSource {
+  final DioHelper _dioHelper;
+  const UserDataSource({
+    required DioHelper dioHelper,
+  }) : _dioHelper = dioHelper;
+
+  Future<UserModel> login(UserDTO data) async {
+    final response = await _dioHelper.post(
+      AppEndpoints.user,
+      data: data.toJson(),
+    );
+    return UserModel.fromJson(response.body);
+  }
+}

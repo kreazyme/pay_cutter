@@ -8,8 +8,8 @@ class CategoryModel {
   final String name;
   final String description;
   final double amount;
-  final String createdAt;
-  final String updatedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   CategoryModel({
     required this.id,

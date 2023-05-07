@@ -1,0 +1,8 @@
+Postgres cluster pay-cutter-db created
+  Username:    postgres
+  Password:    UM8rST9eVjHpibZ
+  Hostname:    pay-cutter-db.internal
+  Flycast:     fdaa:2:4e9:0:1::7
+  Proxy port:  5432
+  Postgres port:  5433
+  Connection string: postgres://postgres:UM8rST9eVjHpibZ@pay-cutter-db.flycast:5432

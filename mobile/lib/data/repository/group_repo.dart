@@ -12,4 +12,8 @@ class GroupRepository {
   Future<List<GroupModel>> fetchGroups() async {
     return await _groupDataSource.getMyGroup();
   }
+
+  Future<GroupModel> createGroup(String name) async {
+    return await _groupDataSource.createGroup(name);
+  }
 }

@@ -1,23 +1,52 @@
 part of 'create_expense_bloc.dart';
 
-abstract class CreateExpenseState extends Equatable {
+class CreateExpenseState extends Equatable {
   final HandleStatus? status;
   final String? error;
   final List<CategoryModel>? categories;
   final HandleStatus? categoryStatus;
+  final CategoryModel? categorySelected;
+  final List<UserModel>? users;
+  final List<int>? userSelected;
 
   const CreateExpenseState({
     this.status,
     this.error,
     this.categories,
     this.categoryStatus,
+    this.categorySelected,
+    this.users,
+    this.userSelected,
   });
+
+  CreateExpenseState copyWith({
+    HandleStatus? status,
+    String? error,
+    List<CategoryModel>? categories,
+    HandleStatus? categoryStatus,
+    CategoryModel? categorySelected,
+    List<UserModel>? users,
+    List<int>? userSelected,
+  }) =>
+      CreateExpenseState(
+        status: status ?? this.status,
+        error: error ?? this.error,
+        categories: categories ?? this.categories,
+        categoryStatus: categoryStatus ?? this.categoryStatus,
+        categorySelected: categorySelected ?? this.categorySelected,
+        users: users ?? this.users,
+        userSelected: userSelected ?? this.userSelected,
+      );
 
   @override
   List<Object?> get props => [
         status,
         categories,
         categoryStatus,
+        categorySelected,
+        error,
+        users,
+        userSelected,
       ];
 }
 
@@ -25,44 +54,6 @@ class CreateExpenseInitial extends CreateExpenseState {
   const CreateExpenseInitial({
     super.status = HandleStatus.initial,
     super.categoryStatus = HandleStatus.loading,
+    super.userSelected = const [],
   });
-}
-
-class CreateExpenseFailure extends CreateExpenseState {
-  const CreateExpenseFailure({
-    required String error,
-    super.status = HandleStatus.error,
-  }) : super(
-          error: error,
-        );
-}
-
-class CreateExpenseSuccess extends CreateExpenseState {
-  const CreateExpenseSuccess({
-    super.status = HandleStatus.success,
-  });
-}
-
-class CreateExpenseLoading extends CreateExpenseState {
-  const CreateExpenseLoading({
-    super.status = HandleStatus.loading,
-  });
-}
-
-class CreateExpenseCategorySuccess extends CreateExpenseState {
-  const CreateExpenseCategorySuccess({
-    required List<CategoryModel> categories,
-    super.categoryStatus = HandleStatus.success,
-  }) : super(
-          categories: categories,
-        );
-}
-
-class CreateExpenseCategoryFailure extends CreateExpenseState {
-  const CreateExpenseCategoryFailure({
-    required String error,
-    super.categoryStatus = HandleStatus.error,
-  }) : super(
-          error: error,
-        );
 }
