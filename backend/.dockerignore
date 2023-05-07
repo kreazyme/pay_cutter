@@ -12,5 +12,3 @@ docs
 .git
 .vscode
 yarn.lock
-\yarn.lock
-/yarn.lock

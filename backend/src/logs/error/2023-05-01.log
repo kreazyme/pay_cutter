@@ -1,0 +1,538 @@
+2023-05-01 08:50:36 error: [POST] /users/ >> StatusCode:: 409, Message:: This email email3@email.com already exists
+2023-05-01 08:52:05 error: [POST] /users/ >> StatusCode:: 409, Message:: This email email3@email.com already exists
+2023-05-01 08:53:31 error: [POST] /users/ >> StatusCode:: 500, Message:: Unexpected end of JSON input
+2023-05-01 08:53:47 error: [POST] /users/ >> StatusCode:: 500, Message:: Unexpected end of JSON input
+2023-05-01 08:54:26 error: [POST] /users/ >> StatusCode:: 500, Message:: Unexpected end of JSON input
+2023-05-01 08:54:38 error: [POST] /users/ >> StatusCode:: 500, Message:: Unexpected end of JSON input
+2023-05-01 08:55:22 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email email3@email.com
+2023-05-01 09:02:55 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email email3@email.com
+2023-05-01 09:03:43 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email tranthong315213@gmail.com
+2023-05-01 09:03:59 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email tranthong315213@gmail.com
+2023-05-01 09:04:47 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email tranthong315213@gmail.com
+2023-05-01 09:05:53 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email tranthong315213@gmail.com
+2023-05-01 09:13:25 error: [POST] /users/ >> StatusCode:: 500, Message:: spawn UNKNOWN
+2023-05-01 09:13:34 error: [POST] /users/ >> StatusCode:: 500, Message:: spawn UNKNOWN
+2023-05-01 09:14:11 error: [POST] /users/ >> StatusCode:: 500, Message:: Cannot read properties of undefined (reading 'then')
+2023-05-01 09:15:00 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email tranthong315213@gmail.com
+2023-05-01 09:16:18 error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/users.service.ts[0m:[93m30[0m:[93m13[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m30[0m     xmlHttp.
+[7m  [0m [91m            [0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/users.service.ts[0m:[93m30[0m:[93m13[0m - [91merror[0m[90m TS1003: [0mIdentifier expected.
+
+[7m30[0m     xmlHttp.
+[7m  [0m [91m            [0m
+
+    at createTSError (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:863:19)
+    at E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1379:34
+    at Object.compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1458:13)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+2023-05-01 09:16:39 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email tranthong315213@gmail.com
+2023-05-01 09:17:03 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email tranthong315213@gmail.com
+2023-05-01 09:19:14 error: [POST] /users/ >> StatusCode:: 409, Message:: This google token is not valid for this email tranthong315213@gmail.com
+2023-05-01 09:22:12 error: uncaughtException: This google token is not valid for this email tranthong315213@gmail.com
+Error: This google token is not valid for this email tranthong315213@gmail.com
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:40:17)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:23:00 error: [POST] /users/ >> StatusCode:: 409, Message:: This email tranthong315213@gmail.com already exists
+2023-05-01 09:23:00 error: uncaughtException: This google token is not valid for this email tranthong315213@gmail.com
+Error: This google token is not valid for this email tranthong315213@gmail.com
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:40:17)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:23:47 error: uncaughtException: This google token is not valid for this email tranthong315213@gmail.com
+Error: This google token is not valid for this email tranthong315213@gmail.com
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:40:17)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:37:46 error: uncaughtException: This google token is not valid for this email tranthong315213@gmail.com
+Error: This google token is not valid for this email tranthong315213@gmail.com
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:41:17)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:38:51 error: uncaughtException: This google token is not valid for this email tranthong315213@gmail.com
+Error: This google token is not valid for this email tranthong315213@gmail.com
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:41:17)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:40:55 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:40:19)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:42:43 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:39:19)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:43:18 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:39:19)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:44:12 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:38:20)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:44:47 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:39:20)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:45:22 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:40:20)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:45:56 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:40:20)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:46:37 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:40:20)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:46:53 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:40:20)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:47:47 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:39:20)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:48:11 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:37:19)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:49:16 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:37:19)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:49:48 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:37:19)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 09:52:56 error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/users.service.ts[0m:[93m26[0m:[93m5[0m - [91merror[0m[90m TS1109: [0mExpression expected.
+
+[7m26[0m     var xmlHttp = new XMLHttpRequest();
+[7m  [0m [91m    ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/users.service.ts[0m:[93m26[0m:[93m5[0m - [91merror[0m[90m TS1109: [0mExpression expected.
+
+[7m26[0m     var xmlHttp = new XMLHttpRequest();
+[7m  [0m [91m    ~~~[0m
+
+    at createTSError (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:863:19)
+    at E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1379:34
+    at Object.compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1458:13)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+2023-05-01 09:53:23 error: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/services/users.service.ts[0m:[93m27[0m:[93m5[0m - [91merror[0m[90m TS1109: [0mExpression expected.
+
+[7m27[0m     var xmlHttp = new XMLHttpRequest();
+[7m  [0m [91m    ~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/services/users.service.ts[0m:[93m27[0m:[93m5[0m - [91merror[0m[90m TS1109: [0mExpression expected.
+
+[7m27[0m     var xmlHttp = new XMLHttpRequest();
+[7m  [0m [91m    ~~~[0m
+
+    at createTSError (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:859:12)
+    at reportTSError (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:863:19)
+    at E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1379:34
+    at Object.compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1458:13)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1617:30)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1159:10)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\src\index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+2023-05-01 09:53:52 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:11:22)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 09:54:29 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:11:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 09:55:21 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:11:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 09:55:41 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:11:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 09:56:07 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:11:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 09:57:09 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:11:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 09:59:02 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:11:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 09:59:38 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:11:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 10:00:30 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:10:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 10:00:54 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:10:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 10:01:08 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:10:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 10:01:25 error: uncaughtException: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+Error [ERR_REQUIRE_ESM]: require() of ES Module E:\WorkingFolder\MoneyDivider\backend\node_modules\node-fetch\src\index.js from E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts not supported.
+Instead change the require of index.js in E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts to a dynamic import() which is available in all CommonJS modules.
+    at Object.require.extensions.<computed> [as .js] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:851:20)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:10:46)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\controllers\users.controller.ts:5:25)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\routes\users.route.ts:5:28)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\src\server.ts:5:23)
+    at Module.m._compile (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:857:29)
+    at Object.require.extensions.<computed> [as .ts] (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\index.js:859:16)
+    at phase4 (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:466:20)
+    at bootstrap (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:54:12)
+    at main (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:33:12)
+    at Object.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\ts-node\dist\bin.js:579:5)
+2023-05-01 10:02:53 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:52:17)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+2023-05-01 10:03:30 error: uncaughtException: Token doesn't match email
+Error: Token doesn't match email
+    at exports.XMLHttpRequest.xmlHttp.onreadystatechange (E:\WorkingFolder\MoneyDivider\backend\src\services\users.service.ts:52:17)
+    at exports.XMLHttpRequest.dispatchEvent (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:591:25)
+    at setState (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:610:14)
+    at IncomingMessage.<anonymous> (E:\WorkingFolder\MoneyDivider\backend\node_modules\xmlhttprequest\lib\XMLHttpRequest.js:447:13)
+    at IncomingMessage.emit (node:events:539:35)
+    at IncomingMessage.emit (node:domain:475:12)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
