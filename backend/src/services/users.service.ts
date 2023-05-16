@@ -5,6 +5,9 @@ import { UserEntity } from '@entities/users.entity';
 import { HttpException } from '@exceptions/HttpException';
 import { User } from '@interfaces/users.interface';
 import axios, { AxiosResponse } from 'axios';
+import { DataStoredInToken, TokenData } from '@/interfaces/auth.interface';
+import { SECRET_KEY } from '@/config';
+import { sign } from 'jsonwebtoken';
 
 @Service()
 @EntityRepository()
