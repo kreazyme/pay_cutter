@@ -6,9 +6,6 @@ import { HttpException } from '@exceptions/HttpException';
 import { DataStoredInToken, RequestWithUser } from '@interfaces/auth.interface';
 
 const getAuthorization = req => {
-  const coockie = req.cookies['Authorization'];
-  if (coockie) return coockie;
-
   const header = req.header('Authorization');
   if (header) return header.split('Bearer ')[1];
 
@@ -18,11 +15,9 @@ const getAuthorization = req => {
 export const AuthMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction) => {
   try {
     const Authorization = getAuthorization(req);
-
     if (Authorization) {
       const { id } = (await verify(Authorization, SECRET_KEY)) as DataStoredInToken;
-      const findUser = await UserEntity.createQueryBuilder('user').where('user.id = :id', { id }).addSelect('user.password').getOne();
-
+      const findUser = await UserEntity.createQueryBuilder('user').where('user.id = :id', { id }).getOne();
       if (findUser) {
         req.user = findUser;
         next();

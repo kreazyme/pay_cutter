@@ -2,6 +2,9 @@ import { NextFunction, Request, Response } from 'express';
 import { Container } from 'typedi';
 import { User } from '@interfaces/users.interface';
 import { UserService } from '@services/users.service';
+import { DataStoredInToken, TokenData } from '@/interfaces/auth.interface';
+import { SECRET_KEY } from '@/config';
+import { sign, verify } from 'jsonwebtoken';
 
 export class UserController {
   public user = Container.get(UserService);
@@ -30,9 +33,10 @@ export class UserController {
   public createUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const userData: User = req.body;
-      const createUserData: User = await this.user.createUser(userData);
-
-      res.status(201).json(createUserData);
+      const createUserData = await this.user.createUser(userData);
+      const tokenData = createToken(createUserData);
+      const token = tokenData.token;
+      res.status(201).json({ data: createUserData, message: 'created', token: token });
     } catch (error) {
       next(error);
     }
@@ -61,3 +65,13 @@ export class UserController {
     }
   };
 }
+
+
+const createToken = async (user: User): Promise<TokenData> => {
+  const dataStoredInToken: DataStoredInToken = { id: user.id };
+  const secretKey: string = SECRET_KEY;
+  const expiresIn: number = 60 * 60 * 24 * 7 * 52;
+
+  const token = sign(dataStoredInToken, secretKey, { expiresIn });
+  return { expiresIn, token: sign(dataStoredInToken, secretKey, { expiresIn }) };
+};

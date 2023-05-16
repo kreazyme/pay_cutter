@@ -48,7 +48,6 @@ export class ExpenseController {
 
   public updateExpense = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
-      console.log('updateExpense');
       const expenseID = Number(req.params.id);
       const findExpense: ExpenseEntity = await this.expense.updateExpense(
         expenseID,

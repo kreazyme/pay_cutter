@@ -54,7 +54,6 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     const findGroup: GroupEntity = await GroupEntity.findOne(groupId);
     if (!findGroup) throw new HttpException(404, 'Group not found');
     const newParticipants: UserEntity[] = [];
-    console.log(participants.length);
     participants.forEach(async participant => {
       const findParticipant: UserEntity = await UserEntity.findOne(participant);
       if (!findParticipant) throw new HttpException(404, 'Participant number' + participant + ' not found');
