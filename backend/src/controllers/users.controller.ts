@@ -34,7 +34,7 @@ export class UserController {
     try {
       const userData: User = req.body;
       const createUserData = await this.user.createUser(userData);
-      const tokenData = createToken(createUserData);
+      const tokenData = await createToken(createUserData);
       const token = tokenData.token;
       res.status(201).json({ data: createUserData, message: 'created', token: token });
     } catch (error) {
