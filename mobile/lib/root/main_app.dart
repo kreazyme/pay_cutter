@@ -10,6 +10,8 @@ import 'package:pay_cutter/root/flavor.dart';
 import 'package:pay_cutter/root/setup.dart';
 import 'package:pay_cutter/routers/app_routers.dart';
 
+import '../data/repository/user_repo.dart';
+
 Future<void> runMainApp(Flavor flavor) async {
   AppFlavor.flavor = flavor;
   await setupApp();
@@ -48,7 +50,8 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRouters.splash,
       builder: (context, child) => BlocProvider(
         create: (context) => SplashBloc(
-          userRepo: getIt.get<AuthenRepo>(),
+          userRepo: getIt.get<UserRepo>(),
+          authenRepo: getIt.get<AuthenRepo>(),
         ),
         child: BlocListener<SplashBloc, SplashState>(
           listener: (_, state) async {

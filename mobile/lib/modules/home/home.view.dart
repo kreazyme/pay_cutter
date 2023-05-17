@@ -26,9 +26,9 @@ class HomePage extends StatelessWidget {
   }
 
   void _onListener(BuildContext context, HomeState state) {
-    if (state.status.isError) {
-      ToastUlti.showError(context, state.error!);
-    }
+    // if (state.status.isError) {
+    //   ToastUlti.showError(context, state.error!);
+    // }
   }
 }
 
@@ -39,26 +39,20 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) => Scaffold(
-        body: RefreshIndicator(
-          child: Builder(
-            builder: (context) {
-              if (state.status.isLoading) {
-                return const Center(
-                  child: AppCustomLoading(),
-                );
-              }
-              if (state.status.isError) {
-                ToastUlti.showError(context, state.error!);
-                const Center(
-                  child: Text('Error'),
-                );
-              }
-              return ListChatGroup(groups: state.groups);
-            },
-          ),
-          onRefresh: () async => context.read<HomeBloc>().add(
-                const HomeStarted(),
-              ),
+        body: Builder(
+          builder: (context) {
+            if (state.status.isLoading) {
+              return const Center(
+                child: AppCustomLoading(),
+              );
+            }
+            if (state.status.isError) {
+              const Center(
+                child: Text('Error'),
+              );
+            }
+            return ListChatGroup(groups: state.groups);
+          },
         ),
         floatingActionButton: const HomeFABWidget(),
       ),

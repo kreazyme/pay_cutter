@@ -81,27 +81,35 @@ class _ScanViewState extends State<_ScanView> {
       );
       _customPaint = CustomPaint(painter: painter);
     } else {
-      log('________________________');
-      log('regtxt.toString()');
       recognizedText.blocks
           .sort((a, b) => a.boundingBox.top.compareTo(b.boundingBox.top));
-      recognizedText.blocks.forEach((block) async {
-        String txtsss = TiengViet.parse(block.text);
-        if (checkBill.hasMatch(txtsss)) {
-          log('_________');
-          log(txtsss);
+      recognizedText.blocks.reversed.forEach((element) {
+        String vnText = TiengViet.parse(element.text);
+        if (checkBill.hasMatch(vnText)) {
+          log('------------------------');
+          log(vnText);
           String? txtBill = recognizedText
-              .blocks[recognizedText.blocks.indexOf(block) + 1].text;
-          if (txtBill.isNotEmpty) {
-            String? txt123 = isMoney
-                .firstMatch(txtBill.split(',').join().split('.').join())
-                ?.group(0);
-            _text = txt123 ?? 'No text found';
-          }
-          log('_________');
+              .blocks[recognizedText.blocks.indexOf(element) + 1].text;
+          log(txtBill);
         }
       });
-      log(recognizedText.text);
+      // recognizedText.blocks.forEach((block) async {
+      //   String txtsss = TiengViet.parse(block.text);
+      //   if (checkBill.hasMatch(txtsss)) {
+      //     log('_________');
+      //     log(txtsss);
+      //     String? txtBill = recognizedText
+      //         .blocks[recognizedText.blocks.indexOf(block) + 1].text;
+      //     if (txtBill.isNotEmpty) {
+      //       String? txt123 = isMoney
+      //           .firstMatch(txtBill.split(',').join().split('.').join())
+      //           ?.group(0);
+      //       _text = txt123 ?? 'No text found';
+      //     }
+      //     log('_________');
+      //   }
+      // });
+      // log(recognizedText.text);
       // _text = recognizedText.text;
       _customPaint = null;
     }

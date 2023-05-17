@@ -4,10 +4,15 @@ part 'group.dto.g.dart';
 
 @JsonSerializable()
 class GroupDTO {
-  String name;
+  @JsonKey(name: 'name')
+  final String name;
 
-  GroupDTO({
+  @JsonKey(name: 'userId')
+  final String id;
+
+  const GroupDTO({
     required this.name,
+    required this.id,
   });
 
   factory GroupDTO.fromJson(Map<String, dynamic> json) =>

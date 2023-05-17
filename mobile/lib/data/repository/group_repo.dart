@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/data/datasource/remote/group.datasource.dart';
+import 'package:pay_cutter/data/models/dto/group.dto.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 
 @lazySingleton
@@ -13,7 +14,7 @@ class GroupRepository {
     return await _groupDataSource.getMyGroup();
   }
 
-  Future<GroupModel> createGroup(String name) async {
-    return await _groupDataSource.createGroup(name);
+  Future<GroupModel> createGroup(GroupDTO group) async {
+    return await _groupDataSource.createGroup(group);
   }
 }

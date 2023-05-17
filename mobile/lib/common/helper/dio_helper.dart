@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/common/hive_keys.dart';
@@ -27,23 +28,28 @@ class HttpRequestResponse<T> {
 @lazySingleton
 class DioHelper {
   final Box _userBox;
+  final Dio _dio = Dio();
   DioHelper({
     @Named(HiveKeys.boxName) required Box userBox,
   }) : _userBox = userBox {
-    _dio = _addInterceptors(Dio());
+    _addInterceptors(_dio);
   }
 
-  late Dio _dio;
+  // Future<void> init() async {
+  //   debugPrint('DioHelper init()');
+  //   await _addInterceptors(_dio);
+  // }
 
-  Dio _addInterceptors(Dio dio) {
-    final String? accessToken = _userBox.get(HiveKeys.userToken);
+  Future<Dio> _addInterceptors(Dio dio) async {
+    final String? accessToken = await _userBox.get(HiveKeys.userToken);
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
+        options.headers.addAll({
+          'Authorization': 'Bearer $accessToken',
+        });
         log('*******************');
         log('Request URL: ${options.uri} with method: ${options.method}');
-        options.headers.addAll({
-          HttpHeaders.authorizationHeader: 'Bearer $accessToken',
-        });
+        log('Request headers: ${options.headers}');
         return handler.next(options);
       },
       onResponse: (response, handler) {

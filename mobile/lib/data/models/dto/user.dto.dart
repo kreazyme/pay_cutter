@@ -6,13 +6,13 @@ part 'user.dto.g.dart';
 class UserDTO {
   final String name;
   final String email;
-  final String avatarURL;
+  final String photoUrl;
   final String googleToken;
 
   const UserDTO({
     required this.name,
     required this.email,
-    required this.avatarURL,
+    required this.photoUrl,
     required this.googleToken,
   });
 
