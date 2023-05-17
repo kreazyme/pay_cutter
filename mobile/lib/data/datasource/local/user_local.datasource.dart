@@ -17,19 +17,17 @@ class UserLocalDatasource {
   })  : _box = box,
         _dioHelper = dioHelper;
 
-  void saveUserToken(String token) {
-    final resepose =
-        _dioHelper.get('https://jsonplaceholder.typicode.com/todos/1');
-    log('response: $resepose');
-    _box.put(HiveKeys.userToken, token);
+  Future<void> saveUserToken(String token) async {
+    await _box.put(HiveKeys.userToken, token);
   }
 
-  Future<bool> getUserToken() async {
-    final token = await _box.get(HiveKeys.userToken);
-    if (token == null) {
-      return false;
+  Future<String> getUserToken() async {
+    try {
+      final token = await _box.get(HiveKeys.userToken);
+      return token;
+    } catch (e) {
+      return '';
     }
-    return true;
   }
 
   Future<String> deleteToken() async {
@@ -38,13 +36,11 @@ class UserLocalDatasource {
   }
 
   Future<UserModel> getUser() async {
-    // final user = await _box.get(HiveKeys.user);
-    await Future.delayed(const Duration(seconds: 2));
-    final user = UserMock.getUser();
-    return user;
+    final user = await _box.get(HiveKeys.user);
+    return UserModel.fromJson(user);
   }
 
   Future<void> saveUser(UserModel user) async {
-    await _box.put(HiveKeys.user, user);
+    await _box.put(HiveKeys.user, user.toJson());
   }
 }

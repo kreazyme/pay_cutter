@@ -26,13 +26,15 @@ class FirebaseAuthDataSource {
       );
       await _auth.signInWithCredential(credential);
       User? user = _auth.currentUser;
+      print(user?.displayName ?? '1231231');
       return UserDTO(
         name: user?.displayName ?? '',
         email: user?.email ?? '',
-        avatarURL: user?.photoURL ?? '',
+        photoUrl: user?.photoURL ?? '',
         googleToken: googleAuth.accessToken ?? '',
       );
     } catch (error) {
+      print(error);
       return null;
     }
   }

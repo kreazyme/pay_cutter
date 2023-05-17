@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/data/datasource/local/user_local.datasource.dart';
 import 'package:pay_cutter/data/datasource/remote/user.datasource.dart';
 import 'package:pay_cutter/data/models/dto/user.dto.dart';
+import 'package:pay_cutter/data/models/response/user_login.response.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 
 @lazySingleton
@@ -15,11 +16,11 @@ class UserRepo {
   })  : _userLocalDatasource = userLocalDatasource,
         _userDataSource = userDataSource;
 
-  void saveUserToken(String token) {
-    _userLocalDatasource.saveUserToken(token);
+  Future<void> saveUserToken(String token) async {
+    await _userLocalDatasource.saveUserToken(token);
   }
 
-  Future<bool> getUserToken() async {
+  Future<String> getUserToken() async {
     return await _userLocalDatasource.getUserToken();
   }
 
@@ -35,7 +36,7 @@ class UserRepo {
     await _userLocalDatasource.deleteToken();
   }
 
-  Future<UserModel> login(UserDTO data) async {
+  Future<UserLoginResponse> login(UserDTO data) async {
     return await _userDataSource.login(data);
   }
 }

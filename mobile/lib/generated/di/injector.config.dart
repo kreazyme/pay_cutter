@@ -62,7 +62,8 @@ Future<_i1.GetIt> initGetIt(
       _i10.ExpenseRepository(expenseDataSource: gh<_i9.ExpenseDataSource>()));
   gh.lazySingleton<_i11.FirebaseAuthDataSource>(
       () => _i11.FirebaseAuthDataSource());
-  gh.lazySingleton<_i12.GroupDataSource>(() => _i12.GroupDataSource());
+  gh.lazySingleton<_i12.GroupDataSource>(
+      () => _i12.GroupDataSource(dioHelper: gh<_i8.DioHelper>()));
   gh.lazySingleton<_i13.GroupRepository>(
       () => _i13.GroupRepository(groupDataSource: gh<_i12.GroupDataSource>()));
   gh.lazySingleton<_i14.UserDataSource>(

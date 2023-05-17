@@ -9,13 +9,13 @@ part of 'user.dto.dart';
 UserDTO _$UserDTOFromJson(Map<String, dynamic> json) => UserDTO(
       name: json['name'] as String,
       email: json['email'] as String,
-      avatarURL: json['avatarURL'] as String,
+      photoUrl: json['photoUrl'] as String,
       googleToken: json['googleToken'] as String,
     );
 
 Map<String, dynamic> _$UserDTOToJson(UserDTO instance) => <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
-      'avatarURL': instance.avatarURL,
+      'photoUrl': instance.photoUrl,
       'googleToken': instance.googleToken,
     };

@@ -98,7 +98,7 @@ class _ProfileView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          state.user!.name,
+                          state.user?.name ?? 'name',
                           style: TextStyles.titleBold,
                         ),
                         const Divider(
@@ -106,7 +106,7 @@ class _ProfileView extends StatelessWidget {
                           color: Colors.transparent,
                         ),
                         Text(
-                          '@ ${state.user!.email}',
+                          '@ ${state.user?.email}',
                           style: TextStyles.body.copyWith(
                             color: Colors.grey,
                           ),

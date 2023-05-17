@@ -6,4 +6,6 @@ abstract class AppEndpoints {
   static String login = '$_apiURL/login';
 
   static String user = '$_apiURL/users';
+
+  static String group = '$_apiURL/groups';
 }
