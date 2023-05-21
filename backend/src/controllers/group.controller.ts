@@ -65,7 +65,7 @@ export class GroupController {
 
   public shareGroup = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const groupID = Number(req.params.id);
+      const groupID = Number(req.body.id);
       const userID = req.user.id;
       const joinCode: string = await this.group.shareGroup(groupID, userID);
       res.status(200).json({ data: joinCode, message: 'shared' });
