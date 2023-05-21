@@ -23,6 +23,12 @@ class HomeState extends Equatable {
           groups: groups,
         );
 
+  const HomeState.addGroup({required List<GroupModel> groups})
+      : this(
+          groups: groups,
+          status: HandleStatus.success,
+        );
+
   const HomeState.error(String error)
       : this(
           status: HandleStatus.error,

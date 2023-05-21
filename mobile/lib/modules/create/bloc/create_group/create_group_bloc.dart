@@ -27,10 +27,8 @@ class CreateGroupBloc extends Bloc<CreateGroupEvent, CreateGroupState> {
     Emitter<CreateGroupState> emitter,
   ) async {
     try {
-      debugPrint('osijfosi');
       emitter(const CreateGroupLoading());
       final userId = (await _userRepo.getUser()).userID;
-      debugPrint('osijfosi $userId');
       GroupModel result = await _groupRepository.createGroup(GroupDTO(
         id: userId.toString(),
         name: event.name,

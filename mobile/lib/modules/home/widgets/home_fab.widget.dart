@@ -55,6 +55,24 @@ class HomeFABWidget extends StatelessWidget {
             fontSize: 16.0,
           ),
           labelBackgroundColor: AppColors.primaryColor,
+        ),
+        SpeedDialChild(
+          child: const Icon(
+            Icons.qr_code_scanner_rounded,
+            color: Colors.white,
+          ),
+          backgroundColor: AppColors.primaryColor,
+          onTap: () => Navigator.pushNamed(
+            context,
+            AppRouters.scanBill,
+          ),
+          label: 'Heheh',
+          labelStyle: const TextStyle(
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+            fontSize: 16.0,
+          ),
+          labelBackgroundColor: AppColors.primaryColor,
         )
       ],
     );

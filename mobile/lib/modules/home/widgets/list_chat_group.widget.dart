@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
+import 'package:pay_cutter/modules/home/bloc/home.bloc.dart';
 import 'package:pay_cutter/modules/home/widgets/chat_group_item.widget.dart';
 
 class ListChatGroup extends StatelessWidget {
@@ -17,14 +19,20 @@ class ListChatGroup extends StatelessWidget {
         child: Text('No data'),
       );
     }
-    return ListView.separated(
-        itemBuilder: (context, index) => ChatGroupItemWidget(
-              group: groups[index],
-            ),
-        separatorBuilder: (context, index) => const Divider(
-              height: 10,
-              color: Colors.transparent,
-            ),
-        itemCount: groups.length);
+    return RefreshIndicator(
+        child: ListView.separated(
+            itemBuilder: (context, index) => ChatGroupItemWidget(
+                  group: groups[index],
+                ),
+            separatorBuilder: (context, index) => const Divider(
+                  height: 10,
+                  color: Colors.transparent,
+                ),
+            itemCount: groups.length),
+        onRefresh: () async {
+          BlocProvider.of<HomeBloc>(context).add(
+            const HomeStarted(),
+          );
+        });
   }
 }

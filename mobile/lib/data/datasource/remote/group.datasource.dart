@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/common/endpoints.dart';
 import 'package:pay_cutter/common/helper/dio_helper.dart';
@@ -17,8 +18,8 @@ class GroupDataSource {
     final response = await _dioHelper.get(
       AppEndpoints.group,
     );
-
-    return response.body.map((e) => GroupModel.fromJson(e)).toList();
+    var listGroup = response.body['data'] as List<dynamic>;
+    return listGroup.map((e) => GroupModel.fromJson(e)).toList();
   }
 
   Future<GroupModel> createGroup(GroupDTO group) async {
@@ -26,6 +27,6 @@ class GroupDataSource {
       AppEndpoints.group,
       data: group.toJson(),
     );
-    return GroupModel.fromJson(response.body);
+    return GroupModel.fromJson(response.body['data']);
   }
 }
