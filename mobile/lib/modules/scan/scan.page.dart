@@ -93,24 +93,6 @@ class _ScanViewState extends State<_ScanView> {
           log(txtBill);
         }
       });
-      // recognizedText.blocks.forEach((block) async {
-      //   String txtsss = TiengViet.parse(block.text);
-      //   if (checkBill.hasMatch(txtsss)) {
-      //     log('_________');
-      //     log(txtsss);
-      //     String? txtBill = recognizedText
-      //         .blocks[recognizedText.blocks.indexOf(block) + 1].text;
-      //     if (txtBill.isNotEmpty) {
-      //       String? txt123 = isMoney
-      //           .firstMatch(txtBill.split(',').join().split('.').join())
-      //           ?.group(0);
-      //       _text = txt123 ?? 'No text found';
-      //     }
-      //     log('_________');
-      //   }
-      // });
-      // log(recognizedText.text);
-      // _text = recognizedText.text;
       _customPaint = null;
     }
     _isBusy = false;
@@ -121,32 +103,37 @@ class _ScanViewState extends State<_ScanView> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: image?.path == null
-          ? MaterialButton(
-              onPressed: _takePicture,
-              child: const Text('Scan'),
-            )
-          : SingleChildScrollView(
-              child: Column(
-                children: [
-                  const Divider(
-                    height: 20,
-                  ),
-                  Text(
-                    _text ?? 'No text found',
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                  MaterialButton(
-                    onPressed: _takePicture,
-                    child: const Text('Scan'),
-                  ),
-                  Image.file(
-                    File(image!.path),
-                  )
-                ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Scan Bill'),
+      ),
+      body: Center(
+        child: image?.path == null
+            ? MaterialButton(
+                onPressed: _takePicture,
+                child: const Text('Scan'),
+              )
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Divider(
+                      height: 20,
+                    ),
+                    Text(
+                      _text ?? 'No text found',
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                    MaterialButton(
+                      onPressed: _takePicture,
+                      child: const Text('Scan'),
+                    ),
+                    Image.file(
+                      File(image!.path),
+                    )
+                  ],
+                ),
               ),
-            ),
+      ),
     );
   }
 

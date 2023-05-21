@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/common/helper/dio_helper.dart';
 import 'package:pay_cutter/common/hive_keys.dart';
-import 'package:pay_cutter/data/datasource/mock/user.mock.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 
 @lazySingleton
@@ -36,8 +33,8 @@ class UserLocalDatasource {
   }
 
   Future<UserModel> getUser() async {
-    final user = await _box.get(HiveKeys.user);
-    return UserModel.fromJson(user);
+    final rawData = (await _box.get(HiveKeys.user));
+    return UserModel.fromJson(Map<String, dynamic>.from(rawData));
   }
 
   Future<void> saveUser(UserModel user) async {

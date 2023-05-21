@@ -9,3 +9,13 @@ class HomeEvent extends Equatable {
 class HomeStarted extends HomeEvent {
   const HomeStarted();
 }
+
+class HomeAddGroup extends HomeEvent {
+  final GroupModel group;
+  const HomeAddGroup({
+    required this.group,
+  });
+
+  @override
+  List<Object?> get props => [group];
+}

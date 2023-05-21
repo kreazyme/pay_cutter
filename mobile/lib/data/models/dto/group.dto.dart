@@ -7,7 +7,7 @@ class GroupDTO {
   @JsonKey(name: 'name')
   final String name;
 
-  @JsonKey(name: 'userId')
+  @JsonKey(name: 'userID')
   final String id;
 
   const GroupDTO({

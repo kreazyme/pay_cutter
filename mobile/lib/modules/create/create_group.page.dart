@@ -5,6 +5,7 @@ import 'package:pay_cutter/common/widgets/custom_textfield.widget.dart';
 import 'package:pay_cutter/data/repository/group_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/create/bloc/create_group/create_group_bloc.dart';
+import 'package:pay_cutter/modules/home/bloc/home.bloc.dart';
 import 'package:pay_cutter/routers/app_routers.dart';
 
 class CreateGroupPage extends StatelessWidget {
@@ -27,6 +28,14 @@ class CreateGroupPage extends StatelessWidget {
     CreateGroupState state,
   ) {
     if (state is CreateGroupSuccess) {
+      BlocProvider.value(
+        value: context.read<HomeBloc>()
+          ..add(
+            HomeAddGroup(
+              group: state.group!,
+            ),
+          ),
+      );
       Navigator.popAndPushNamed(context, AppRouters.chat,
           arguments: state.group);
     }
@@ -69,10 +78,10 @@ class _CreateGroupViewState extends State<_CreateGroupView> {
                 content: 'Create',
                 isLoading: state.status.isLoading,
                 isDiable: state.status.isLoading || _groupName == '',
-                onPressed: () {
-                  context.read<CreateGroupBloc>().add(CreateGroupSubmit(
-                        name: _groupName,
-                      ));
+                onPressed: () async {
+                  context.read<CreateGroupBloc>().add(
+                        CreateGroupSubmit(name: _groupName),
+                      );
                 },
               ),
             ],

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
@@ -14,6 +15,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   })  : _groupRepository = groupRepository,
         super(const HomeState.loading()) {
     on<HomeStarted>(_onHomeStarted);
+    on<HomeAddGroup>(_addNewGroup);
+
     add(const HomeStarted());
   }
 
@@ -28,5 +31,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     } catch (e) {
       emitter(HomeState.error(e.toString()));
     }
+  }
+
+  Future<void> _addNewGroup(
+    HomeAddGroup event,
+    Emitter<HomeState> emitter,
+  ) async {
+    emitter(
+      HomeState.addGroup(groups: [
+        ...state.groups,
+        event.group,
+      ]),
+    );
   }
 }
