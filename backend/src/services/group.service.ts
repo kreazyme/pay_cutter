@@ -9,6 +9,7 @@ import { HttpException } from '@exceptions/HttpException';
 @EntityRepository()
 export class GroupService extends Repository<GroupEntity> {
   public async findMyGroups(userID: number): Promise<GroupEntity[]> {
+    console.log(userID);
     const groups: GroupEntity[] = await GroupEntity.getRepository()
       .createQueryBuilder('groups')
       .leftJoinAndSelect('groups.participants', 'participants')
