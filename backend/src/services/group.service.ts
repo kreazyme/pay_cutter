@@ -12,6 +12,7 @@ export class GroupService extends Repository<GroupEntity> {
     const groups: GroupEntity[] = await GroupEntity.getRepository()
       .createQueryBuilder('groups')
       .leftJoinAndSelect('groups.participants', 'participants')
+      .where('participants.id = :id', { id: userID })
       .select([
         'groups.id',
         'groups.name',
