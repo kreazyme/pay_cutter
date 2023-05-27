@@ -40,4 +40,9 @@ class UserLocalDatasource {
   Future<void> saveUser(UserModel user) async {
     await _box.put(HiveKeys.user, user.toJson());
   }
+
+  Future<void> logOut() async {
+    await _box.delete(HiveKeys.userToken);
+    await _box.delete(HiveKeys.user);
+  }
 }

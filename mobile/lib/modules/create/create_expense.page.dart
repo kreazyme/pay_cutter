@@ -10,6 +10,7 @@ import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
 import 'package:pay_cutter/data/repository/category_repo.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
+import 'package:pay_cutter/data/repository/user_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/create/bloc/create_expense/create_expense_bloc.dart';
 import 'package:pay_cutter/modules/create/widgets/expense/expense_for_whom.widget.dart';
@@ -21,7 +22,7 @@ class CreateExpensePage extends StatelessWidget {
     required this.id,
   });
 
-  final String id;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,7 @@ class CreateExpensePage extends StatelessWidget {
         create: (_) => CreateExpenseBloc(
               expenseRepository: getIt.get<ExpenseRepository>(),
               categoryRepository: getIt.get<CategoryRepository>(),
+              userRepo: getIt.get<UserRepo>(),
             ),
         child: BlocListener<CreateExpenseBloc, CreateExpenseState>(
           listener: _onListener,
@@ -51,7 +53,7 @@ class _CreateExpenseView extends StatefulWidget {
   const _CreateExpenseView({
     required this.id,
   });
-  final String id;
+  final int id;
 
   @override
   State<_CreateExpenseView> createState() => _CreateExpenseViewState();
@@ -84,7 +86,7 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
   Widget _amoutInput() {
     return TextField(
       controller: _amountController,
-      style: TextStyles.title.copyWith(
+      style: TextStyles.h1.copyWith(
         color: AppColors.primaryColor,
       ),
       decoration: InputDecoration(
@@ -95,7 +97,7 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
           ),
         ),
         hintText: '0',
-        hintStyle: TextStyles.title.copyWith(
+        hintStyle: TextStyles.h1.copyWith(
           color: AppColors.primaryColor,
         ),
         border: UnderlineInputBorder(
@@ -232,9 +234,11 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                       CreateExpenseSubmit(
                           data: ExpenseDTO(
                         amount: double.parse(_amountController.text),
-                        description: _descriptionController.text,
+                        name: _descriptionController.text,
                         date: _selectedDate,
-                        name: 'Name',
+                        groupId: widget.id,
+                        participants:
+                            state.users!.map((e) => e.userID).toList(),
                       )),
                     );
                   },

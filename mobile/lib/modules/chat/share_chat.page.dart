@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_cutter/common/endpoints.dart';
 import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/common/widgets/animation/app_loading.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_app_error.widget.dart';
@@ -68,7 +69,7 @@ class _ShareChatView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 QrImage(
-                  data: state.url!,
+                  data: '${AppEndpoints.share}/${state.url!}',
                   version: QrVersions.auto,
                   size: 200.0,
                 ),

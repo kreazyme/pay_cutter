@@ -7,6 +7,7 @@ import 'package:pay_cutter/data/models/dto/expense.dto.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/data/repository/category_repo.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
+import 'package:pay_cutter/data/repository/user_repo.dart';
 
 part 'create_expense_event.dart';
 part 'create_expense_state.dart';
@@ -14,11 +15,14 @@ part 'create_expense_state.dart';
 class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
   final ExpenseRepository _expenseRepository;
   final CategoryRepository _categoryRepository;
+  final UserRepo _userRepo;
   CreateExpenseBloc({
     required ExpenseRepository expenseRepository,
     required CategoryRepository categoryRepository,
+    required UserRepo userRepo,
   })  : _expenseRepository = expenseRepository,
         _categoryRepository = categoryRepository,
+        _userRepo = userRepo,
         super(const CreateExpenseInitial()) {
     on<CreateExpenseSubmit>(_createExpense);
     on<CreateExpenseCategorySubmit>(_categorySelect);
@@ -38,7 +42,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
       );
       final ParamsWrapper2<List<UserModel>, List<CategoryModel>> response =
           await _categoryRepository.getCategories(
-        event.groupID,
+        event.groupID.toString(),
       );
       emittter(state.copyWith(
         categories: response.param2,
@@ -61,7 +65,10 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
       emittter(state.copyWith(
         status: HandleStatus.loading,
       ));
-      await _expenseRepository.createExpense(event.data);
+      int userId = (await _userRepo.getUser()).userID;
+      await _expenseRepository.createExpense(event.data.copyWith(
+        paidBy: userId,
+      ));
       emittter(state.copyWith(
         status: HandleStatus.success,
       ));

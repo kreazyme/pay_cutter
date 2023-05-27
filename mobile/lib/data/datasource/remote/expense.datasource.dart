@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:pay_cutter/common/endpoints.dart';
 import 'package:pay_cutter/common/helper/dio_helper.dart';
 import 'package:pay_cutter/data/models/dto/category.dto.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
@@ -11,11 +12,10 @@ class ExpenseDataSource {
   }) : _dioHelper = dioHelper;
 
   Future<void> createExpense(ExpenseDTO data) async {
-    // await _dioHelper.post(
-    //   '/expense',
-    //   data: data.toJson(),
-    // );
-    await Future.delayed(const Duration(seconds: 2));
+    await _dioHelper.post(
+      AppEndpoints.expenses,
+      data: data.toJson(),
+    );
   }
 
   Future<void> updateExpense(String id, ExpenseDTO data) async {

@@ -4,6 +4,7 @@ import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/data/repository/auth_repo.dart';
 import 'package:pay_cutter/data/repository/user_repo.dart';
+import 'package:pay_cutter/generated/di/injector.dart';
 
 part 'profile.event.dart';
 part 'profile.state.dart';
@@ -44,7 +45,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       emitter(const ProfileState.loading());
       await _authenRepo.logout();
-      await _userRepo.deleteToken();
+      await _userRepo.logOut();
       emitter(const ProfileLogouted());
     } catch (e) {
       emitter(const ProfileState.error());
