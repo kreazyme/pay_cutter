@@ -80,7 +80,7 @@ abstract class AppRouters {
       case createExpense:
         int id = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (_) => CreateExpensePage(id: id.toString()),
+          builder: (_) => CreateExpensePage(id: id),
         );
       case createCategory:
         return MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/data/models/dto/user.dto.dart';
 import 'package:pay_cutter/data/models/response/user_login.response.dart';
@@ -29,6 +30,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (user == null) {
         emitter(const LoginFailure('Login fail'));
       } else {
+        debugPrint('user: ${user.googleToken}');
         final UserLoginResponse userLogin = await _userRepo.login(user);
         await _userRepo.saveUserToken(userLogin.token);
         await _userRepo.saveUser(userLogin.user);

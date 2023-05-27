@@ -56,12 +56,14 @@ abstract class ToastUlti {
             const SizedBox(
               width: 10,
             ),
-            Text(
+            Flexible(
+                child: Text(
               message ?? 'An error has been occurred',
               style: TextStyles.body,
-            ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            )),
             Expanded(
-              flex: 1,
               child: Container(),
             ),
             IconButton(

@@ -21,6 +21,12 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def MAPS_API_KEY = localProperties.getProperty("MAPS_API_KEY")
+if(MAPS_API_KEY == null) {
+    throw new GradleException("MAPS_API_KEY not found. Define location with MAPS_API_KEY in the local.properties file.")
+}
+
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
@@ -72,6 +78,9 @@ android {
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders = [
+            MAPS_API_KEY : MAPS_API_KEY
+        ]
     }
 
     buildTypes {

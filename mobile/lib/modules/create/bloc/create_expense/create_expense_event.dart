@@ -8,7 +8,7 @@ abstract class CreateExpenseEvent extends Equatable {
 }
 
 class CreateExpenseStarted extends CreateExpenseEvent {
-  final String groupID;
+  final int groupID;
   const CreateExpenseStarted({
     required this.groupID,
   });
