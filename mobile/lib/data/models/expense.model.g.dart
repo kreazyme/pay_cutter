@@ -7,13 +7,16 @@ part of 'expense.model.dart';
 // **************************************************************************
 
 ExpenseModel _$ExpenseModelFromJson(Map<String, dynamic> json) => ExpenseModel(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
-      description: json['description'] as String,
-      amount: json['amount'] as String,
-      date: json['date'] as String,
-      createdAt: json['createdAt'] as String,
-      updatedAt: json['updatedAt'] as String,
+      description: json['description'] as String?,
+      amount: json['amount'] as int,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdBy: UserModel.fromJson(json['createdBy'] as Map<String, dynamic>),
+      participants: (json['participants'] as List<dynamic>)
+          .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ExpenseModelToJson(ExpenseModel instance) =>
@@ -22,7 +25,8 @@ Map<String, dynamic> _$ExpenseModelToJson(ExpenseModel instance) =>
       'name': instance.name,
       'description': instance.description,
       'amount': instance.amount,
-      'date': instance.date,
-      'createdAt': instance.createdAt,
-      'updatedAt': instance.updatedAt,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdBy': instance.createdBy,
+      'participants': instance.participants,
     };

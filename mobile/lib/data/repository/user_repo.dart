@@ -4,7 +4,6 @@ import 'package:pay_cutter/data/datasource/remote/user.datasource.dart';
 import 'package:pay_cutter/data/models/dto/user.dto.dart';
 import 'package:pay_cutter/data/models/response/user_login.response.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
-import 'package:pay_cutter/generated/di/injector.dart';
 
 @lazySingleton
 class UserRepo {

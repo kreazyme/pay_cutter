@@ -7,7 +7,7 @@ import 'package:pay_cutter/common/widgets/custom_icon.widget.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
-import 'package:pay_cutter/data/repository/chat_repo.dart';
+import 'package:pay_cutter/data/repository/expense_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/chat/chat/chat_bloc.dart';
 import 'package:pay_cutter/modules/chat/widget/chat/list_chats.widget.dart';
@@ -22,7 +22,8 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ChatBloc(
-        chatRepository: getIt.get<ChatRepository>(),
+        groupId: group.id,
+        expenseRepository: getIt.get<ExpenseRepository>(),
       ),
       child: BlocListener<ChatBloc, ChatState>(
         listener: _onListener,
@@ -72,12 +73,12 @@ class _ChatView extends StatelessWidget {
                     child: AppCustomLoading(),
                   );
                 } else if (state is ChatSuccessful) {
-                  if (state.chats!.isEmpty) {
+                  if (state.expenses.isEmpty) {
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Center(
-                          child: Text('No chat found!'),
+                          child: Text('No expenses found!'),
                         ),
                         const SizedBox(
                           height: 16,
@@ -96,7 +97,7 @@ class _ChatView extends StatelessWidget {
                     );
                   }
                   return ListChatsWidget(
-                    chats: state.chats!,
+                    expenses: state.expenses,
                     group: group,
                   );
                 } else {

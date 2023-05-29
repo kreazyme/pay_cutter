@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/data/datasource/remote/expense.datasource.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
+import 'package:pay_cutter/data/models/expense.model.dart';
 
 @LazySingleton()
 class ExpenseRepository {
@@ -11,6 +12,10 @@ class ExpenseRepository {
 
   Future<void> createExpense(ExpenseDTO data) async {
     await _expenseDataSource.createExpense(data);
+  }
+
+  Future<List<ExpenseModel>> getExpenseByGroupId(int id) async {
+    return await _expenseDataSource.getExpenseByGroupID(id);
   }
 
   Future<void> updateExpense(String id, ExpenseDTO data) async {

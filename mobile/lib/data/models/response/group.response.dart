@@ -15,4 +15,9 @@ class GroupResponse {
     required this.group,
     required this.message,
   });
+
+  factory GroupResponse.fromJson(Map<String, dynamic> json) =>
+      _$GroupResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GroupResponseToJson(this);
 }
