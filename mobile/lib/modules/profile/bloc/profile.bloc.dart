@@ -4,7 +4,6 @@ import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/data/repository/auth_repo.dart';
 import 'package:pay_cutter/data/repository/user_repo.dart';
-import 'package:pay_cutter/generated/di/injector.dart';
 
 part 'profile.event.dart';
 part 'profile.state.dart';

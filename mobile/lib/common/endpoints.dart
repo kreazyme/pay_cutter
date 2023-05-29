@@ -12,4 +12,6 @@ abstract class AppEndpoints {
   static String share = '$_apiURL/groups/join';
 
   static String expenses = '$_apiURL/expenses';
+
+  static String expensesByGroup = '$_apiURL/expenses/group';
 }

@@ -14,7 +14,7 @@ class UserModel {
   final String email;
 
   @JsonKey(name: 'photoUrl')
-  final String avatarUrl;
+  final String? avatarUrl;
 
   const UserModel({
     required this.name,

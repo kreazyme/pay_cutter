@@ -1,18 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/enum.dart';
-import 'package:pay_cutter/data/models/chat.model.dart';
-import 'package:pay_cutter/data/repository/chat_repo.dart';
+import 'package:pay_cutter/data/models/expense.model.dart';
+import 'package:pay_cutter/data/repository/expense_repo.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  final ChatRepository _chatRepository;
+  final ExpenseRepository _expenseRepository;
+  final int _groupId;
 
   ChatBloc({
-    required ChatRepository chatRepository,
-  })  : _chatRepository = chatRepository,
+    required ExpenseRepository expenseRepository,
+    required int groupId,
+  })  : _expenseRepository = expenseRepository,
+        _groupId = groupId,
         super(const ChatInitial()) {
     on<ChatStarted>(_started);
     on<ChatFetched>(_fetchChats);
@@ -33,8 +36,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     Emitter<ChatState> emitter,
   ) async {
     try {
-      final chats = await _chatRepository.fetchChats('id');
-      emitter(ChatSuccessful(chats: chats));
+      final expenses = await _expenseRepository.getExpenseByGroupId(_groupId);
+      emitter(ChatSuccessful(expenses: expenses));
     } catch (e) {
       emitter(ChatFailure(error: e.toString()));
     }

@@ -79,11 +79,11 @@ class _ProfileView extends StatelessWidget {
                             height: _avatarSize,
                             width: _avatarSize,
                             child: state.user?.avatarUrl == null ||
-                                    state.user!.avatarUrl.isEmpty
+                                    state.user!.avatarUrl!.isEmpty
                                 ? Image.asset(
                                     Assets.images.imgAvatarDefault.path)
                                 : Image.network(
-                                    state.user!.avatarUrl,
+                                    state.user!.avatarUrl!,
                                     fit: BoxFit.cover,
                                   ),
                           )),

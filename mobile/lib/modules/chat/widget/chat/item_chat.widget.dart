@@ -1,82 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:pay_cutter/data/models/chat.model.dart';
+import 'package:pay_cutter/common/extensions/datetime.extension.dart';
+import 'package:pay_cutter/common/styles/color_styles.dart';
+import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/widgets/app_avatar.widget.dart';
+import 'package:pay_cutter/data/models/expense.model.dart';
+import 'package:pay_cutter/modules/chat/widget/chat/expense_list_participaints.widget.dart';
 
-class ItemChatWidget extends StatefulWidget {
+class ItemChatWidget extends StatelessWidget {
   const ItemChatWidget({
     super.key,
-    required this.chat,
+    required this.expense,
   });
 
-  final ChatModel chat;
-
-  @override
-  State<ItemChatWidget> createState() => _ItemChatWidgetState();
-}
-
-class _ItemChatWidgetState extends State<ItemChatWidget> {
-  final isSender = true;
-  bool isShowTime = false;
-
-  void _handleTouch() {
-    setState(() {
-      isShowTime = !isShowTime;
-    });
-  }
+  final ExpenseModel expense;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _handleTouch(),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+      decoration: const BoxDecoration(
+        color: Color(0xFFE9E9E9),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12.0),
+          topRight: Radius.circular(12.0),
+          bottomLeft: Radius.circular(0),
+          bottomRight: Radius.circular(12.0),
+        ),
+      ),
       child: Row(
-        mainAxisAlignment:
-            isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
-          Container(
-            constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * 0.7,
-            ),
-            padding:
-                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10.0),
-            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
-            decoration: BoxDecoration(
-              color: isSender
-                  ? Theme.of(context).primaryColor
-                  : const Color(0xFFE9E9E9),
-              borderRadius: BorderRadius.only(
-                topLeft: const Radius.circular(12.0),
-                topRight: const Radius.circular(12.0),
-                bottomLeft: isSender
-                    ? const Radius.circular(12.0)
-                    : const Radius.circular(0),
-                bottomRight: isSender
-                    ? const Radius.circular(0)
-                    : const Radius.circular(12.0),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment:
-                  isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.chat.content,
-                  style: TextStyle(
-                    color: isSender ? Colors.white : Colors.black87,
-                    fontSize: 16.0,
-                  ),
+          AppAvatar(
+            url: expense.createdBy.avatarUrl,
+          ),
+          const SizedBox(width: 10.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                expense.name,
+                style: const TextStyle(
+                  color: Colors.black87,
+                  fontSize: 16.0,
                 ),
-                const SizedBox(height: 5.0),
-                if (isShowTime)
-                  Text(
-                    '${widget.chat.createdAt.hour}:${widget.chat.createdAt.minute}  ✓ ',
-                    style: TextStyle(
-                      color: isSender
-                          ? Colors.white.withOpacity(0.8)
-                          : Colors.black54,
-                      fontSize: 12.0,
-                    ),
-                  ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 5.0),
+              Text(
+                expense.createdAt.fullDateTime12h,
+                style: const TextStyle(
+                  color: Colors.black54,
+                  fontSize: 12.0,
+                ),
+              )
+            ],
+          ),
+          const Expanded(child: SizedBox()),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                expense.amount.toString(),
+                style: TextStyles.titleBold.copyWith(
+                  color: AppColors.textColor,
+                ),
+              ),
+              ExpenseListParticipants(
+                participants: expense.participants,
+              ),
+            ],
           ),
         ],
       ),
