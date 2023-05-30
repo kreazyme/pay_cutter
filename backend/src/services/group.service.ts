@@ -21,6 +21,7 @@ export class GroupService extends Repository<GroupEntity> {
         'groups.createdAt',
         'groups.updatedAt',
         'participants.id',
+        'participants.name',
         'participants.email',
         'participants.createdAt',
       ])
