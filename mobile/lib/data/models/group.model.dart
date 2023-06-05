@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pay_cutter/data/models/user/user.model.dart';
 
 part 'group.model.g.dart';
 
@@ -19,12 +20,18 @@ class GroupModel {
   @JsonKey()
   final DateTime updatedAt;
 
+  @JsonKey(
+    defaultValue: [],
+  )
+  final List<UserModel> participants;
+
   const GroupModel({
     required this.id,
     required this.name,
     this.imageURL,
     this.description,
     required this.updatedAt,
+    required this.participants,
   });
 
   factory GroupModel.fromJson(Map<String, dynamic> json) =>

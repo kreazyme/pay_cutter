@@ -4,6 +4,7 @@ import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
+import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/data/repository/category_repo.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
@@ -38,15 +39,17 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
   ) async {
     try {
       emittter(
-        state.copyWith(categoryStatus: HandleStatus.loading),
+        state.copyWith(
+          categoryStatus: HandleStatus.loading,
+          users: event.groupModel.participants,
+        ),
       );
       final ParamsWrapper2<List<UserModel>, List<CategoryModel>> response =
           await _categoryRepository.getCategories(
-        event.groupID.toString(),
+        event.groupModel.id.toString(),
       );
       emittter(state.copyWith(
         categories: response.param2,
-        users: response.param1,
         categoryStatus: HandleStatus.success,
       ));
     } catch (e) {

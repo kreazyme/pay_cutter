@@ -134,7 +134,7 @@ class _ChatView extends StatelessWidget {
           onPressed: () => Navigator.pushNamed(
             context,
             AppRouters.createExpense,
-            arguments: group.id,
+            arguments: group,
           ),
           child: const CustomIcon(
             iconData: Icons.add,
