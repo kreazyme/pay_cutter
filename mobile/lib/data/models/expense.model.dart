@@ -1,25 +1,28 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pay_cutter/data/models/user/user.model.dart';
 
 part 'expense.model.g.dart';
 
 @JsonSerializable()
 class ExpenseModel {
-  final String id;
+  final int id;
   final String name;
-  final String description;
-  final String amount;
-  final String date;
-  final String createdAt;
-  final String updatedAt;
+  final String? description;
+  final int amount;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final UserModel createdBy;
+  final List<UserModel> participants;
 
   ExpenseModel({
     required this.id,
     required this.name,
-    required this.description,
+    this.description,
     required this.amount,
-    required this.date,
     required this.createdAt,
     required this.updatedAt,
+    required this.createdBy,
+    required this.participants,
   });
 
   factory ExpenseModel.fromJson(Map<String, dynamic> json) =>

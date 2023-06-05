@@ -8,14 +8,14 @@ abstract class CreateExpenseEvent extends Equatable {
 }
 
 class CreateExpenseStarted extends CreateExpenseEvent {
-  final String groupID;
+  final GroupModel groupModel;
   const CreateExpenseStarted({
-    required this.groupID,
+    required this.groupModel,
   });
 
   @override
   List<Object> get props => [
-        groupID,
+        groupModel,
       ];
 }
 

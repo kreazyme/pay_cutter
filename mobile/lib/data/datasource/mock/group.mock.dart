@@ -7,6 +7,7 @@ abstract class GroupMock {
           id: index,
           name: '$index Name',
           updatedAt: DateTime.now(),
+          participants: [],
         ),
       );
 
@@ -14,5 +15,6 @@ abstract class GroupMock {
         id: 1,
         name: 'Group name',
         updatedAt: DateTime.now(),
+        participants: [],
       );
 }

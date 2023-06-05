@@ -8,9 +8,15 @@ part of 'expense.dto.dart';
 
 ExpenseDTO _$ExpenseDTOFromJson(Map<String, dynamic> json) => ExpenseDTO(
       name: json['name'] as String,
-      description: json['description'] as String,
+      description: json['description'] as String? ?? 'Description is here',
       amount: (json['amount'] as num).toDouble(),
       date: DateTime.parse(json['date'] as String),
+      paidBy: json['paidBy'] as int?,
+      groupId: json['groupId'] as int,
+      participants:
+          (json['participants'] as List<dynamic>).map((e) => e as int).toList(),
+      image: json['imageURL'] as String? ??
+          'https://res.cloudinary.com/jerrick/image/upload/v1613318166/60294816e5abae001c5260be.jpg',
     );
 
 Map<String, dynamic> _$ExpenseDTOToJson(ExpenseDTO instance) =>
@@ -19,4 +25,8 @@ Map<String, dynamic> _$ExpenseDTOToJson(ExpenseDTO instance) =>
       'description': instance.description,
       'amount': instance.amount,
       'date': instance.date.toIso8601String(),
+      'paidBy': instance.paidBy,
+      'groupId': instance.groupId,
+      'participants': instance.participants,
+      'imageURL': instance.image,
     };

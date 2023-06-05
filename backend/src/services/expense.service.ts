@@ -82,7 +82,7 @@ export class ExpenseService extends Repository<ExpenseEntity> {
       .leftJoinAndSelect('expense_entity.paidBy', 'paidBy')
       .leftJoinAndSelect('expense_entity.participants', 'participants')
       .leftJoinAndSelect('expense_entity.createdBy', 'createdBy')
-      .where('expense_entity.toGroup = :id', { id: 11 })
+      .where('expense_entity.toGroup = :id', { id: groupId })
       .getMany();
     return findExpenses;
   }

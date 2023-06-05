@@ -44,7 +44,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       emitter(const ProfileState.loading());
       await _authenRepo.logout();
-      await _userRepo.deleteToken();
+      await _userRepo.logOut();
       emitter(const ProfileLogouted());
     } catch (e) {
       emitter(const ProfileState.error());

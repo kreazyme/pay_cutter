@@ -1,7 +1,9 @@
 import 'package:injectable/injectable.dart';
+import 'package:pay_cutter/common/endpoints.dart';
 import 'package:pay_cutter/common/helper/dio_helper.dart';
 import 'package:pay_cutter/data/models/dto/category.dto.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
+import 'package:pay_cutter/data/models/expense.model.dart';
 
 @LazySingleton()
 class ExpenseDataSource {
@@ -11,11 +13,18 @@ class ExpenseDataSource {
   }) : _dioHelper = dioHelper;
 
   Future<void> createExpense(ExpenseDTO data) async {
-    // await _dioHelper.post(
-    //   '/expense',
-    //   data: data.toJson(),
-    // );
-    await Future.delayed(const Duration(seconds: 2));
+    await _dioHelper.post(
+      AppEndpoints.expenses,
+      data: data.toJson(),
+    );
+  }
+
+  Future<List<ExpenseModel>> getExpenseByGroupID(int id) async {
+    final result = await _dioHelper.get(
+      '${AppEndpoints.expensesByGroup}/$id',
+    );
+    final listExpense = result.body['data'] as List<dynamic>;
+    return listExpense.map((e) => ExpenseModel.fromJson(e)).toList();
   }
 
   Future<void> updateExpense(String id, ExpenseDTO data) async {

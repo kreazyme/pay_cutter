@@ -39,4 +39,8 @@ class UserRepo {
   Future<UserLoginResponse> login(UserDTO data) async {
     return await _userDataSource.login(data);
   }
+
+  Future<void> logOut() async {
+    await _userLocalDatasource.deleteToken();
+  }
 }
