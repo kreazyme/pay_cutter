@@ -8,6 +8,7 @@ import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
 import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
+import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/repository/category_repo.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
 import 'package:pay_cutter/data/repository/user_repo.dart';
@@ -19,10 +20,10 @@ import 'package:pay_cutter/modules/create/widgets/expense/expense_image.widget.d
 class CreateExpensePage extends StatelessWidget {
   const CreateExpensePage({
     super.key,
-    required this.id,
+    required this.group,
   });
 
-  final int id;
+  final GroupModel group;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,9 @@ class CreateExpensePage extends StatelessWidget {
             ),
         child: BlocListener<CreateExpenseBloc, CreateExpenseState>(
           listener: _onListener,
-          child: _CreateExpenseView(id: id),
+          child: _CreateExpenseView(
+            groupModel: group,
+          ),
         ));
   }
 
@@ -51,9 +54,9 @@ class CreateExpensePage extends StatelessWidget {
 
 class _CreateExpenseView extends StatefulWidget {
   const _CreateExpenseView({
-    required this.id,
+    required this.groupModel,
   });
-  final int id;
+  final GroupModel groupModel;
 
   @override
   State<_CreateExpenseView> createState() => _CreateExpenseViewState();
@@ -67,8 +70,9 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<CreateExpenseBloc>(context)
-        .add(CreateExpenseStarted(groupID: widget.id));
+    BlocProvider.of<CreateExpenseBloc>(context).add(CreateExpenseStarted(
+      groupModel: widget.groupModel,
+    ));
   }
 
   List<DropdownMenuItem> _getDropdown(List<CategoryModel>? items) {
@@ -232,14 +236,16 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                   onPressed: () {
                     BlocProvider.of<CreateExpenseBloc>(context).add(
                       CreateExpenseSubmit(
-                          data: ExpenseDTO(
-                        amount: double.parse(_amountController.text),
-                        name: _descriptionController.text,
-                        date: _selectedDate,
-                        groupId: widget.id,
-                        participants:
-                            state.users!.map((e) => e.userID).toList(),
-                      )),
+                        data: ExpenseDTO(
+                          amount: double.parse(_amountController.text),
+                          name: _descriptionController.text,
+                          date: _selectedDate,
+                          groupId: widget.groupModel.id,
+                          participants: state.userSelected!
+                              .map((e) => state.users![e].userID)
+                              .toList(),
+                        ),
+                      ),
                     );
                   },
                 )

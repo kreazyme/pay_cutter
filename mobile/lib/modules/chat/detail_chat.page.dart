@@ -67,10 +67,23 @@ class _DetailChatView extends StatelessWidget {
               DetailItemButtonWidget(
                 onPressed: () {},
                 title: 'Analytics',
+                icon: const Icon(Icons.analytics_outlined),
               ),
               DetailItemButtonWidget(
                 onPressed: () {},
                 title: 'All expenses',
+                icon: const Icon(Icons.list_alt_outlined),
+              ),
+              DetailItemButtonWidget(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    AppRouters.participants,
+                    arguments: group.participants,
+                  );
+                },
+                title: 'Participants',
+                icon: const Icon(Icons.people),
               ),
               DetailItemButtonWidget(
                 onPressed: () {},

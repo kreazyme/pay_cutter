@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
+import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/modules/analysis/analysis.page.dart';
 import 'package:pay_cutter/modules/chat/detail_chat.page.dart';
+import 'package:pay_cutter/modules/chat/participant.page.dart';
 import 'package:pay_cutter/modules/chat/share_chat.page.dart';
 import 'package:pay_cutter/modules/core/core.page.dart';
 import 'package:pay_cutter/modules/create/create_category.page.dart';
@@ -29,6 +31,7 @@ abstract class AppRouters {
   static const qrScan = '/qr_scan';
   static const createGroup = '/create_group';
   static const String scanBill = '/scan_bill';
+  static const String participants = '/participants';
 
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -78,9 +81,9 @@ abstract class AppRouters {
           ),
         );
       case createExpense:
-        int id = settings.arguments as int;
+        GroupModel group = settings.arguments as GroupModel;
         return MaterialPageRoute(
-          builder: (_) => CreateExpensePage(id: id),
+          builder: (_) => CreateExpensePage(group: group),
         );
       case createCategory:
         return MaterialPageRoute(
@@ -98,6 +101,13 @@ abstract class AppRouters {
       case scanBill:
         return MaterialPageRoute(
           builder: (_) => const ScanPage(),
+        );
+      case participants:
+        List<UserModel> users = settings.arguments as List<UserModel>;
+        return MaterialPageRoute(
+          builder: (_) => ParticipantsPage(
+            users: users,
+          ),
         );
       default:
         return MaterialPageRoute(
