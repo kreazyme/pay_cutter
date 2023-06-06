@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:pay_cutter/common/extensions/string.extentions.dart';
+import 'package:pay_cutter/common/shared/app_enviroment.dart';
+import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
+import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
+import 'package:pay_cutter/data/repository/group_repo.dart';
+import 'package:pay_cutter/generated/di/injector.dart';
+import 'package:pay_cutter/routers/app_routers.dart';
 
 class QRScanPage extends StatefulWidget {
   const QRScanPage({super.key});
@@ -13,82 +21,142 @@ class _QRScanPageState extends State<QRScanPage> {
   bool _isTorchOn = false;
   bool _isCameraBack = true;
   String? _data;
+  final MobileScannerController _controller = MobileScannerController(
+    detectionSpeed: DetectionSpeed.normal,
+    facing: CameraFacing.back,
+    torchEnabled: false,
+  );
+  final GroupRepository _groupRepository = getIt.get<GroupRepository>();
+
+  String? _getPayCutterGroup() {
+    if (_data.isNullOrEmpty) return null;
+    if (_data?.contains(AppEnviroment.API_URL) == false) {
+      return null;
+    }
+    return _data?.split('/').last;
+  }
+
+  void _joinGroup() async {
+    try {
+      final group = await _groupRepository.joinGroup(_getPayCutterGroup()!);
+      if (mounted) {
+        Navigator.pushReplacementNamed(
+          context,
+          AppRouters.chat,
+          arguments: group,
+        );
+      }
+    } catch (e) {
+      ToastUlti.showError(context, 'Cannot join group');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'QR Scan',
-          style: TextStyles.title.copyWith(
-            color: Colors.white,
-          ),
-        ),
+      appBar: const CustomAppbar(
+        title: 'Scan QR Code',
       ),
       body: Column(children: [
-        Text(_data ?? 'No data found!!!!'),
+        Container(
+          height: width,
+          width: width,
+          margin: const EdgeInsets.all(20),
+          child: MobileScanner(
+            controller: _controller,
+            onDetect: (capture) {
+              final List<Barcode> barcodes = capture.barcodes;
+              for (final barcode in barcodes) {
+                debugPrint('Barcode found! ${barcode.rawValue}');
+                setState(() {
+                  _data = barcode.rawValue;
+                });
+              }
+            },
+          ),
+        ),
+        const Spacer(),
+        Text(
+          _getPayCutterGroup() ?? 'Finding PayCutter QR Code',
+          style: TextStyles.titleBold.copyWith(
+            color: AppColors.textColor.withOpacity(0.5),
+          ),
+        ),
+        const Spacer(),
         SizedBox(
-          height: 300,
-          width: 300,
-          child: Stack(
+          height: 100,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              MobileScanner(
-                // fit: BoxFit.contain,
-                controller: MobileScannerController(
-                  detectionSpeed: DetectionSpeed.normal,
-                  facing:
-                      _isCameraBack ? CameraFacing.back : CameraFacing.front,
-                  torchEnabled: _isTorchOn,
-                ),
-                onDetect: (capture) {
-                  final List<Barcode> barcodes = capture.barcodes;
-                  for (final barcode in barcodes) {
-                    debugPrint('Barcode found! ${barcode.rawValue}');
-                    setState(() {
-                      _data = barcode.rawValue;
-                    });
-                  }
-                },
-              ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  height: 100,
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.flash_on,
-                          color: _isTorchOn ? Colors.white : Colors.grey,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isTorchOn = !_isTorchOn;
-                          });
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.camera_alt,
-                          color: _isCameraBack ? Colors.white : Colors.grey,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isCameraBack = !_isCameraBack;
-                          });
-                        },
-                      ),
-                    ],
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: GestureDetector(
+                  child: Icon(
+                    Icons.flash_on,
+                    color: _isTorchOn ? Colors.white : Colors.grey,
                   ),
+                  onTap: () {
+                    setState(() {
+                      _controller.toggleTorch();
+                      _isTorchOn = !_isTorchOn;
+                    });
+                  },
+                ),
+              ),
+              Container(
+                  height: 72,
+                  width: 72,
+                  decoration: BoxDecoration(
+                    color: _getPayCutterGroup().isNullOrEmpty
+                        ? Colors.grey.withOpacity(0.2)
+                        : AppColors.primaryColor,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  margin: const EdgeInsets.only(bottom: 40),
+                  child: GestureDetector(
+                    onTap: () {
+                      if (_getPayCutterGroup().isNullOrEmpty) {
+                        return;
+                      }
+                      _joinGroup();
+                    },
+                    child: Center(
+                      child: Text(
+                        'Join',
+                        style: TextStyles.title.copyWith(color: Colors.white),
+                      ),
+                    ),
+                  )),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: GestureDetector(
+                  child: Icon(
+                    Icons.camera_alt,
+                    color: _isCameraBack ? Colors.white : Colors.grey,
+                  ),
+                  onTap: () {
+                    setState(() {
+                      _isCameraBack = !_isCameraBack;
+                      _controller.switchCamera();
+                    });
+                  },
                 ),
               ),
             ],
           ),
-        )
+        ),
+        const Spacer(),
       ]),
     );
   }

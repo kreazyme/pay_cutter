@@ -27,4 +27,14 @@ class GroupDataSource {
     );
     return GroupModel.fromJson(response.body['data']);
   }
+
+  Future<GroupModel> joinGroup(String joinCode) async {
+    final response = await _dioHelper.put(
+      AppEndpoints.joinGroup,
+      data: {
+        'joinCode': joinCode,
+      },
+    );
+    return GroupModel.fromJson(response.body['data']);
+  }
 }
