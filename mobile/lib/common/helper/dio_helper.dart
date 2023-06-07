@@ -38,13 +38,34 @@ class DioHelper {
   //   await _addInterceptors(_dio);
   // }
 
+  Future<void> updateToken() async => _updateToken();
+
+  Future<void> _updateToken() async {
+    final String? accessToken = await _userBox.get(HiveKeys.userToken);
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        if (accessToken != null) {
+          options.headers.addAll({
+            'Authorization': 'Bearer $accessToken',
+          });
+          log('*******************');
+          log('Request URL: ${options.uri} with method: ${options.method}');
+          log('Request headers: ${options.headers}');
+          return handler.next(options);
+        }
+      },
+    ));
+  }
+
   Future<Dio> _addInterceptors(Dio dio) async {
     final String? accessToken = await _userBox.get(HiveKeys.userToken);
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
-        options.headers.addAll({
-          'Authorization': 'Bearer $accessToken',
-        });
+        if (accessToken != null) {
+          options.headers.addAll({
+            'Authorization': 'Bearer $accessToken',
+          });
+        }
         log('*******************');
         log('Request URL: ${options.uri} with method: ${options.method}');
         log('Request headers: ${options.headers}');
