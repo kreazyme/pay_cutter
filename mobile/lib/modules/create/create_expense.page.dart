@@ -6,6 +6,7 @@ import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/common/widgets/custom_button.widget.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
+import 'package:pay_cutter/data/datasource/firebase/firebase_upload.datasource.dart';
 import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
@@ -32,6 +33,7 @@ class CreateExpensePage extends StatelessWidget {
               expenseRepository: getIt.get<ExpenseRepository>(),
               categoryRepository: getIt.get<CategoryRepository>(),
               userRepo: getIt.get<UserRepo>(),
+              firebaseUploadDataSoure: getIt.get<FirebaseUploadDataSoure>(),
             ),
         child: BlocListener<CreateExpenseBloc, CreateExpenseState>(
           listener: _onListener,
@@ -220,7 +222,9 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                   height: 20,
                   color: Colors.transparent,
                 ),
-                const ExpenseImageWidget(),
+                ExpenseImageWidget(
+                  groupId: widget.groupModel.id,
+                ),
                 const Divider(
                   height: 20,
                   color: Colors.transparent,

@@ -11,6 +11,9 @@ enum HandleStatus {
   bool get isSuccess => this == HandleStatus.success;
 
   bool get isError => this == HandleStatus.error;
+
+  bool get isCompleted =>
+      this == HandleStatus.success || this == HandleStatus.error;
 }
 
 enum Flavor {

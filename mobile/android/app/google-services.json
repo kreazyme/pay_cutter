@@ -37,6 +37,13 @@
             {
               "client_id": "1089832021850-6pvt428niml2d4neiekuishmdde39h7b.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1089832021850-ue4om9a9rm38k02brbk6g4qlriqjvo5f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.moneyDivider"
+              }
             }
           ]
         }

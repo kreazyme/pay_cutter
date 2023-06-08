@@ -11,23 +11,25 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:pay_cutter/common/helper/dio_helper.dart' as _i6;
 import 'package:pay_cutter/data/datasource/firebase/firebase_auth.datasource.dart'
     as _i9;
+import 'package:pay_cutter/data/datasource/firebase/firebase_upload.datasource.dart'
+    as _i10;
 import 'package:pay_cutter/data/datasource/local/user_local.datasource.dart'
-    as _i13;
+    as _i14;
 import 'package:pay_cutter/data/datasource/remote/category.datasource.dart'
     as _i4;
-import 'package:pay_cutter/data/datasource/remote/chat.datasource.dart' as _i16;
+import 'package:pay_cutter/data/datasource/remote/chat.datasource.dart' as _i17;
 import 'package:pay_cutter/data/datasource/remote/expense.datasource.dart'
     as _i7;
 import 'package:pay_cutter/data/datasource/remote/group.datasource.dart'
-    as _i10;
-import 'package:pay_cutter/data/datasource/remote/user.datasource.dart' as _i12;
-import 'package:pay_cutter/data/repository/auth_repo.dart' as _i15;
+    as _i11;
+import 'package:pay_cutter/data/datasource/remote/user.datasource.dart' as _i13;
+import 'package:pay_cutter/data/repository/auth_repo.dart' as _i16;
 import 'package:pay_cutter/data/repository/category_repo.dart' as _i5;
-import 'package:pay_cutter/data/repository/chat_repo.dart' as _i17;
+import 'package:pay_cutter/data/repository/chat_repo.dart' as _i18;
 import 'package:pay_cutter/data/repository/expense_repo.dart' as _i8;
-import 'package:pay_cutter/data/repository/group_repo.dart' as _i11;
-import 'package:pay_cutter/data/repository/user_repo.dart' as _i14;
-import 'package:pay_cutter/generated/di/modules/local_modules.dart' as _i18;
+import 'package:pay_cutter/data/repository/group_repo.dart' as _i12;
+import 'package:pay_cutter/data/repository/user_repo.dart' as _i15;
+import 'package:pay_cutter/generated/di/modules/local_modules.dart' as _i19;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -59,27 +61,29 @@ Future<_i1.GetIt> initGetIt(
       _i8.ExpenseRepository(expenseDataSource: gh<_i7.ExpenseDataSource>()));
   gh.lazySingleton<_i9.FirebaseAuthDataSource>(
       () => _i9.FirebaseAuthDataSource());
-  gh.lazySingleton<_i10.GroupDataSource>(
-      () => _i10.GroupDataSource(dioHelper: gh<_i6.DioHelper>()));
-  gh.lazySingleton<_i11.GroupRepository>(
-      () => _i11.GroupRepository(groupDataSource: gh<_i10.GroupDataSource>()));
-  gh.lazySingleton<_i12.UserDataSource>(
-      () => _i12.UserDataSource(dioHelper: gh<_i6.DioHelper>()));
-  gh.lazySingleton<_i13.UserLocalDatasource>(() => _i13.UserLocalDatasource(
+  gh.lazySingleton<_i10.FirebaseUploadDataSoure>(
+      () => _i10.FirebaseUploadDataSoure());
+  gh.lazySingleton<_i11.GroupDataSource>(
+      () => _i11.GroupDataSource(dioHelper: gh<_i6.DioHelper>()));
+  gh.lazySingleton<_i12.GroupRepository>(
+      () => _i12.GroupRepository(groupDataSource: gh<_i11.GroupDataSource>()));
+  gh.lazySingleton<_i13.UserDataSource>(
+      () => _i13.UserDataSource(dioHelper: gh<_i6.DioHelper>()));
+  gh.lazySingleton<_i14.UserLocalDatasource>(() => _i14.UserLocalDatasource(
         box: gh<_i3.Box<dynamic>>(instanceName: 'divider_app_hive_box'),
         dioHelper: gh<_i6.DioHelper>(),
       ));
-  gh.lazySingleton<_i14.UserRepo>(() => _i14.UserRepo(
-        userLocalDatasource: gh<_i13.UserLocalDatasource>(),
-        userDataSource: gh<_i12.UserDataSource>(),
+  gh.lazySingleton<_i15.UserRepo>(() => _i15.UserRepo(
+        userLocalDatasource: gh<_i14.UserLocalDatasource>(),
+        userDataSource: gh<_i13.UserDataSource>(),
       ));
-  gh.lazySingleton<_i15.AuthenRepo>(
-      () => _i15.AuthenRepo(authDataSource: gh<_i9.FirebaseAuthDataSource>()));
-  gh.lazySingleton<_i16.ChatDataSource>(
-      () => _i16.ChatDataSource(dioHelper: gh<_i6.DioHelper>()));
-  gh.lazySingleton<_i17.ChatRepository>(
-      () => _i17.ChatRepository(chatDataSource: gh<_i16.ChatDataSource>()));
+  gh.lazySingleton<_i16.AuthenRepo>(
+      () => _i16.AuthenRepo(authDataSource: gh<_i9.FirebaseAuthDataSource>()));
+  gh.lazySingleton<_i17.ChatDataSource>(
+      () => _i17.ChatDataSource(dioHelper: gh<_i6.DioHelper>()));
+  gh.lazySingleton<_i18.ChatRepository>(
+      () => _i18.ChatRepository(chatDataSource: gh<_i17.ChatDataSource>()));
   return getIt;
 }
 
-class _$LocalModule extends _i18.LocalModule {}
+class _$LocalModule extends _i19.LocalModule {}
