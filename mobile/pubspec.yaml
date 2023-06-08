@@ -35,9 +35,10 @@ dependencies:
 
   # Firebase
   firebase_auth: 4.4.0
-  firebase_core: 2.9.0
+  firebase_core: ^2.13.1
   google_sign_in: 6.0.2
   firebase_messaging: 14.4.0
+  firebase_storage: ^11.2.2
 
   # UI
   lottie: 2.3.1

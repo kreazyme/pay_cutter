@@ -64,3 +64,15 @@ class CreateExpenseAddUser extends CreateExpenseEvent {
         index,
       ];
 }
+
+class CreateExpenseUploadFile extends CreateExpenseEvent {
+  final int groupId;
+  const CreateExpenseUploadFile({
+    required this.groupId,
+  });
+
+  @override
+  List<Object> get props => [
+        groupId,
+      ];
+}
