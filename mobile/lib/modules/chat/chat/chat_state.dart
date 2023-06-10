@@ -4,11 +4,13 @@ abstract class ChatState extends Equatable {
   final HandleStatus status;
   final List<ExpenseModel> expenses;
   final String? error;
+  final GroupModel? group;
 
   const ChatState({
     required this.status,
     required this.expenses,
     this.error,
+    this.group,
   });
 
   @override
@@ -16,6 +18,7 @@ abstract class ChatState extends Equatable {
         status,
         expenses,
         error,
+        group,
       ];
 }
 
@@ -38,9 +41,11 @@ class ChatInitial extends ChatState {
 class ChatSuccessful extends ChatState {
   const ChatSuccessful({
     required List<ExpenseModel> expenses,
+    required GroupModel group,
   }) : super(
           status: HandleStatus.success,
           expenses: expenses,
+          group: group,
         );
 }
 

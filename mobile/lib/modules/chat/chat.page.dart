@@ -8,8 +8,10 @@ import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
+import 'package:pay_cutter/data/repository/group_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/chat/chat/chat_bloc.dart';
+import 'package:pay_cutter/modules/chat/widget/chat/list_analys.widget.dart';
 import 'package:pay_cutter/modules/chat/widget/chat/list_chats.widget.dart';
 import 'package:pay_cutter/routers/app_routers.dart';
 
@@ -22,8 +24,9 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ChatBloc(
-        groupId: group.id,
+        group: group,
         expenseRepository: getIt.get<ExpenseRepository>(),
+        groupRepo: getIt.get<GroupRepository>(),
       ),
       child: BlocListener<ChatBloc, ChatState>(
         listener: _onListener,
@@ -96,9 +99,17 @@ class _ChatView extends StatelessWidget {
                       ],
                     );
                   }
-                  return ListChatsWidget(
-                    expenses: state.expenses,
-                    group: group,
+                  return ListView(
+                    children: [
+                      ListAnalysWidget(
+                        expenses: state.expenses,
+                        group: group,
+                      ),
+                      ListChatsWidget(
+                        expenses: state.expenses,
+                        group: group,
+                      ),
+                    ],
                   );
                 } else {
                   return const CustomAppErrorWidget();
@@ -130,16 +141,23 @@ class _ChatView extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.pushNamed(
-            context,
-            AppRouters.createExpense,
-            arguments: group,
-          ),
-          child: const CustomIcon(
-            iconData: Icons.add,
-            iconSize: 24,
-          ),
+        floatingActionButton: BlocBuilder<ChatBloc, ChatState>(
+          builder: (context, state) {
+            if (state.status.isLoading) {
+              return Container();
+            }
+            return FloatingActionButton(
+              onPressed: () => Navigator.pushNamed(
+                context,
+                AppRouters.createExpense,
+                arguments: state.group,
+              ),
+              child: const CustomIcon(
+                iconData: Icons.add,
+                iconSize: 24,
+              ),
+            );
+          },
         ));
   }
 }
