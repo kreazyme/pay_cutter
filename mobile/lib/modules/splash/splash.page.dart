@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pay_cutter/generated/assets.gen.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -11,12 +12,10 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Splash Page'),
-          leading: null,
-        ),
-        body: const Center(
-          child: Text('Splash Page'),
-        ));
+        body: Assets.logo.imgSplash.image(
+      fit: BoxFit.cover,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+    ));
   }
 }

@@ -53,12 +53,27 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [icLogo, imgAvatarDefault, imgBoarding];
 }
 
+class $AssetsLogoGen {
+  const $AssetsLogoGen();
+
+  /// File path: assets/logo/img_logo.png
+  AssetGenImage get imgLogo => const AssetGenImage('assets/logo/img_logo.png');
+
+  /// File path: assets/logo/img_splash.png
+  AssetGenImage get imgSplash =>
+      const AssetGenImage('assets/logo/img_splash.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [imgLogo, imgSplash];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsAnimGen anim = $AssetsAnimGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLogoGen logo = $AssetsLogoGen();
 }
 
 class AssetGenImage {

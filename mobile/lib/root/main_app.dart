@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
                 900: AppColors.primaryColor,
               },
             ),
+            fontFamily: 'BeVietnamPro',
           ),
           debugShowCheckedModeBanner: false,
           onGenerateRoute: AppRouters.onGenerateRoute,
