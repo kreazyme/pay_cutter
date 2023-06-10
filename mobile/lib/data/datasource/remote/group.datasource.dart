@@ -37,4 +37,11 @@ class GroupDataSource {
     );
     return GroupModel.fromJson(response.body['data']);
   }
+
+  Future<GroupModel> getDetailGroup(int id) async {
+    final response = await _dioHelper.get(
+      '${AppEndpoints.group}/$id',
+    );
+    return GroupModel.fromJson(response.body['data']);
+  }
 }
