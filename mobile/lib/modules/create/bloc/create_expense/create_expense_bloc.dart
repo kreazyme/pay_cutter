@@ -40,6 +40,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
 
     on<CreateExpenseCategorySubmit>(_categorySelect);
     on<CreateExpenseStarted>(_inital);
+    on<CreateExpenseChangeAmount>(_changeAmount);
 
     on<CreateExpenseAddUser>(_addUser);
     on<CreateExpenseRemoveUser>(_removeuser);
@@ -70,6 +71,15 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
         error: e.toString(),
       ));
     }
+  }
+
+  Future<void> _changeAmount(
+    CreateExpenseChangeAmount event,
+    Emitter<CreateExpenseState> emittter,
+  ) async {
+    emittter(state.copyWith(
+      amount: event.amount,
+    ));
   }
 
   Future<void> _createExpense(

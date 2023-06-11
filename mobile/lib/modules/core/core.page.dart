@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/modules/core/bloc/core.bloc.dart';
 import 'package:pay_cutter/modules/core/widgets/app_bottom_item.widget.dart';
 import 'package:pay_cutter/modules/home/home.view.dart';
@@ -34,23 +35,9 @@ class _CoreView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CoreBloc, CoreState>(
       builder: (context, state) => Scaffold(
-        appBar: AppBar(
-            title: Text(
-              'Core Page',
-              style: TextStyles.title.copyWith(
-                color: Colors.white,
-              ),
-            ),
-            leading: Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                  icon: const Icon(Icons.menu),
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                );
-              },
-            )),
+        // appBar: CustomAppbar(
+        //   title: ,
+        // ),
         body: IndexedStack(
           index: state.indexBottom,
           children: const [

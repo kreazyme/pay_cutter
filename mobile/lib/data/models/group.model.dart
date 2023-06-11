@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 
@@ -25,17 +26,32 @@ class GroupModel {
   )
   final List<UserModel> participants;
 
-  const GroupModel({
+  Color? color;
+
+  GroupModel({
     required this.id,
     required this.name,
     this.imageURL,
     this.description,
     required this.updatedAt,
     required this.participants,
+    this.color,
   });
 
   factory GroupModel.fromJson(Map<String, dynamic> json) =>
       _$GroupModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$GroupModelToJson(this);
+
+  GroupModel addColor(Color color) {
+    return GroupModel(
+      id: id,
+      name: name,
+      description: description,
+      imageURL: imageURL,
+      updatedAt: updatedAt,
+      participants: participants,
+      color: color,
+    );
+  }
 }

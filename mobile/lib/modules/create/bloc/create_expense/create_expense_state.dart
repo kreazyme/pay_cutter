@@ -11,6 +11,7 @@ class CreateExpenseState extends Equatable {
   final String? imageUrl;
   final HandleStatus? imageStatus;
   final ExpenseModel? expense;
+  final double? amount;
 
   const CreateExpenseState({
     this.status,
@@ -23,6 +24,7 @@ class CreateExpenseState extends Equatable {
     this.imageUrl,
     this.imageStatus,
     this.expense,
+    this.amount,
   });
 
   CreateExpenseState copyWith({
@@ -36,6 +38,7 @@ class CreateExpenseState extends Equatable {
     String? imageUrl,
     HandleStatus? imageStatus,
     ExpenseModel? expense,
+    double? amount,
   }) =>
       CreateExpenseState(
         status: status ?? this.status,
@@ -48,6 +51,7 @@ class CreateExpenseState extends Equatable {
         imageUrl: imageUrl ?? this.imageUrl,
         imageStatus: imageStatus ?? this.imageStatus,
         expense: expense ?? this.expense,
+        amount: amount ?? this.amount,
       );
 
   @override
@@ -62,6 +66,7 @@ class CreateExpenseState extends Equatable {
         imageUrl,
         imageStatus,
         expense,
+        amount,
       ];
 }
 
