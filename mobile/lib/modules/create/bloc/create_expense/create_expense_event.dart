@@ -76,3 +76,15 @@ class CreateExpenseUploadFile extends CreateExpenseEvent {
         groupId,
       ];
 }
+
+class CreateExpenseChangeAmount extends CreateExpenseEvent {
+  final double amount;
+  const CreateExpenseChangeAmount({
+    required this.amount,
+  });
+
+  @override
+  List<Object> get props => [
+        amount,
+      ];
+}

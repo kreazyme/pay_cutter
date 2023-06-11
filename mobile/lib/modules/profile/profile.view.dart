@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/data/repository/auth_repo.dart';
 import 'package:pay_cutter/data/repository/user_repo.dart';
 import 'package:pay_cutter/generated/assets.gen.dart';
@@ -53,6 +54,14 @@ class _ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Profile',
+          style: TextStyles.titleBold.copyWith(
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
           if (state.status.isLoading || state.status.isInitial) {

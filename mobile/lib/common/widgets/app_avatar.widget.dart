@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pay_cutter/common/extensions/string.extentions.dart';
-import 'package:pay_cutter/generated/assets.gen.dart';
 
 class AppAvatar extends StatelessWidget {
   const AppAvatar({

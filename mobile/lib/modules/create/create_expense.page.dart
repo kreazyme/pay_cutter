@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/extensions/extensions.dart';
+import 'package:pay_cutter/common/extensions/string.extentions.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/common/widgets/app_select.widget.dart';
@@ -83,12 +84,30 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
     ));
   }
 
+  double _amount(String value) {
+    if (value == '' || value == '-' || value == ',' || value == '.') {
+      return 0;
+    }
+    if (value.lastCharacter == ',' || value.lastCharacter == '.') {
+      return double.parse(value.substring(0, value.length - 1));
+    }
+    return double.parse(value);
+  }
+
   Widget _amoutInput() {
     return TextField(
       controller: _amountController,
       style: TextStyles.h1.copyWith(
         color: AppColors.primaryColor,
       ),
+      onChanged: (value) {
+        double amount = _amount(value);
+        BlocProvider.of<CreateExpenseBloc>(context).add(
+          CreateExpenseChangeAmount(
+            amount: amount,
+          ),
+        );
+      },
       decoration: InputDecoration(
         label: Text(
           'Expense Amount',
@@ -125,11 +144,20 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
               });
             }
           },
-          child: Text(
-            _selectedDate.toFullDayWeek(),
-            style: TextStyles.body.copyWith(
-              color: AppColors.textColor,
-            ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.calendar_today,
+                color: AppColors.primaryColor,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                _selectedDate.toFullDayWeek(),
+                style: TextStyles.body.copyWith(
+                  color: AppColors.textColor,
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -143,136 +171,170 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
       body: BlocBuilder<CreateExpenseBloc, CreateExpenseState>(
         builder: (context, state) => SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextField(
-                  controller: _descriptionController,
-                  style: TextStyles.title.copyWith(
-                    color: AppColors.textColor,
-                  ),
-                  decoration: InputDecoration(
-                    label: Text(
-                      'Name of Expense',
-                      style: TextStyles.body.copyWith(
-                        color: AppColors.disableColor,
-                      ),
+            padding: const EdgeInsets.all(12),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    hintText: 'Buy some food 🥪🌮',
-                    hintStyle: TextStyles.body.copyWith(
-                      color: AppColors.primaryColor,
-                    ),
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                  ),
-                ),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                _amoutInput(),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                Text(
-                  'Category',
-                  style: TextStyles.title.copyWith(
-                    color: AppColors.textColor,
-                  ),
-                ),
-                const Divider(
-                  height: 12,
-                  color: Colors.transparent,
-                ),
-                AppSelectWidget(
-                  onTap: () async {
-                    Object? result = await Navigator.pushNamed(
-                      context,
-                      AppRouters.categoryPage,
-                      arguments: state.categories,
-                    );
-                    if (result != null) {
-                      if (mounted) {
-                        BlocProvider.of<CreateExpenseBloc>(context).add(
-                          CreateExpenseCategorySubmit(
-                            category: result as CategoryModel,
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextField(
+                          controller: _descriptionController,
+                          style: TextStyles.title.copyWith(
+                            color: AppColors.textColor,
                           ),
-                        );
-                      }
-                    }
-                  },
-                  isLoading: state.categoryStatus?.isLoading == true,
-                  title: state.categorySelected?.name,
-                  placeholder: 'Select Category',
-                ),
-                ExpenseForWhomWidget(
-                  userSelected: state.userSelected ?? [],
-                  users: state.users ?? [],
-                  amount: double.parse(
-                    _amountController.text.isEmpty
-                        ? '0'
-                        : _amountController.text,
-                  ),
-                ),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                Text(
-                  'Select datetime',
-                  style: TextStyles.title.copyWith(
-                    color: AppColors.textColor,
-                  ),
-                ),
-                const Divider(
-                  height: 12,
-                  color: Colors.transparent,
-                ),
-                _datetimeSelect(),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                ExpenseImageWidget(
-                  groupId: widget.groupModel.id,
-                ),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                CustomButtonWidget(
-                  content: 'Create',
-                  isLoading: state.categoryStatus?.isLoading == true ||
-                      state.imageStatus?.isLoading == true,
-                  isDiable: _amountController.text == '' ||
-                      state.status?.isLoading == true ||
-                      state.categoryStatus?.isLoading == true ||
-                      state.userSelected!.isEmpty ||
-                      state.categorySelected == null ||
-                      state.imageStatus?.isLoading == true,
-                  onPressed: () {
-                    BlocProvider.of<CreateExpenseBloc>(context).add(
-                      CreateExpenseSubmit(
-                        data: ExpenseDTO(
-                          amount: double.parse(_amountController.text),
-                          name: _descriptionController.text,
-                          date: _selectedDate,
-                          groupId: widget.groupModel.id,
-                          participants: state.userSelected!
-                              .map((e) => state.users![e].userID)
-                              .toList(),
-                          image: state.imageUrl ?? '',
+                          decoration: InputDecoration(
+                            label: Text(
+                              'Name of Expense',
+                              style: TextStyles.body.copyWith(
+                                color: AppColors.disableColor,
+                              ),
+                            ),
+                            hintText: 'Buy some food 🥪🌮',
+                            hintStyle: TextStyles.body.copyWith(
+                              color: AppColors.primaryColor,
+                            ),
+                            border: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                )
-              ],
+                        const Divider(
+                          height: 20,
+                          color: Colors.transparent,
+                        ),
+                        _amoutInput(),
+                      ],
+                    ),
+                  ),
+                  const Divider(
+                    height: 20,
+                    color: Colors.transparent,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Category',
+                          style: TextStyles.title.copyWith(
+                            color: AppColors.textColor,
+                          ),
+                        ),
+                        const Divider(
+                          height: 12,
+                          color: Colors.transparent,
+                        ),
+                        AppSelectWidget(
+                          onTap: () async {
+                            Object? result = await Navigator.pushNamed(
+                              context,
+                              AppRouters.categoryPage,
+                              arguments: state.categories,
+                            );
+                            if (result != null) {
+                              if (mounted) {
+                                BlocProvider.of<CreateExpenseBloc>(context).add(
+                                  CreateExpenseCategorySubmit(
+                                    category: result as CategoryModel,
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                          isLoading: state.categoryStatus?.isLoading == true,
+                          title: state.categorySelected?.name,
+                          placeholder: 'Select Category',
+                        ),
+                        ExpenseForWhomWidget(
+                          userSelected: state.userSelected ?? [],
+                          users: state.users ?? [],
+                          amount: state.amount ?? 0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(
+                    height: 20,
+                    color: Colors.transparent,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Select datetime',
+                          style: TextStyles.title.copyWith(
+                            color: AppColors.textColor,
+                          ),
+                        ),
+                        const Divider(
+                          height: 12,
+                          color: Colors.transparent,
+                        ),
+                        _datetimeSelect(),
+                        const Divider(
+                          height: 20,
+                          color: Colors.transparent,
+                        ),
+                        ExpenseImageWidget(
+                          groupId: widget.groupModel.id,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(
+                    height: 20,
+                    color: Colors.transparent,
+                  ),
+                  CustomButtonWidget(
+                    content: 'Create',
+                    isLoading: state.categoryStatus?.isLoading == true ||
+                        state.imageStatus?.isLoading == true,
+                    isDiable: _amountController.text == '' ||
+                        state.status?.isLoading == true ||
+                        state.categoryStatus?.isLoading == true ||
+                        state.userSelected!.isEmpty ||
+                        state.categorySelected == null ||
+                        state.imageStatus?.isLoading == true,
+                    onPressed: () {
+                      BlocProvider.of<CreateExpenseBloc>(context).add(
+                        CreateExpenseSubmit(
+                          data: ExpenseDTO(
+                            amount: double.parse(_amountController.text),
+                            name: _descriptionController.text,
+                            date: _selectedDate,
+                            groupId: widget.groupModel.id,
+                            participants: state.userSelected!
+                                .map((e) => state.users![e].userID)
+                                .toList(),
+                            image: state.imageUrl ?? '',
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),

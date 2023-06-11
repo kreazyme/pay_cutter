@@ -60,19 +60,13 @@ class _ChatView extends StatelessWidget {
     return Scaffold(
         appBar: CustomAppbar(
           title: params.param1.name,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              if (params.param2) {
-                Navigator.of(context).pop(params.param1);
-              } else {
-                Navigator.of(context).pop();
-              }
-            },
-          ),
+          onLeadingAction: () {
+            if (params.param2) {
+              Navigator.of(context).pop(params.param1);
+            } else {
+              Navigator.of(context).pop();
+            }
+          },
           actions: [
             IconButton(
               icon: const CustomIcon(iconData: Icons.info_outline),
