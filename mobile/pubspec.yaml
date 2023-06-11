@@ -45,6 +45,7 @@ dependencies:
   fl_chart: 0.61.0
   flutter_speed_dial: 6.2.0
   google_maps_flutter: ^2.2.7
+  flutter_rating_bar: ^4.0.1
 
   # Utils
   flutter_dotenv: 5.0.2
