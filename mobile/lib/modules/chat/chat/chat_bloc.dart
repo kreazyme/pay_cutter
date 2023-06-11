@@ -43,7 +43,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     Emitter<ChatState> emitter,
   ) async {
     try {
-      final expenses = await _expenseRepository.getExpenseByGroupId(_group.id);
+      var expenses = await _expenseRepository.getExpenseByGroupId(_group.id);
+      expenses.sort((a, b) => b.createdAt.compareTo(a.createdAt));
       final GroupModel group = await _groupRepo.getDetailGroup(_group.id);
       emitter(ChatSuccessful(
         expenses: expenses,

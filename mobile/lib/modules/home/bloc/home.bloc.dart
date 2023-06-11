@@ -25,7 +25,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     try {
       emitter(const HomeState.loading());
-      final groups = await _groupRepository.fetchGroups();
+      var groups = await _groupRepository.fetchGroups();
+      groups.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
       emitter(HomeState.success(groups));
     } catch (e) {
       emitter(HomeState.error(e.toString()));

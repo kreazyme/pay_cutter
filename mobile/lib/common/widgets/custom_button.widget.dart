@@ -29,6 +29,7 @@ class CustomButtonWidget extends StatelessWidget {
       color: isDiable == true
           ? AppColors.disableColor
           : color ?? AppColors.primaryColor,
+      height: 50,
       child: Row(children: [
         if (icon != null) icon!,
         Expanded(

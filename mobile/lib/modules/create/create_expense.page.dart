@@ -215,12 +215,14 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                 ),
                 CustomButtonWidget(
                   content: 'Create',
-                  isLoading: state.categoryStatus?.isLoading ?? false,
+                  isLoading: state.categoryStatus?.isLoading == true ||
+                      state.imageStatus?.isLoading == true,
                   isDiable: _amountController.text == '' ||
                       state.status?.isLoading == true ||
                       state.categoryStatus?.isLoading == true ||
                       state.userSelected!.isEmpty ||
-                      state.categorySelected == null,
+                      state.categorySelected == null ||
+                      state.imageStatus?.isLoading == true,
                   onPressed: () {
                     BlocProvider.of<CreateExpenseBloc>(context).add(
                       CreateExpenseSubmit(
@@ -232,6 +234,7 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                           participants: state.userSelected!
                               .map((e) => state.users![e].userID)
                               .toList(),
+                          image: state.imageUrl ?? '',
                         ),
                       ),
                     );
