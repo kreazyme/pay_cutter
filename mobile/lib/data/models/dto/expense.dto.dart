@@ -25,8 +25,7 @@ class ExpenseDTO {
     this.paidBy,
     required this.groupId,
     required this.participants,
-    this.image =
-        'https://res.cloudinary.com/jerrick/image/upload/v1613318166/60294816e5abae001c5260be.jpg',
+    required this.image,
   });
 
   ExpenseDTO copyWith({
