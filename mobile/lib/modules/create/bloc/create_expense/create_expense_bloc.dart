@@ -10,6 +10,7 @@ import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/data/datasource/firebase/firebase_upload.datasource.dart';
 import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
+import 'package:pay_cutter/data/models/expense.model.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/data/repository/category_repo.dart';
@@ -80,11 +81,13 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
         status: HandleStatus.loading,
       ));
       int userId = (await _userRepo.getUser()).userID;
-      await _expenseRepository.createExpense(event.data.copyWith(
+      ExpenseModel result =
+          await _expenseRepository.createExpense(event.data.copyWith(
         paidBy: userId,
       ));
       emittter(state.copyWith(
         status: HandleStatus.success,
+        expense: result,
       ));
     } catch (e) {
       emittter(

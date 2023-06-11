@@ -43,7 +43,7 @@ class _ListAnalysWidgetState extends State<ListAnalysWidget> {
         }).toList();
       } else {
         spending.add(_ItemAnalys(
-          name: expense.name,
+          name: expense.createdBy.name,
           total: expense.amount,
           id: expense.createdBy.userID,
           color: _generateRandomColor(),
@@ -75,9 +75,25 @@ class _ListAnalysWidgetState extends State<ListAnalysWidget> {
       }
     }
 
+    if (spending.isEmpty && debt.isEmpty) return;
+
+    if (spending.isEmpty) {
+      setState(() {
+        balancing = debt;
+      });
+    }
+
+    if (debt.isEmpty) {
+      setState(() {
+        balancing = spending;
+      });
+    }
+
     for (var element in debt) {
-      var e = spending.firstWhere((p0) => p0.id == element.id);
-      if (e == null) return;
+      List<_ItemAnalys> ls =
+          spending.where((p0) => p0.id == element.id).toList();
+      if (ls.isEmpty) return;
+      _ItemAnalys e = ls.first;
       balancing.add(_ItemAnalys(
         name: e.name,
         total: e.total - element.total,
