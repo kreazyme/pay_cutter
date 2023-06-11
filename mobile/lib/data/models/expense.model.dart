@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 
@@ -13,6 +14,7 @@ class ExpenseModel {
   final DateTime updatedAt;
   final UserModel createdBy;
   final List<UserModel> participants;
+  final String? imageURL;
 
   ExpenseModel({
     required this.id,
@@ -23,6 +25,7 @@ class ExpenseModel {
     required this.updatedAt,
     required this.createdBy,
     required this.participants,
+    this.imageURL,
   });
 
   factory ExpenseModel.fromJson(Map<String, dynamic> json) =>

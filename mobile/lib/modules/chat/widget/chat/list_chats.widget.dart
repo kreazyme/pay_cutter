@@ -18,6 +18,8 @@ class ListChatsWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 50.0, top: 10.0),
       child: ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         itemBuilder: (context, index) {
           final expense = expenses[index];
           return ItemChatWidget(expense: expense);

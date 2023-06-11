@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pay_cutter/common/extensions/string.extentions.dart';
-import 'package:pay_cutter/generated/assets.gen.dart';
 
 class AppAvatar extends StatelessWidget {
   const AppAvatar({
@@ -20,22 +19,25 @@ class AppAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: height - 8,
-      child: url.isNullOrEmpty
-          ? Assets.images.imgAvatarDefault.image(
-              fit: BoxFit.cover,
-              height: height,
-              width: width,
-            )
-          : ClipOval(
-              child: Image.network(
-                url!,
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        image: url.isNullOrEmpty
+            ? const DecorationImage(
+                // image: Assets.images.imgAvatarDefault.image(
+                //   fit: BoxFit.cover,
+                //   height: height,
+                //   width: width,
+                // )
+                image: AssetImage('assets/images/img_avatar_default.png'),
+              )
+            : DecorationImage(
+                image: NetworkImage(url!),
                 fit: BoxFit.cover,
-                height: height,
-                width: width,
               ),
-            ),
+      ),
     );
   }
 }

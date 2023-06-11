@@ -16,6 +16,7 @@ class UserLocalDatasource {
 
   Future<void> saveUserToken(String token) async {
     await _box.put(HiveKeys.userToken, token);
+    await _dioHelper.updateToken();
   }
 
   Future<String> getUserToken() async {
@@ -44,5 +45,6 @@ class UserLocalDatasource {
   Future<void> logOut() async {
     await _box.delete(HiveKeys.userToken);
     await _box.delete(HiveKeys.user);
+    await _dioHelper.updateToken();
   }
 }

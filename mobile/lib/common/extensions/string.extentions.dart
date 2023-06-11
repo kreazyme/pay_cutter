@@ -6,4 +6,12 @@ extension StringExtension on String? {
       return false;
     }
   }
+
+  String? get lastCharacter {
+    if (this == null || this!.isEmpty) {
+      return null;
+    } else {
+      return this!.substring(this!.length - 1);
+    }
+  }
 }

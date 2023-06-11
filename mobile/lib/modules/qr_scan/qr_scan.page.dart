@@ -4,8 +4,10 @@ import 'package:pay_cutter/common/extensions/string.extentions.dart';
 import 'package:pay_cutter/common/shared/app_enviroment.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
+import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/repository/group_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/routers/app_routers.dart';
@@ -43,7 +45,10 @@ class _QRScanPageState extends State<QRScanPage> {
         Navigator.pushReplacementNamed(
           context,
           AppRouters.chat,
-          arguments: group,
+          arguments: ParamsWrapper2<GroupModel, bool>(
+            param1: group,
+            param2: false,
+          ),
         );
       }
     } catch (e) {

@@ -1,11 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/extensions/extensions.dart';
+import 'package:pay_cutter/common/extensions/string.extentions.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/widgets/app_select.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_button.widget.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
+import 'package:pay_cutter/data/datasource/firebase/firebase_upload.datasource.dart';
 import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
@@ -16,6 +20,7 @@ import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/create/bloc/create_expense/create_expense_bloc.dart';
 import 'package:pay_cutter/modules/create/widgets/expense/expense_for_whom.widget.dart';
 import 'package:pay_cutter/modules/create/widgets/expense/expense_image.widget.dart';
+import 'package:pay_cutter/routers/app_routers.dart';
 
 class CreateExpensePage extends StatelessWidget {
   const CreateExpensePage({
@@ -32,6 +37,7 @@ class CreateExpensePage extends StatelessWidget {
               expenseRepository: getIt.get<ExpenseRepository>(),
               categoryRepository: getIt.get<CategoryRepository>(),
               userRepo: getIt.get<UserRepo>(),
+              firebaseUploadDataSoure: getIt.get<FirebaseUploadDataSoure>(),
             ),
         child: BlocListener<CreateExpenseBloc, CreateExpenseState>(
           listener: _onListener,
@@ -47,7 +53,10 @@ class CreateExpensePage extends StatelessWidget {
     }
     if (state.status?.isSuccess == true) {
       ToastUlti.showSuccess(context, 'Create Expense Success');
-      Navigator.pop(context);
+      Navigator.pop(
+        context,
+        state.expense,
+      );
     }
   }
 }
@@ -75,16 +84,14 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
     ));
   }
 
-  List<DropdownMenuItem> _getDropdown(List<CategoryModel>? items) {
-    if (items == null) {
-      return [];
+  double _amount(String value) {
+    if (value == '' || value == '-' || value == ',' || value == '.') {
+      return 0;
     }
-    return items
-        .map((e) => DropdownMenuItem(
-              value: e,
-              child: Text(e.name),
-            ))
-        .toList();
+    if (value.lastCharacter == ',' || value.lastCharacter == '.') {
+      return double.parse(value.substring(0, value.length - 1));
+    }
+    return double.parse(value);
   }
 
   Widget _amoutInput() {
@@ -93,11 +100,19 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
       style: TextStyles.h1.copyWith(
         color: AppColors.primaryColor,
       ),
+      onChanged: (value) {
+        double amount = _amount(value);
+        BlocProvider.of<CreateExpenseBloc>(context).add(
+          CreateExpenseChangeAmount(
+            amount: amount,
+          ),
+        );
+      },
       decoration: InputDecoration(
         label: Text(
           'Expense Amount',
           style: TextStyles.body.copyWith(
-            color: AppColors.textColor,
+            color: AppColors.disableColor,
           ),
         ),
         hintText: '0',
@@ -129,11 +144,20 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
               });
             }
           },
-          child: Text(
-            _selectedDate.toFullDayWeek(),
-            style: TextStyles.body.copyWith(
-              color: AppColors.textColor,
-            ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.calendar_today,
+                color: AppColors.primaryColor,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                _selectedDate.toFullDayWeek(),
+                style: TextStyles.body.copyWith(
+                  color: AppColors.textColor,
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -147,109 +171,170 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
       body: BlocBuilder<CreateExpenseBloc, CreateExpenseState>(
         builder: (context, state) => SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                _amoutInput(),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      borderRadius: BorderRadius.circular(10),
-                      alignment: Alignment.centerLeft,
-                      items: _getDropdown(state.categories),
-                      onChanged: (item) {
-                        BlocProvider.of<CreateExpenseBloc>(context).add(
-                          CreateExpenseCategorySubmit(
-                            category: item,
+            padding: const EdgeInsets.all(12),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextField(
+                          controller: _descriptionController,
+                          style: TextStyles.title.copyWith(
+                            color: AppColors.textColor,
                           ),
-                        );
-                      },
-                      value: state.categorySelected,
-                      disabledHint: const Text('Loading'),
-                      hint: const Text('Select Category'),
-                      icon: Row(children: const [
-                        VerticalDivider(
-                          width: 20,
+                          decoration: InputDecoration(
+                            label: Text(
+                              'Name of Expense',
+                              style: TextStyles.body.copyWith(
+                                color: AppColors.disableColor,
+                              ),
+                            ),
+                            hintText: 'Buy some food 🥪🌮',
+                            hintStyle: TextStyles.body.copyWith(
+                              color: AppColors.primaryColor,
+                            ),
+                            border: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                          height: 20,
                           color: Colors.transparent,
                         ),
-                        Icon(Icons.expand_more_outlined)
-                      ]),
+                        _amoutInput(),
+                      ],
                     ),
                   ),
-                ),
-                Divider(
-                  color: AppColors.textColor,
-                  height: 2,
-                ),
-                ExpenseForWhomWidget(
-                  userSelected: state.userSelected ?? [],
-                  users: state.users ?? [],
-                  amount: double.parse(
-                    _amountController.text.isEmpty
-                        ? '0'
-                        : _amountController.text,
+                  const Divider(
+                    height: 20,
+                    color: Colors.transparent,
                   ),
-                ),
-                TextField(
-                  controller: _descriptionController,
-                  style: TextStyles.body.copyWith(
-                    color: AppColors.textColor,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: 'Description',
-                    hintStyle: TextStyles.body.copyWith(
-                      color: AppColors.textColor,
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                      color: AppColors.primaryColor,
-                    )),
-                  ),
-                ),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                _datetimeSelect(),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                const ExpenseImageWidget(),
-                const Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                CustomButtonWidget(
-                  content: 'Create',
-                  isLoading: state.categoryStatus?.isLoading ?? false,
-                  isDiable: _amountController.text == '' ||
-                      state.status?.isLoading == true ||
-                      state.categoryStatus?.isLoading == true ||
-                      state.userSelected!.isEmpty ||
-                      state.categorySelected == null,
-                  onPressed: () {
-                    BlocProvider.of<CreateExpenseBloc>(context).add(
-                      CreateExpenseSubmit(
-                        data: ExpenseDTO(
-                          amount: double.parse(_amountController.text),
-                          name: _descriptionController.text,
-                          date: _selectedDate,
-                          groupId: widget.groupModel.id,
-                          participants: state.userSelected!
-                              .map((e) => state.users![e].userID)
-                              .toList(),
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Category',
+                          style: TextStyles.title.copyWith(
+                            color: AppColors.textColor,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                )
-              ],
+                        const Divider(
+                          height: 12,
+                          color: Colors.transparent,
+                        ),
+                        AppSelectWidget(
+                          onTap: () async {
+                            Object? result = await Navigator.pushNamed(
+                              context,
+                              AppRouters.categoryPage,
+                              arguments: state.categories,
+                            );
+                            if (result != null) {
+                              if (mounted) {
+                                BlocProvider.of<CreateExpenseBloc>(context).add(
+                                  CreateExpenseCategorySubmit(
+                                    category: result as CategoryModel,
+                                  ),
+                                );
+                              }
+                            }
+                          },
+                          isLoading: state.categoryStatus?.isLoading == true,
+                          title: state.categorySelected?.name,
+                          placeholder: 'Select Category',
+                        ),
+                        ExpenseForWhomWidget(
+                          userSelected: state.userSelected ?? [],
+                          users: state.users ?? [],
+                          amount: state.amount ?? 0,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(
+                    height: 20,
+                    color: Colors.transparent,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Select datetime',
+                          style: TextStyles.title.copyWith(
+                            color: AppColors.textColor,
+                          ),
+                        ),
+                        const Divider(
+                          height: 12,
+                          color: Colors.transparent,
+                        ),
+                        _datetimeSelect(),
+                        const Divider(
+                          height: 20,
+                          color: Colors.transparent,
+                        ),
+                        ExpenseImageWidget(
+                          groupId: widget.groupModel.id,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Divider(
+                    height: 20,
+                    color: Colors.transparent,
+                  ),
+                  CustomButtonWidget(
+                    content: 'Create',
+                    isLoading: state.categoryStatus?.isLoading == true ||
+                        state.imageStatus?.isLoading == true,
+                    isDiable: _amountController.text == '' ||
+                        state.status?.isLoading == true ||
+                        state.categoryStatus?.isLoading == true ||
+                        state.userSelected!.isEmpty ||
+                        state.categorySelected == null ||
+                        state.imageStatus?.isLoading == true,
+                    onPressed: () {
+                      BlocProvider.of<CreateExpenseBloc>(context).add(
+                        CreateExpenseSubmit(
+                          data: ExpenseDTO(
+                            amount: double.parse(_amountController.text),
+                            name: _descriptionController.text,
+                            date: _selectedDate,
+                            groupId: widget.groupModel.id,
+                            participants: state.userSelected!
+                                .map((e) => state.users![e].userID)
+                                .toList(),
+                            image: state.imageUrl ?? '',
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),

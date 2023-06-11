@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
@@ -25,7 +28,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     try {
       emitter(const HomeState.loading());
-      final groups = await _groupRepository.fetchGroups();
+      var groups = await _groupRepository.fetchGroups();
+      groups.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+      groups.map(
+        (e) => e.addColor(_generateRandomColor()),
+      );
       emitter(HomeState.success(groups));
     } catch (e) {
       emitter(HomeState.error(e.toString()));
@@ -42,5 +49,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         event.group,
       ]),
     );
+  }
+
+  Color _generateRandomColor() {
+    return Color.fromARGB(255, Random().nextInt(256), Random().nextInt(256),
+        Random().nextInt(256));
   }
 }

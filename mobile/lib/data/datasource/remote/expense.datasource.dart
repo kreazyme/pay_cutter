@@ -12,11 +12,12 @@ class ExpenseDataSource {
     required DioHelper dioHelper,
   }) : _dioHelper = dioHelper;
 
-  Future<void> createExpense(ExpenseDTO data) async {
-    await _dioHelper.post(
+  Future<ExpenseModel> createExpense(ExpenseDTO data) async {
+    final response = await _dioHelper.post(
       AppEndpoints.expenses,
       data: data.toJson(),
     );
+    return ExpenseModel.fromJson(response.body['data']);
   }
 
   Future<List<ExpenseModel>> getExpenseByGroupID(int id) async {

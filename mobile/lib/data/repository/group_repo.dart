@@ -21,4 +21,8 @@ class GroupRepository {
   Future<GroupModel> joinGroup(String joinCode) async {
     return await _groupDataSource.joinGroup(joinCode);
   }
+
+  Future<GroupModel> getDetailGroup(int id) async {
+    return await _groupDataSource.getDetailGroup(id);
+  }
 }

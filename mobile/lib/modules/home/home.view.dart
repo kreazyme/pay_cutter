@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/common/widgets/animation/app_loading.widget.dart';
+import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/data/repository/group_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/home/widgets/home_fab.widget.dart';
@@ -38,6 +40,14 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Home Expenses',
+            style: TextStyles.titleBold.copyWith(
+              color: Colors.white,
+            ),
+          ),
+        ),
         body: Builder(
           builder: (context) {
             if (state.status.isLoading) {

@@ -10,8 +10,8 @@ class ExpenseRepository {
     required ExpenseDataSource expenseDataSource,
   }) : _expenseDataSource = expenseDataSource;
 
-  Future<void> createExpense(ExpenseDTO data) async {
-    await _expenseDataSource.createExpense(data);
+  Future<ExpenseModel> createExpense(ExpenseDTO data) async {
+    return await _expenseDataSource.createExpense(data);
   }
 
   Future<List<ExpenseModel>> getExpenseByGroupId(int id) async {

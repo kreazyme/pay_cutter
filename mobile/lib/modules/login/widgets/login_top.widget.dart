@@ -13,20 +13,20 @@ class LoginTopWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Assets.images.imgBoarding.image(
+          Assets.logo.imgSplash.image(
             width: 300,
-            height: 300,
+            height: 350,
           ),
           const Divider(
             height: 50,
             color: Colors.transparent,
           ),
-          Text(
-            'Tracking your money',
-            style: TextStyles.h1.copyWith(
-              color: AppColors.textColor,
-            ),
-          )
+          // Text(
+          //   'Tracking your money',
+          //   style: TextStyles.h1.copyWith(
+          //     color: AppColors.textColor,
+          //   ),
+          // )
         ],
       ),
     );
