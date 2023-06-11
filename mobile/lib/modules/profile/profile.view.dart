@@ -131,14 +131,24 @@ class _ProfileView extends StatelessWidget {
                   ),
                 ),
                 DetailItemButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouters.aboutUs,
+                    );
+                  },
                   title: 'About us',
                   icon: const Icon(
                     Icons.accessible_forward_outlined,
                   ),
                 ),
                 DetailItemButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouters.feedback,
+                    );
+                  },
                   title: 'Send feedback',
                   icon: const Icon(
                     Icons.feedback_outlined,
