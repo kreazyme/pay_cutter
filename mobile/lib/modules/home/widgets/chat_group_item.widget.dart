@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/routers/app_routers.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -19,7 +20,10 @@ class ChatGroupItemWidget extends StatelessWidget {
     Navigator.pushNamed(
       context,
       AppRouters.chat,
-      arguments: group,
+      arguments: ParamsWrapper2<GroupModel, bool>(
+        param1: group,
+        param2: false,
+      ),
     );
   }
 

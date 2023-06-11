@@ -17,6 +17,7 @@ ExpenseModel _$ExpenseModelFromJson(Map<String, dynamic> json) => ExpenseModel(
       participants: (json['participants'] as List<dynamic>)
           .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      imageURL: json['imageURL'] as String?,
     );
 
 Map<String, dynamic> _$ExpenseModelToJson(ExpenseModel instance) =>
@@ -29,4 +30,5 @@ Map<String, dynamic> _$ExpenseModelToJson(ExpenseModel instance) =>
       'updatedAt': instance.updatedAt.toIso8601String(),
       'createdBy': instance.createdBy,
       'participants': instance.participants,
+      'imageURL': instance.imageURL,
     };

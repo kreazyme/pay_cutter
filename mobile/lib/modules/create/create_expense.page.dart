@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/extensions/extensions.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/widgets/app_select.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_button.widget.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
@@ -17,6 +19,7 @@ import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/create/bloc/create_expense/create_expense_bloc.dart';
 import 'package:pay_cutter/modules/create/widgets/expense/expense_for_whom.widget.dart';
 import 'package:pay_cutter/modules/create/widgets/expense/expense_image.widget.dart';
+import 'package:pay_cutter/routers/app_routers.dart';
 
 class CreateExpensePage extends StatelessWidget {
   const CreateExpensePage({
@@ -49,7 +52,10 @@ class CreateExpensePage extends StatelessWidget {
     }
     if (state.status?.isSuccess == true) {
       ToastUlti.showSuccess(context, 'Create Expense Success');
-      Navigator.pop(context);
+      Navigator.pop(
+        context,
+        state.expense,
+      );
     }
   }
 }
@@ -75,18 +81,6 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
     BlocProvider.of<CreateExpenseBloc>(context).add(CreateExpenseStarted(
       groupModel: widget.groupModel,
     ));
-  }
-
-  List<DropdownMenuItem> _getDropdown(List<CategoryModel>? items) {
-    if (items == null) {
-      return [];
-    }
-    return items
-        .map((e) => DropdownMenuItem(
-              value: e,
-              child: Text(e.name),
-            ))
-        .toList();
   }
 
   Widget _amoutInput() {
@@ -157,36 +151,26 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                   height: 20,
                   color: Colors.transparent,
                 ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      borderRadius: BorderRadius.circular(10),
-                      alignment: Alignment.centerLeft,
-                      items: _getDropdown(state.categories),
-                      onChanged: (item) {
+                AppSelectWidget(
+                  onTap: () async {
+                    Object? result = await Navigator.pushNamed(
+                      context,
+                      AppRouters.categoryPage,
+                      arguments: state.categories,
+                    );
+                    if (result != null) {
+                      if (mounted) {
                         BlocProvider.of<CreateExpenseBloc>(context).add(
                           CreateExpenseCategorySubmit(
-                            category: item,
+                            category: result as CategoryModel,
                           ),
                         );
-                      },
-                      value: state.categorySelected,
-                      disabledHint: const Text('Loading'),
-                      hint: const Text('Select Category'),
-                      icon: Row(children: const [
-                        VerticalDivider(
-                          width: 20,
-                          color: Colors.transparent,
-                        ),
-                        Icon(Icons.expand_more_outlined)
-                      ]),
-                    ),
-                  ),
-                ),
-                Divider(
-                  color: AppColors.textColor,
-                  height: 2,
+                      }
+                    }
+                  },
+                  isLoading: state.categoryStatus?.isLoading == true,
+                  title: state.categorySelected?.name,
+                  placeholder: 'Select Category',
                 ),
                 ExpenseForWhomWidget(
                   userSelected: state.userSelected ?? [],

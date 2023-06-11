@@ -29,3 +29,14 @@ class ChatSent extends ChatEvent {
   @override
   List<Object> get props => [content];
 }
+
+class ChatAddExpense extends ChatEvent {
+  const ChatAddExpense({required this.expense});
+
+  final ExpenseModel expense;
+
+  @override
+  List<Object> get props => [
+        expense,
+      ];
+}

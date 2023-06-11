@@ -13,6 +13,7 @@ class ExpenseModel {
   final DateTime updatedAt;
   final UserModel createdBy;
   final List<UserModel> participants;
+  final String? imageURL;
 
   ExpenseModel({
     required this.id,
@@ -23,6 +24,7 @@ class ExpenseModel {
     required this.updatedAt,
     required this.createdBy,
     required this.participants,
+    this.imageURL,
   });
 
   factory ExpenseModel.fromJson(Map<String, dynamic> json) =>

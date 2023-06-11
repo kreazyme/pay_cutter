@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
+import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/modules/analysis/analysis.page.dart';
@@ -9,6 +11,7 @@ import 'package:pay_cutter/modules/core/core.page.dart';
 import 'package:pay_cutter/modules/create/create_category.page.dart';
 import 'package:pay_cutter/modules/create/create_expense.page.dart';
 import 'package:pay_cutter/modules/create/create_group.page.dart';
+import 'package:pay_cutter/modules/create/widgets/expense/select_category.page.dart';
 import 'package:pay_cutter/modules/login/login_page.dart';
 import 'package:pay_cutter/modules/onboard/onboard_page.dart';
 import 'package:pay_cutter/modules/qr_scan/qr_scan.page.dart';
@@ -32,6 +35,7 @@ abstract class AppRouters {
   static const createGroup = '/create_group';
   static const String scanBill = '/scan_bill';
   static const String participants = '/participants';
+  static const String categoryPage = '/category_page';
 
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -60,10 +64,11 @@ abstract class AppRouters {
           builder: (_) => const AnalysisPage(),
         );
       case chat:
-        GroupModel group = settings.arguments as GroupModel;
+        ParamsWrapper2<GroupModel, bool> params =
+            settings.arguments as ParamsWrapper2<GroupModel, bool>;
         return MaterialPageRoute(
           builder: (_) => ChatPage(
-            group: group,
+            params: params,
           ),
         );
       case detail:
@@ -107,6 +112,14 @@ abstract class AppRouters {
         return MaterialPageRoute(
           builder: (_) => ParticipantsPage(
             users: users,
+          ),
+        );
+      case categoryPage:
+        List<CategoryModel> listCategory =
+            settings.arguments as List<CategoryModel>;
+        return MaterialPageRoute(
+          builder: (context) => SelectCategoryPage(
+            listCategory: listCategory,
           ),
         );
       default:

@@ -1,11 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
+import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/common/widgets/animation/app_loading.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_app_error.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_icon.widget.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
+import 'package:pay_cutter/data/models/expense.model.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
 import 'package:pay_cutter/data/repository/group_repo.dart';
@@ -16,22 +20,22 @@ import 'package:pay_cutter/modules/chat/widget/chat/list_chats.widget.dart';
 import 'package:pay_cutter/routers/app_routers.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key, required this.group});
+  const ChatPage({super.key, required this.params});
 
-  final GroupModel group;
+  final ParamsWrapper2<GroupModel, bool> params;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ChatBloc(
-        group: group,
+        group: params.param1,
         expenseRepository: getIt.get<ExpenseRepository>(),
         groupRepo: getIt.get<GroupRepository>(),
       ),
       child: BlocListener<ChatBloc, ChatState>(
         listener: _onListener,
         child: _ChatView(
-          group: group,
+          params: params,
         ),
       ),
     );
@@ -46,23 +50,36 @@ class ChatPage extends StatelessWidget {
 
 class _ChatView extends StatelessWidget {
   const _ChatView({
-    required this.group,
+    required this.params,
   });
 
-  final GroupModel group;
+  final ParamsWrapper2<GroupModel, bool> params;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppbar(
-          title: group.name,
+          title: params.param1.name,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              if (params.param2) {
+                Navigator.of(context).pop(params.param1);
+              } else {
+                Navigator.of(context).pop();
+              }
+            },
+          ),
           actions: [
             IconButton(
               icon: const CustomIcon(iconData: Icons.info_outline),
               onPressed: () => Navigator.pushNamed(
                 context,
                 AppRouters.detail,
-                arguments: group,
+                arguments: params.param1,
               ),
             )
           ],
@@ -91,7 +108,7 @@ class _ChatView extends StatelessWidget {
                             onPressed: () => Navigator.pushNamed(
                               context,
                               AppRouters.shareChat,
-                              arguments: group.id,
+                              arguments: params.param1.id,
                             ),
                             child: const Text('Share this group to others'),
                           ),
@@ -103,11 +120,11 @@ class _ChatView extends StatelessWidget {
                     children: [
                       ListAnalysWidget(
                         expenses: state.expenses,
-                        group: group,
+                        group: params.param1,
                       ),
                       ListChatsWidget(
                         expenses: state.expenses,
-                        group: group,
+                        group: params.param1,
                       ),
                     ],
                   );
@@ -147,11 +164,20 @@ class _ChatView extends StatelessWidget {
               return Container();
             }
             return FloatingActionButton(
-              onPressed: () => Navigator.pushNamed(
-                context,
-                AppRouters.createExpense,
-                arguments: state.group,
-              ),
+              onPressed: () async {
+                Object? response = await Navigator.pushNamed(
+                  context,
+                  AppRouters.createExpense,
+                  arguments: state.group,
+                );
+                if (response != null) {
+                  context.read<ChatBloc>().add(
+                        ChatAddExpense(
+                          expense: response as ExpenseModel,
+                        ),
+                      );
+                }
+              },
               child: const CustomIcon(
                 iconData: Icons.add,
                 iconSize: 24,

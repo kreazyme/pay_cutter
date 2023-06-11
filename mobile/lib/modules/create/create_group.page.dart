@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/common/widgets/custom_button.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_textfield.widget.dart';
+import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/repository/group_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/create/bloc/create_group/create_group_bloc.dart';
@@ -23,21 +25,17 @@ class CreateGroupPage extends StatelessWidget {
         ));
   }
 
-  void _onListner(
+  Future<void> _onListner(
     BuildContext context,
     CreateGroupState state,
-  ) {
+  ) async {
     if (state is CreateGroupSuccess) {
-      BlocProvider.value(
-        value: context.read<HomeBloc>()
-          ..add(
-            HomeAddGroup(
-              group: state.group!,
-            ),
-          ),
-      );
-      Navigator.popAndPushNamed(context, AppRouters.chat,
-          arguments: state.group);
+      await Navigator.pushNamed(context, AppRouters.chat,
+          arguments: ParamsWrapper2<GroupModel, bool>(
+            param1: state.group!,
+            param2: true,
+          ));
+      Navigator.pop(context, state.group!);
     }
   }
 }

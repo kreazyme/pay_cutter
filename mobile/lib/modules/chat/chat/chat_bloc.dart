@@ -25,6 +25,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         super(const ChatInitial()) {
     on<ChatStarted>(_started);
     on<ChatFetched>(_fetchChats);
+    on<ChatAddExpense>(_addExpense);
 
     add(const ChatStarted());
   }
@@ -52,5 +53,20 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       debugPrint(e.toString());
       emitter(ChatFailure(error: e.toString()));
     }
+  }
+
+  Future<void> _addExpense(
+    ChatAddExpense event,
+    Emitter<ChatState> emitter,
+  ) async {
+    emitter(
+      ChatSuccessful(
+        expenses: [
+          event.expense,
+          ...state.expenses,
+        ],
+        group: state.group!,
+      ),
+    );
   }
 }
