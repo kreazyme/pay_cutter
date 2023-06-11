@@ -93,7 +93,7 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
         label: Text(
           'Expense Amount',
           style: TextStyles.body.copyWith(
-            color: AppColors.textColor,
+            color: AppColors.disableColor,
           ),
         ),
         hintText: '0',
@@ -145,10 +145,48 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TextField(
+                  controller: _descriptionController,
+                  style: TextStyles.title.copyWith(
+                    color: AppColors.textColor,
+                  ),
+                  decoration: InputDecoration(
+                    label: Text(
+                      'Name of Expense',
+                      style: TextStyles.body.copyWith(
+                        color: AppColors.disableColor,
+                      ),
+                    ),
+                    hintText: 'Buy some food 🥪🌮',
+                    hintStyle: TextStyles.body.copyWith(
+                      color: AppColors.primaryColor,
+                    ),
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+                const Divider(
+                  height: 20,
+                  color: Colors.transparent,
+                ),
                 _amoutInput(),
                 const Divider(
                   height: 20,
+                  color: Colors.transparent,
+                ),
+                Text(
+                  'Category',
+                  style: TextStyles.title.copyWith(
+                    color: AppColors.textColor,
+                  ),
+                ),
+                const Divider(
+                  height: 12,
                   color: Colors.transparent,
                 ),
                 AppSelectWidget(
@@ -181,24 +219,18 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                         : _amountController.text,
                   ),
                 ),
-                TextField(
-                  controller: _descriptionController,
-                  style: TextStyles.body.copyWith(
+                const Divider(
+                  height: 20,
+                  color: Colors.transparent,
+                ),
+                Text(
+                  'Select datetime',
+                  style: TextStyles.title.copyWith(
                     color: AppColors.textColor,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: 'Description',
-                    hintStyle: TextStyles.body.copyWith(
-                      color: AppColors.textColor,
-                    ),
-                    border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                      color: AppColors.primaryColor,
-                    )),
                   ),
                 ),
                 const Divider(
-                  height: 20,
+                  height: 12,
                   color: Colors.transparent,
                 ),
                 _datetimeSelect(),
