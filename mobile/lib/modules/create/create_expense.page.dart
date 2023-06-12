@@ -298,6 +298,8 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                         ),
                         ExpenseImageWidget(
                           groupId: widget.groupModel.id,
+                          imageUrl: state.imageUrl,
+                          location: state.location,
                         ),
                       ],
                     ),

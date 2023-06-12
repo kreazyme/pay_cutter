@@ -11,6 +11,7 @@ import 'package:pay_cutter/modules/core/core.page.dart';
 import 'package:pay_cutter/modules/create/create_category.page.dart';
 import 'package:pay_cutter/modules/create/create_expense.page.dart';
 import 'package:pay_cutter/modules/create/create_group.page.dart';
+import 'package:pay_cutter/modules/create/widgets/expense/pick_location.page.dart';
 import 'package:pay_cutter/modules/create/widgets/expense/select_category.page.dart';
 import 'package:pay_cutter/modules/feedback/about_us.page.dart';
 import 'package:pay_cutter/modules/feedback/feedback.page.dart';
@@ -40,6 +41,7 @@ abstract class AppRouters {
   static const String categoryPage = '/category_page';
   static const String feedback = '/feedback';
   static const String aboutUs = '/about_us';
+  static const String pickLocation = '/pick_location';
 
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -133,6 +135,10 @@ abstract class AppRouters {
       case aboutUs:
         return MaterialPageRoute(
           builder: (_) => const AboutUsPage(),
+        );
+      case pickLocation:
+        return MaterialPageRoute(
+          builder: (_) => const PickLocationPage(),
         );
       default:
         return MaterialPageRoute(

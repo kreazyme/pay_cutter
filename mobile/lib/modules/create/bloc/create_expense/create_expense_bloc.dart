@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/common/extensions/datetime.extension.dart';
@@ -41,6 +42,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
     on<CreateExpenseCategorySubmit>(_categorySelect);
     on<CreateExpenseStarted>(_inital);
     on<CreateExpenseChangeAmount>(_changeAmount);
+    on<CreateExpenseChangeLocation>(_changeLocation);
 
     on<CreateExpenseAddUser>(_addUser);
     on<CreateExpenseRemoveUser>(_removeuser);
@@ -79,6 +81,15 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
   ) async {
     emittter(state.copyWith(
       amount: event.amount,
+    ));
+  }
+
+  void _changeLocation(
+    CreateExpenseChangeLocation event,
+    Emitter<CreateExpenseState> emittter,
+  ) {
+    emittter(state.copyWith(
+      location: event.location,
     ));
   }
 
