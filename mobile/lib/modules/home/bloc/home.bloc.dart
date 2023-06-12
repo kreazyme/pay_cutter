@@ -30,9 +30,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emitter(const HomeState.loading());
       var groups = await _groupRepository.fetchGroups();
       groups.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
-      groups.map(
-        (e) => e.addColor(_generateRandomColor()),
-      );
       emitter(HomeState.success(groups));
     } catch (e) {
       emitter(HomeState.error(e.toString()));

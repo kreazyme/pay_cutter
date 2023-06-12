@@ -32,7 +32,7 @@ class ChatGroupItemWidget extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         radius: _avatarLength / 2,
-        backgroundColor: group.color ?? _getRandomColor(),
+        backgroundColor: _getRandomColor(),
         child: group.imageURL == null
             ? Text(
                 group.name[0],

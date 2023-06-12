@@ -26,8 +26,6 @@ class GroupModel {
   )
   final List<UserModel> participants;
 
-  Color? color;
-
   GroupModel({
     required this.id,
     required this.name,
@@ -35,23 +33,10 @@ class GroupModel {
     this.description,
     required this.updatedAt,
     required this.participants,
-    this.color,
   });
 
   factory GroupModel.fromJson(Map<String, dynamic> json) =>
       _$GroupModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$GroupModelToJson(this);
-
-  GroupModel addColor(Color color) {
-    return GroupModel(
-      id: id,
-      name: name,
-      description: description,
-      imageURL: imageURL,
-      updatedAt: updatedAt,
-      participants: participants,
-      color: color,
-    );
-  }
 }
