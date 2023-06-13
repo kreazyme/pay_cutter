@@ -45,12 +45,17 @@ class $AssetsImagesGen {
   AssetGenImage get imgAvatarDefault =>
       const AssetGenImage('assets/images/img_avatar_default.png');
 
+  /// File path: assets/images/img_bacground_profile.jpg
+  AssetGenImage get imgBacgroundProfile =>
+      const AssetGenImage('assets/images/img_bacground_profile.jpg');
+
   /// File path: assets/images/img_boarding.png
   AssetGenImage get imgBoarding =>
       const AssetGenImage('assets/images/img_boarding.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [icLogo, imgAvatarDefault, imgBoarding];
+  List<AssetGenImage> get values =>
+      [icLogo, imgAvatarDefault, imgBacgroundProfile, imgBoarding];
 }
 
 class $AssetsLogoGen {
