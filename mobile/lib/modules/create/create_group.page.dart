@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/common/widgets/custom_button.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_textfield.widget.dart';
+import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/repository/group_repo.dart';
 import 'package:pay_cutter/generated/di/injector.dart';
@@ -53,8 +55,8 @@ class _CreateGroupViewState extends State<_CreateGroupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Group'),
+      appBar: const CustomAppbar(
+        title: 'Create Group',
       ),
       body: BlocBuilder<CreateGroupBloc, CreateGroupState>(
         builder: (context, state) => Container(
@@ -62,15 +64,47 @@ class _CreateGroupViewState extends State<_CreateGroupView> {
           margin: const EdgeInsets.all(16),
           child: Column(
             children: [
-              CustomTextFielddWidget(
-                keyboardType: TextInputType.text,
-                hintText: 'Group Name',
-                labelText: 'Group Name',
-                onChanged: (value) {
-                  setState(() {
-                    _groupName = value;
-                  });
-                },
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColors.backgroundColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 40,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomTextFielddWidget(
+                      keyboardType: TextInputType.text,
+                      hintText: 'Summer trip 🏊‍♀️',
+                      labelText: 'Group Name',
+                      onChanged: (value) {
+                        setState(() {
+                          _groupName = value;
+                        });
+                      },
+                    ),
+                    const Divider(
+                      height: 20,
+                      color: Colors.transparent,
+                    ),
+                    CustomTextFielddWidget(
+                      keyboardType: TextInputType.text,
+                      hintText: 'To the beach 🏖️',
+                      labelText: 'Description',
+                      onChanged: (value) {},
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(
+                height: 20,
+                color: Colors.transparent,
               ),
               CustomButtonWidget(
                 content: 'Create',

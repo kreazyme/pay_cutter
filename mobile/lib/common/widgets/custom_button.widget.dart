@@ -27,7 +27,7 @@ class CustomButtonWidget extends StatelessWidget {
       onPressed: () =>
           (isDiable == true || onPressed == null) ? null : onPressed!(),
       color: isDiable == true
-          ? AppColors.disableColor
+          ? AppColors.disableColor.withOpacity(0.5)
           : color ?? AppColors.primaryColor,
       height: 50,
       child: Row(children: [

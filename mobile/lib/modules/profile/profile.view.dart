@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/widgets/app_avatar.widget.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/data/repository/auth_repo.dart';
 import 'package:pay_cutter/data/repository/user_repo.dart';
@@ -61,122 +62,194 @@ class _ProfileView extends StatelessWidget {
             color: Colors.white,
           ),
         ),
+        backgroundColor: AppColors.primaryColor,
       ),
-      body: BlocBuilder<ProfileBloc, ProfileState>(
-        builder: (context, state) {
-          if (state.status.isLoading || state.status.isInitial) {
-            return const AppCustomLoading();
-          }
-          return Container(
+      body: Stack(
+        children: [
+          Assets.images.imgBacgroundProfile.image(
             width: double.infinity,
-            margin: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      height: _avatarSize,
-                      width: _avatarSize,
-                      child: CircleAvatar(
-                        radius: _avatarSize,
-                        backgroundColor: AppColors.borderColor,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8), // Border radius
-                          child: ClipOval(
-                              child: SizedBox(
-                            height: _avatarSize,
-                            width: _avatarSize,
-                            child: state.user?.avatarUrl == null ||
-                                    state.user!.avatarUrl!.isEmpty
-                                ? Image.asset(
-                                    Assets.images.imgAvatarDefault.path)
-                                : Image.network(
-                                    state.user!.avatarUrl!,
-                                    fit: BoxFit.cover,
+            height: 300,
+            fit: BoxFit.cover,
+          ),
+          BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+              if (state.status.isLoading || state.status.isInitial) {
+                return const AppCustomLoading();
+              }
+              return SingleChildScrollView(
+                child: Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                            ),
+                          ],
+                        ),
+                        padding: const EdgeInsets.all(40),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: _avatarSize,
+                                  width: _avatarSize,
+                                  child: CircleAvatar(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(
+                                          4), // Border radius
+                                      child: AppAvatar(
+                                        url: state.user?.avatarUrl,
+                                        height: _avatarSize,
+                                        width: _avatarSize,
+                                      ),
+                                    ),
                                   ),
-                          )),
+                                ),
+                                const VerticalDivider(
+                                  width: 20,
+                                  color: Colors.transparent,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      state.user?.name ?? 'name',
+                                      style: TextStyles.titleBold,
+                                    ),
+                                    const Divider(
+                                      height: 4,
+                                      color: Colors.transparent,
+                                    ),
+                                    Text(
+                                      '@ ${state.user?.email}',
+                                      style: TextStyles.body.copyWith(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Row(
+                              children: [
+                                MaterialButton(
+                                  onPressed: () {},
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 12,
+                                    ),
+                                    width: 200,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primaryColor,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Text(
+                                      'Edit Profile',
+                                      style: TextStyles.title.copyWith(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                MaterialButton(
+                                  onPressed: () {},
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 12,
+                                    ),
+                                    width: 50,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primaryColor,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: const Icon(
+                                      Icons.send_rounded,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
                       ),
-                    ),
-                    const VerticalDivider(
-                      width: 20,
-                      color: Colors.transparent,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          state.user?.name ?? 'name',
-                          style: TextStyles.titleBold,
+                      _space,
+                      DetailItemButtonWidget(
+                        onPressed: () {},
+                        title: 'Edit Profile',
+                        icon: const Icon(
+                          Icons.edit,
                         ),
-                        const Divider(
-                          height: 4,
-                          color: Colors.transparent,
+                      ),
+                      DetailItemButtonWidget(
+                        onPressed: () {},
+                        title: 'Share this app',
+                        icon: const Icon(
+                          Icons.share_outlined,
                         ),
-                        Text(
-                          '@ ${state.user?.email}',
-                          style: TextStyles.body.copyWith(
-                            color: Colors.grey,
-                          ),
+                      ),
+                      DetailItemButtonWidget(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            AppRouters.aboutUs,
+                          );
+                        },
+                        title: 'About us',
+                        icon: const Icon(
+                          Icons.accessible_forward_outlined,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-                _space,
-                DetailItemButtonWidget(
-                  onPressed: () {},
-                  title: 'Edit Profile',
-                  icon: const Icon(
-                    Icons.edit,
+                      ),
+                      DetailItemButtonWidget(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            AppRouters.feedback,
+                          );
+                        },
+                        title: 'Send feedback',
+                        icon: const Icon(
+                          Icons.feedback_outlined,
+                        ),
+                      ),
+                      DetailItemButtonWidget(
+                        onPressed: () {
+                          context.read<ProfileBloc>().add(ProfileLogout());
+                        },
+                        title: 'Logout',
+                        isWarning: true,
+                        icon: const Icon(
+                          Icons.logout_rounded,
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                DetailItemButtonWidget(
-                  onPressed: () {},
-                  title: 'Share this app',
-                  icon: const Icon(
-                    Icons.share_outlined,
-                  ),
-                ),
-                DetailItemButtonWidget(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRouters.aboutUs,
-                    );
-                  },
-                  title: 'About us',
-                  icon: const Icon(
-                    Icons.accessible_forward_outlined,
-                  ),
-                ),
-                DetailItemButtonWidget(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      AppRouters.feedback,
-                    );
-                  },
-                  title: 'Send feedback',
-                  icon: const Icon(
-                    Icons.feedback_outlined,
-                  ),
-                ),
-                DetailItemButtonWidget(
-                  onPressed: () {
-                    context.read<ProfileBloc>().add(ProfileLogout());
-                  },
-                  title: 'Logout',
-                  isWarning: true,
-                  icon: const Icon(
-                    Icons.logout_rounded,
-                  ),
-                )
-              ],
-            ),
-          );
-        },
+              );
+            },
+          )
+        ],
       ),
     );
   }
