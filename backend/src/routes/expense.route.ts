@@ -21,6 +21,8 @@ export class ExpenseRoute implements Routes {
 
     this.router.get(`${this.path}/group/:id(\\d+)`, AuthMiddleware, this.expense.getExpensesByGroup);
 
+    this.router.delete(`${this.path}/:id(\\d+)`, this.expense.deleteExpense);
+
     this.router.put(`${this.path}/:id(\\d+)`, AuthMiddleware, ValidationMiddleware(ExpenseDTO), this.expense.updateExpense);
   }
 }
