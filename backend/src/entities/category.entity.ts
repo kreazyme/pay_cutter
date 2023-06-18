@@ -1,6 +1,7 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { ExpenseEntity } from "./expense.entity";
 import { GroupEntity } from "./group.entity";
+import { isEmpty } from "class-validator";
 
 export const CATEGORY_TABLE = 'category_entity';
 @Entity({
@@ -13,12 +14,12 @@ export class CategoryEntity extends BaseEntity {
     id: number;
 
     @Column({
-        name:'name'
+        name: 'name'
     })
     name: string;
 
     @Column({
-        name:'description'
+        name: 'description'
     })
     description: string;
 
@@ -27,20 +28,21 @@ export class CategoryEntity extends BaseEntity {
 
     @UpdateDateColumn()
     updatedAt: Date;
-    @OneToMany(() => GroupEntity, expense => expense.id)
+    @ManyToOne(() => GroupEntity, group => group.id)
     @JoinColumn({
         name: 'group_id', referencedColumnName: 'id'
     })
-    expense: GroupEntity;
+    group: GroupEntity;
 
     @Column({
-        name:'expense_id',
+        name: 'expense_id',
+        nullable: true,
     })
-    expense_id: number;
+    expense_id?: number;
 
     @OneToMany(() => ExpenseEntity, expense => expense.id)
     @JoinColumn({
         name: 'expense_id', referencedColumnName: 'id'
     })
-    expenses: ExpenseEntity[];
+    expenses?: ExpenseEntity[];
 }

@@ -1,4 +1,5 @@
 import { CATEGORY_TABLE, CategoryEntity } from "@/entities/category.entity";
+import { GroupEntity } from "@/entities/group.entity";
 import { Service } from "typedi";
 import { EntityRepository, Repository } from "typeorm";
 
@@ -22,7 +23,9 @@ export class CategoryService extends Repository<CategoryEntity>{
         const newCategory = new CategoryEntity();
         newCategory.name = name;
         if(description) newCategory.description = description;
-        newCategory.expense_id = groupId;
+        const findGroup = await GroupEntity.findOne(groupId);
+        console.log(findGroup);
+        newCategory.group = findGroup;
         return newCategory.save();
     }
 }
