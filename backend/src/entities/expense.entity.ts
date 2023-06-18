@@ -16,12 +16,16 @@ import {
 } from 'typeorm';
 import { UserEntity } from './users.entity';
 import { GroupEntity } from './group.entity';
+import { CategoryEntity } from './category.entity';
+import { LocationEntity } from './location.entity';
 
 @Entity({
   name: 'expense_entity',
 })
 export class ExpenseEntity extends BaseEntity implements Expense {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({
+    name:'expense_id'
+  })
   id?: number;
 
   @Column()
@@ -61,7 +65,7 @@ export class ExpenseEntity extends BaseEntity implements Expense {
   @IsNotEmpty()
   @ManyToOne(() => GroupEntity, group => group.id)
   @JoinColumn({
-    name: 'toGroup',
+    name: 'toGroup',  
     referencedColumnName: 'id',
   })
   toGroup: GroupEntity;
@@ -82,4 +86,16 @@ export class ExpenseEntity extends BaseEntity implements Expense {
   })
   @Column()
   imageURL?: string;
+
+  @ManyToOne(() => CategoryEntity, category => category.id)
+  @JoinColumn({
+    name:'category_id', referencedColumnName:'id'
+  })
+  category?: CategoryEntity;
+
+  @OneToOne(() => LocationEntity, location => location.id)
+  @JoinColumn({
+    name:'location_id', referencedColumnName:'id'
+  })
+  location?: LocationEntity;
 }

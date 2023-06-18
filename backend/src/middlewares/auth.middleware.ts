@@ -8,7 +8,6 @@ import { DataStoredInToken, RequestWithUser } from '@interfaces/auth.interface';
 const getAuthorization = req => {
   const header = req.header('Authorization');
   if (header) return header.split('Bearer ')[1];
-
   return null;
 };
 
