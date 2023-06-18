@@ -1,10 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/extensions/extensions.dart';
 import 'package:pay_cutter/common/extensions/string.extentions.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/common/widgets/app_select.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_button.widget.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
@@ -244,7 +244,11 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                             Object? result = await Navigator.pushNamed(
                               context,
                               AppRouters.categoryPage,
-                              arguments: state.categories,
+                              arguments:
+                                  ParamsWrapper2<int, List<CategoryModel>>(
+                                param1: widget.groupModel.id,
+                                param2: state.categories ?? [],
+                              ),
                             );
                             if (result != null) {
                               if (mounted) {

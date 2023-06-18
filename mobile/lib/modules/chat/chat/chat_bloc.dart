@@ -26,6 +26,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<ChatStarted>(_started);
     on<ChatFetched>(_fetchChats);
     on<ChatAddExpense>(_addExpense);
+    on<ChatDeleteExpense>(_deleteExpense);
 
     add(const ChatStarted());
   }
@@ -36,6 +37,24 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ) async {
     emitter(const ChatLoading());
     add(const ChatFetched());
+  }
+
+  Future<void> _deleteExpense(
+    ChatDeleteExpense event,
+    Emitter<ChatState> emitter,
+  ) async {
+    try {
+      await _expenseRepository.deleteExpense(event.id);
+      final expenses = state.expenses.where((e) => e.id != event.id).toList();
+      emitter(
+        ChatSuccessful(
+          expenses: expenses,
+          group: state.group!,
+        ),
+      );
+    } catch (e) {
+      emitter(ChatFailure(error: e.toString()));
+    }
   }
 
   Future<void> _fetchChats(

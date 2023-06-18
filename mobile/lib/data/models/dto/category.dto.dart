@@ -6,12 +6,10 @@ part 'category.dto.g.dart';
 class CategoryDTO {
   final String name;
   final String description;
-  final double amount;
 
   CategoryDTO({
     required this.name,
     required this.description,
-    required this.amount,
   });
 
   factory CategoryDTO.fromJson(Map<String, dynamic> json) =>

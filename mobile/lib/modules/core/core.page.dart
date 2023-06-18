@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pay_cutter/common/styles/text_styles.dart';
-import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/modules/core/bloc/core.bloc.dart';
 import 'package:pay_cutter/modules/core/widgets/app_bottom_item.widget.dart';
 import 'package:pay_cutter/modules/home/home.view.dart';

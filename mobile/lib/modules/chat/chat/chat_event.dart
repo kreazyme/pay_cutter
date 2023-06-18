@@ -40,3 +40,10 @@ class ChatAddExpense extends ChatEvent {
         expense,
       ];
 }
+
+class ChatDeleteExpense extends ChatEvent {
+  final int id;
+  const ChatDeleteExpense({required this.id});
+  @override
+  List<Object> get props => [id];
+}

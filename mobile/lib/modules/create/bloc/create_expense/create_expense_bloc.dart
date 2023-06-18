@@ -13,6 +13,7 @@ import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
 import 'package:pay_cutter/data/models/expense.model.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
+import 'package:pay_cutter/data/models/response/category/list_category_response.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/data/repository/category_repo.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
@@ -59,12 +60,12 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
           users: event.groupModel.participants,
         ),
       );
-      final ParamsWrapper2<List<UserModel>, List<CategoryModel>> response =
+      final ListCategoryResponse response =
           await _categoryRepository.getCategories(
         event.groupModel.id.toString(),
       );
       emittter(state.copyWith(
-        categories: response.param2,
+        categories: response.data,
         categoryStatus: HandleStatus.success,
       ));
     } catch (e) {

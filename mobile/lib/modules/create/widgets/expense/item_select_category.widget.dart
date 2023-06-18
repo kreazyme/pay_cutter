@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
@@ -13,13 +15,15 @@ class ItemSelectCategory extends StatelessWidget {
   final CategoryModel item;
   final Function(CategoryModel) onTap;
 
+  Color get _color => _getRandomColor();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(20),
+        color: Colors.blueGrey[50],
+        borderRadius: BorderRadius.circular(4),
       ),
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
@@ -28,7 +32,7 @@ class ItemSelectCategory extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: AppColors.primaryColor,
+                color: _color,
                 borderRadius: BorderRadius.circular(20),
               ),
               width: 40,
@@ -37,7 +41,7 @@ class ItemSelectCategory extends StatelessWidget {
               child: Center(
                 child: Text(
                   item.name.substring(0, 1).toUpperCase(),
-                  style: TextStyles.h1.copyWith(
+                  style: TextStyles.h2.copyWith(
                     color: Colors.white,
                   ),
                 ),
@@ -68,6 +72,16 @@ class ItemSelectCategory extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Color _getRandomColor() {
+    final random = Random();
+    return Color.fromARGB(
+      255,
+      random.nextInt(256),
+      random.nextInt(256),
+      random.nextInt(256),
     );
   }
 }
