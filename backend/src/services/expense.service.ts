@@ -82,6 +82,12 @@ if(lat && lng){
     return findExpenses;
   }
 
+  public async deleteExpense(expenseId : number) : Promise<void> {
+    const findExpense: ExpenseEntity = await ExpenseEntity.findOne(expenseId);
+    if (!findExpense) throw new HttpException(404, 'Expense not found');
+    await findExpense.remove();
+  }
+
   public async updateExpense(
     id: number,
     name: string,
