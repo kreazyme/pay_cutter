@@ -33,7 +33,7 @@ export class CategoryController{
         try{
             const name = req.body.name;
             const description  = req.body.description;
-            const groupID = Number(req.params.id);
+            const groupID = Number(req.body.group_id);
             const createCategoryData = await this.category.createCategory(
                 name,
                 groupID,
