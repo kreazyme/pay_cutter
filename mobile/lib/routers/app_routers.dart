@@ -97,8 +97,11 @@ abstract class AppRouters {
           builder: (_) => CreateExpensePage(group: group),
         );
       case createCategory:
+        int groupId = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (_) => const CreateCategoryPage(),
+          builder: (_) => CreateCategoryPage(
+            groupId: groupId,
+          ),
         );
       case qrScan:
         return MaterialPageRoute(
@@ -121,11 +124,12 @@ abstract class AppRouters {
           ),
         );
       case categoryPage:
-        List<CategoryModel> listCategory =
-            settings.arguments as List<CategoryModel>;
+        ParamsWrapper2<int, List<CategoryModel>> params =
+            settings.arguments as ParamsWrapper2<int, List<CategoryModel>>;
         return MaterialPageRoute(
           builder: (context) => SelectCategoryPage(
-            listCategory: listCategory,
+            listCategory: params.param2,
+            groupId: params.param1,
           ),
         );
       case feedback:

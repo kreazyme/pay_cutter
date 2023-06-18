@@ -6,10 +6,9 @@ abstract class CategoryMock {
     return List.generate(
       10,
       (index) => CategoryModel(
-        id: index.toString(),
+        id: index,
         name: 'Category num $index',
         description: 'description',
-        amount: 10,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       ),
@@ -19,10 +18,9 @@ abstract class CategoryMock {
   static Future<CategoryModel> getCategory() async {
     await Future.delayed(const Duration(seconds: 1));
     return CategoryModel(
-      id: '1',
+      id: 1,
       name: 'Category num 1',
       description: 'description',
-      amount: 10,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     );
