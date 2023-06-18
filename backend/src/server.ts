@@ -5,9 +5,16 @@ import { ValidateEnv } from '@utils/validateEnv';
 import { GroupRoute } from './routes/group.route';
 import { ExpenseRoute } from '@routes/expense.route';
 import { DB_PASSWORD } from './config';
+import { CategoryRoute } from './routes/category.route';
 
 ValidateEnv();
 
-const app = new App([new AuthRoute(), new UserRoute(), new GroupRoute(), new ExpenseRoute()]);
+const app = new App([
+    new AuthRoute(),
+    new UserRoute(),
+    new GroupRoute(),
+    new ExpenseRoute(),
+    new CategoryRoute(),
+]);
 
 app.listen();

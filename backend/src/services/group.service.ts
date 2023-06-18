@@ -4,6 +4,7 @@ import { User } from '@/interfaces/users.interface';
 import { Service } from 'typedi';
 import { EntityRepository, Repository } from 'typeorm';
 import { HttpException } from '@exceptions/HttpException';
+import { CATEGORY_TABLE } from '@/entities/category.entity';
 
 @Service()
 @EntityRepository()
