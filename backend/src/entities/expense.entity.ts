@@ -12,6 +12,7 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from 'typeorm';
 import { UserEntity } from './users.entity';
@@ -91,7 +92,7 @@ export class ExpenseEntity extends BaseEntity implements Expense {
   @JoinColumn({
     name:'category_id', referencedColumnName:'id'
   })
-  category?: CategoryEntity;
+  category?: Relation<CategoryEntity>;
 
   @OneToOne(() => LocationEntity, location => location.id)
   @JoinColumn({
