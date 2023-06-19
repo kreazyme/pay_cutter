@@ -334,6 +334,7 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                                 .map((e) => state.users![e].userID)
                                 .toList(),
                             image: state.imageUrl ?? '',
+                            categoryId: state.categorySelected!.id,
                           ),
                         ),
                       );
