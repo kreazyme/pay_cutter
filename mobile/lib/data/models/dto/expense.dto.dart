@@ -14,6 +14,9 @@ class ExpenseDTO {
   final int groupId;
   final List<int> participants;
 
+  @JsonKey(name: 'categoryId')
+  final int? categoryId;
+
   @JsonKey(name: 'imageURL')
   final String? image;
 
@@ -26,6 +29,7 @@ class ExpenseDTO {
     required this.groupId,
     required this.participants,
     required this.image,
+    this.categoryId,
   });
 
   ExpenseDTO copyWith({
@@ -37,6 +41,7 @@ class ExpenseDTO {
     int? groupId,
     List<int>? participants,
     String? image,
+    int? categoryId,
   }) {
     return ExpenseDTO(
       name: name ?? this.name,
@@ -47,6 +52,7 @@ class ExpenseDTO {
       groupId: groupId ?? this.groupId,
       participants: participants ?? this.participants,
       image: image ?? this.image,
+      categoryId: categoryId ?? this.categoryId,
     );
   }
 
