@@ -1,13 +1,15 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/common/extensions/datetime.extension.dart';
-import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
+import 'package:pay_cutter/common/extensions/regex.dart';
 import 'package:pay_cutter/data/datasource/firebase/firebase_upload.datasource.dart';
 import 'package:pay_cutter/data/models/category.model.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
@@ -18,6 +20,8 @@ import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/data/repository/category_repo.dart';
 import 'package:pay_cutter/data/repository/expense_repo.dart';
 import 'package:pay_cutter/data/repository/user_repo.dart';
+import 'package:pay_cutter/modules/scan/barcode_painter.dart';
+import 'package:tiengviet/tiengviet.dart';
 
 part 'create_expense_event.dart';
 part 'create_expense_state.dart';
@@ -39,6 +43,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
         super(const CreateExpenseInitial()) {
     on<CreateExpenseSubmit>(_createExpense);
     on<CreateExpenseUploadFile>(_uploadFile);
+    on<CreateExpenseTakePicture>(_takeImage);
 
     on<CreateExpenseCategorySubmit>(_categorySelect);
     on<CreateExpenseStarted>(_inital);
@@ -48,6 +53,13 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
     on<CreateExpenseAddUser>(_addUser);
     on<CreateExpenseRemoveUser>(_removeuser);
   }
+
+  final TextRecognizer _textRecognizer = TextRecognizer();
+  bool _isBusy = false;
+  bool _canProcess = true;
+
+  CustomPaint? _customPaint;
+  String? _text = '';
 
   Future<void> _inital(
     CreateExpenseStarted event,
@@ -177,8 +189,8 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
     }
   }
 
-  Future<void> _uploadFile(
-    CreateExpenseUploadFile event,
+  Future<void> _takeImage(
+    CreateExpenseTakePicture event,
     Emitter<CreateExpenseState> emittter,
   ) async {
     emittter(
@@ -188,7 +200,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
     );
 
     try {
-      File file = await _pickerImage();
+      File file = await _pickerImage(event, emittter);
       String path = 'expense.${event.groupId}.${DateTime.now().toPathString}';
       String url = await _firebaseUploadDataSoure.uploadImage(
         file,
@@ -211,16 +223,119 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
     }
   }
 
-  Future<File> _pickerImage() async {
+  Future<void> _uploadFile(
+    CreateExpenseUploadFile event,
+    Emitter<CreateExpenseState> emittter,
+  ) async {
+    emittter(
+      state.copyWith(
+        imageStatus: HandleStatus.loading,
+      ),
+    );
+
+    try {
+      File file = await _pickerGallery();
+      String path = 'expense.${event.groupId}.${DateTime.now().toPathString}';
+      String url = await _firebaseUploadDataSoure.uploadImage(
+        file,
+        path,
+      );
+      debugPrint('url: $url');
+      emittter(
+        state.copyWith(
+          imageUrl: url,
+          imageStatus: HandleStatus.success,
+        ),
+      );
+    } catch (e) {
+      emittter(
+        state.copyWith(
+          imageStatus: HandleStatus.error,
+          error: e.toString(),
+        ),
+      );
+    }
+  }
+
+  Future<File> _pickerGallery() async {
     try {
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
+        _scanImage(InputImage.fromFilePath(pickedFile.path));
         return File(pickedFile.path);
       }
       throw Exception('No image selected');
     } catch (e) {
       throw Exception('No image selected');
     }
+  }
+
+  Future<File> _pickerImage(
+    CreateExpenseTakePicture event,
+    Emitter<CreateExpenseState> emittter,
+  ) async {
+    try {
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      if (pickedFile != null) {
+        String? txtBill =
+            await _scanImage(InputImage.fromFilePath(pickedFile.path));
+        if (txtBill != null) {
+          debugPrint('-------');
+          debugPrint(txtBill);
+          debugPrint(double.tryParse(txtBill).toString());
+          emittter(state.copyWith(
+            expenseAmount: int.tryParse(
+              txtBill.replaceAll(',', '').replaceAll('.', ''),
+            ),
+          ));
+          emittter(state.copyWith(
+            expenseAmount: -1,
+          ));
+        }
+        return File(pickedFile.path);
+      }
+      throw Exception('No image selected');
+    } catch (e) {
+      throw Exception('No image selected');
+    }
+  }
+
+  Future<String?> _scanImage(InputImage inputImage) async {
+    log('Start processing');
+    if (!_canProcess) return null;
+    if (_isBusy) return null;
+    _isBusy = true;
+    String? txtBill;
+    // setState(() {
+    //   _text = '';
+    // });
+    final recognizedText = await _textRecognizer.processImage(inputImage);
+    if (inputImage.inputImageData?.size != null &&
+        inputImage.inputImageData?.imageRotation != null) {
+      log('start painted');
+      final painter = TextRecognizerPainter(
+        recognizedText,
+        inputImage.inputImageData!.size,
+        inputImage.inputImageData!.imageRotation,
+      );
+      _customPaint = CustomPaint(painter: painter);
+    } else {
+      recognizedText.blocks
+          .sort((a, b) => a.boundingBox.top.compareTo(b.boundingBox.top));
+      for (var element in recognizedText.blocks.reversed) {
+        String vnText = TiengViet.parse(element.text);
+        if (checkBill.hasMatch(vnText)) {
+          log('------------------------');
+          log(vnText);
+          txtBill = recognizedText
+              .blocks[recognizedText.blocks.indexOf(element) + 1].text;
+        }
+      }
+      _customPaint = null;
+    }
+    _isBusy = false;
+    return txtBill;
   }
 }
