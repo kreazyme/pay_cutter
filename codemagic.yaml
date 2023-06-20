@@ -13,17 +13,18 @@ workflows:
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/mobile/android/local.properties"
           cd $CM_BUILD_DIR/mobile/android
           echo "MAPS_API_KEY=$MAPS_API_KEY" >> local.properties
+          cd $CM_BUILD_DIR/mobile
+          echo BASE_URL= http://34.87.149.104 > .env.staging
+          echo BASE_URL= http://34.87.149.104 > .env.dev
+          echo BASE_URL= http://34.87.149.104 > .env.example
+          echo BASE_URL= http://34.87.149.104 > .env.prod
+          echo BASE_URL= http://34.87.149.104 > .env
+          ls
       - name: Get Flutter packages
         script: | 
           flutter pub get
       - name: Build APK with Flutter
         script: | 
-          touch .env.staging
-          touch .env.dev
-          toucn .env.example
-          touch .env.prod
-          touch .env
-          ls
           flutter build apk --release -t lib/root/main_staging.dart -- flavor staging \
             --build-name=1.0.$BUILD_NUMBER \
             --build-number=$BUILD_NUMBER
