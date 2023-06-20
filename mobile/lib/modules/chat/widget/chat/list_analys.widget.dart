@@ -215,8 +215,8 @@ class _ItemAnalysWidgetState extends State<_ItemAnalysWidget> {
       ),
     ).then((value) {
       setState(() {
-        xPadding = _getRandomPadding(400);
-        yPadding = _getRandomPadding(400);
+        xPadding = _getRandomPadding(300);
+        yPadding = _getRandomPadding(300);
       });
     });
   }
