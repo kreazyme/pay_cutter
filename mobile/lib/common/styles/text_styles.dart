@@ -9,6 +9,10 @@ abstract class TextStyles {
     fontSize: 32,
     fontWeight: FontWeight.normal,
   );
+  static const TextStyle h2 = TextStyle(
+    fontSize: 28,
+    fontWeight: FontWeight.normal,
+  );
   static const TextStyle titleBold = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,

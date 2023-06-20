@@ -5,6 +5,7 @@ import { ExpenseService } from '@/services/expense.service';
 import { ExpenseEntity } from '@/entities/expense.entity';
 
 export class ExpenseController {
+
   public expense = Container.get(ExpenseService);
 
   public createExpense = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
@@ -19,6 +20,9 @@ export class ExpenseController {
         req.body.participants,
         userID,
         req.body.imageURL,
+        req.body.categoryId,
+        req.body.lat,
+        req.body.lng,
       );
       res.status(201).json({ data: findExpense, message: 'created' });
     } catch (error) {
@@ -32,6 +36,21 @@ export class ExpenseController {
       const findExpense: ExpenseEntity = await this.expense.findExpense(expenseID);
       res.status(200).json({ data: findExpense, message: 'ok' });
     } catch (error) {
+      next(error);
+    }
+  };
+
+  public deleteExpense = async(
+    req: RequestWithUser,
+    res: Response,
+    next: NextFunction,
+  ) : Promise<void> => {
+    try{
+     const expenseID = Number(req.params.id);
+      await this.expense.deleteExpense(expenseID);
+      res.status(200).json({ message: 'deleted' });
+    }
+    catch(error){
       next(error);
     }
   };

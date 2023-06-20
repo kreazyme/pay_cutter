@@ -4,10 +4,9 @@ part 'category.model.g.dart';
 
 @JsonSerializable()
 class CategoryModel {
-  final String id;
+  final int id;
   final String name;
   final String description;
-  final double amount;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -15,7 +14,6 @@ class CategoryModel {
     required this.id,
     required this.name,
     required this.description,
-    required this.amount,
     required this.createdAt,
     required this.updatedAt,
   });

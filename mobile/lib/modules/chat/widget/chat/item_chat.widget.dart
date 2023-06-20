@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/extensions/datetime.extension.dart';
 import 'package:pay_cutter/common/extensions/string.extentions.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/common/widgets/app_avatar.widget.dart';
+import 'package:pay_cutter/common/widgets/custom_icon.widget.dart';
 import 'package:pay_cutter/data/models/expense.model.dart';
+import 'package:pay_cutter/modules/chat/chat/chat_bloc.dart';
 import 'package:pay_cutter/modules/chat/widget/chat/expense_list_participaints.widget.dart';
 
 class ItemChatWidget extends StatefulWidget {
@@ -172,6 +175,21 @@ class _ItemChatWidgetState extends State<ItemChatWidget> {
               height: 20,
               color: Colors.transparent,
             ),
+            if (_isDetail)
+              Container(
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                  onTap: () {
+                    context.read<ChatBloc>().add(
+                          ChatDeleteExpense(id: widget.expense.id),
+                        );
+                  },
+                  child: CustomIcon(
+                    iconData: Icons.delete_outlined,
+                    iconColor: Colors.red.withOpacity(0.8),
+                  ),
+                ),
+              ),
             _buildPaidInfo(),
             const Divider(
               height: 20,

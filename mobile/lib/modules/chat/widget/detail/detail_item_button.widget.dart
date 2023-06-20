@@ -18,23 +18,33 @@ class DetailItemButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () => onPressed(),
-      title: Text(
-        title,
-        style: TextStyles.subTitle.copyWith(
-          color: isWarning == true ? AppColors.alertText : AppColors.textColor,
-          fontWeight: FontWeight.normal,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.backgroundColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      margin: const EdgeInsets.symmetric(
+        vertical: 8,
+      ),
+      child: ListTile(
+        onTap: () => onPressed(),
+        title: Text(
+          title,
+          style: TextStyles.subTitle.copyWith(
+            color:
+                isWarning == true ? AppColors.alertText : AppColors.textColor,
+            fontWeight: FontWeight.normal,
+          ),
         ),
-      ),
-      leading: SizedBox(
-        width: 24,
-        height: 24,
-        child: icon ?? Container(),
-      ),
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 4,
+        leading: SizedBox(
+          width: 24,
+          height: 24,
+          child: icon ?? Container(),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 4,
+        ),
       ),
     );
   }

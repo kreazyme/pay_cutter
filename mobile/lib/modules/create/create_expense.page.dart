@@ -5,8 +5,10 @@ import 'package:pay_cutter/common/extensions/extensions.dart';
 import 'package:pay_cutter/common/extensions/string.extentions.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/common/widgets/app_select.widget.dart';
 import 'package:pay_cutter/common/widgets/custom_button.widget.dart';
+import 'package:pay_cutter/common/widgets/custom_icon.widget.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
 import 'package:pay_cutter/data/datasource/firebase/firebase_upload.datasource.dart';
@@ -23,7 +25,7 @@ import 'package:pay_cutter/modules/create/widgets/expense/expense_image.widget.d
 import 'package:pay_cutter/routers/app_routers.dart';
 
 class CreateExpensePage extends StatelessWidget {
-  const CreateExpensePage({
+  CreateExpensePage({
     super.key,
     required this.group,
   });
@@ -43,13 +45,19 @@ class CreateExpensePage extends StatelessWidget {
           listener: _onListener,
           child: _CreateExpenseView(
             groupModel: group,
+            amountController: amountController,
           ),
         ));
   }
 
+  final TextEditingController amountController = TextEditingController();
+
   void _onListener(BuildContext context, CreateExpenseState state) {
     if (state.status?.isError == true) {
       ToastUlti.showError(context, state.error!);
+    }
+    if (state.expenseAmount != null || state.expenseAmount != -1) {
+      amountController.text = state.expenseAmount.toString();
     }
     if (state.status?.isSuccess == true) {
       ToastUlti.showSuccess(context, 'Create Expense Success');
@@ -64,15 +72,23 @@ class CreateExpensePage extends StatelessWidget {
 class _CreateExpenseView extends StatefulWidget {
   const _CreateExpenseView({
     required this.groupModel,
-  });
+    required TextEditingController amountController,
+  }) : _amountController = amountController;
   final GroupModel groupModel;
+  final TextEditingController _amountController;
 
   @override
-  State<_CreateExpenseView> createState() => _CreateExpenseViewState();
+  // ignore: no_logic_in_create_state
+  State<_CreateExpenseView> createState() => _CreateExpenseViewState(
+        amountController: _amountController,
+      );
 }
 
 class _CreateExpenseViewState extends State<_CreateExpenseView> {
-  final TextEditingController _amountController = TextEditingController();
+  _CreateExpenseViewState({
+    required TextEditingController amountController,
+  }) : _amountController = amountController;
+  final TextEditingController _amountController;
   final TextEditingController _descriptionController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
 
@@ -94,37 +110,138 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
     return double.parse(value);
   }
 
+  void _showCameraDialog(BuildContext c) {
+    showModalBottomSheet(
+      context: c,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(12),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Upload an image, or take a photo to scan the receipt for this expense. This process is automatic and may take a few minutes.',
+                style: TextStyles.body,
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  c.read<CreateExpenseBloc>().add(
+                        CreateExpenseTakePicture(
+                          groupId: widget.groupModel.id,
+                        ),
+                      );
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.camera_alt_outlined,
+                      color: AppColors.primaryColor,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      'Take a photo',
+                      style: TextStyles.title.copyWith(
+                        color: AppColors.textColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  c.read<CreateExpenseBloc>().add(
+                        CreateExpenseUploadFile(
+                          groupId: widget.groupModel.id,
+                        ),
+                      );
+                  Navigator.pop(context);
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.photo_outlined,
+                      color: AppColors.primaryColor,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      'Upload from gallery',
+                      style: TextStyles.title.copyWith(
+                        color: AppColors.textColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 40),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _amoutInput() {
-    return TextField(
-      controller: _amountController,
-      style: TextStyles.h1.copyWith(
-        color: AppColors.primaryColor,
-      ),
-      onChanged: (value) {
-        double amount = _amount(value);
-        BlocProvider.of<CreateExpenseBloc>(context).add(
-          CreateExpenseChangeAmount(
-            amount: amount,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Expanded(
+            child: TextField(
+          controller: _amountController,
+          style: TextStyles.h1.copyWith(
+            color: AppColors.primaryColor,
           ),
-        );
-      },
-      decoration: InputDecoration(
-        label: Text(
-          'Expense Amount',
-          style: TextStyles.body.copyWith(
-            color: AppColors.disableColor,
+          onChanged: (value) {
+            double amount = _amount(value);
+            BlocProvider.of<CreateExpenseBloc>(context).add(
+              CreateExpenseChangeAmount(
+                amount: amount,
+              ),
+            );
+          },
+          decoration: InputDecoration(
+            label: Text(
+              'Expense Amount',
+              style: TextStyles.body.copyWith(
+                color: AppColors.disableColor,
+              ),
+            ),
+            hintText: '0',
+            hintStyle: TextStyles.h1.copyWith(
+              color: AppColors.primaryColor,
+            ),
+            border: UnderlineInputBorder(
+                borderSide: BorderSide(
+              color: AppColors.primaryColor,
+            )),
           ),
-        ),
-        hintText: '0',
-        hintStyle: TextStyles.h1.copyWith(
-          color: AppColors.primaryColor,
-        ),
-        border: UnderlineInputBorder(
-            borderSide: BorderSide(
-          color: AppColors.primaryColor,
+          keyboardType: TextInputType.number,
         )),
-      ),
-      keyboardType: TextInputType.number,
+        GestureDetector(
+          onTap: () {
+            _showCameraDialog(context);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(
+              bottom: 16,
+            ),
+            child: CustomIcon(
+              iconData: Icons.document_scanner_outlined,
+              iconColor: AppColors.primaryColor,
+            ),
+          ),
+        )
+      ],
     );
   }
 
@@ -244,7 +361,11 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                             Object? result = await Navigator.pushNamed(
                               context,
                               AppRouters.categoryPage,
-                              arguments: state.categories,
+                              arguments:
+                                  ParamsWrapper2<int, List<CategoryModel>>(
+                                param1: widget.groupModel.id,
+                                param2: state.categories ?? [],
+                              ),
                             );
                             if (result != null) {
                               if (mounted) {
@@ -298,6 +419,8 @@ class _CreateExpenseViewState extends State<_CreateExpenseView> {
                         ),
                         ExpenseImageWidget(
                           groupId: widget.groupModel.id,
+                          imageUrl: state.imageUrl,
+                          location: state.location,
                         ),
                       ],
                     ),

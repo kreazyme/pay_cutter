@@ -15,8 +15,8 @@ ExpenseDTO _$ExpenseDTOFromJson(Map<String, dynamic> json) => ExpenseDTO(
       groupId: json['groupId'] as int,
       participants:
           (json['participants'] as List<dynamic>).map((e) => e as int).toList(),
-      image: json['imageURL'] as String? ??
-          'https://res.cloudinary.com/jerrick/image/upload/v1613318166/60294816e5abae001c5260be.jpg',
+      image: json['imageURL'] as String?,
+      categoryId: json['categoryId'] as int?,
     );
 
 Map<String, dynamic> _$ExpenseDTOToJson(ExpenseDTO instance) =>
@@ -28,5 +28,6 @@ Map<String, dynamic> _$ExpenseDTOToJson(ExpenseDTO instance) =>
       'paidBy': instance.paidBy,
       'groupId': instance.groupId,
       'participants': instance.participants,
+      'categoryId': instance.categoryId,
       'imageURL': instance.image,
     };

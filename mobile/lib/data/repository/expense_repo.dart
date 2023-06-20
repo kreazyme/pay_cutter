@@ -22,7 +22,7 @@ class ExpenseRepository {
     await _expenseDataSource.updateExpense(id, data);
   }
 
-  Future<void> deleteExpense(String id) async {
+  Future<void> deleteExpense(int id) async {
     await _expenseDataSource.deleteExpense(id);
   }
 }

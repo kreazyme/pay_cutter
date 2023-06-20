@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:pay_cutter/common/extensions/string.extentions.dart';
+import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
@@ -29,29 +31,67 @@ class ChatGroupItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: CircleAvatar(
-        radius: _avatarLength / 2,
-        backgroundColor: group.color ?? _getRandomColor(),
-        child: group.imageURL == null
-            ? Text(
-                group.name[0],
-                style: TextStyles.titleBold.copyWith(
-                  color: Colors.white,
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 16,
+      ),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 5,
+      ),
+      decoration: BoxDecoration(
+        color: AppColors.primaryColor.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: GestureDetector(
+        onTap: () => _onTap(context),
+        behavior: HitTestBehavior.opaque,
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: _avatarLength / 2,
+              backgroundColor: _getRandomColor(),
+              child: group.imageURL == null
+                  ? Text(
+                      group.name[0].toUpperCase(),
+                      style: TextStyles.titleBold.copyWith(
+                        color: Colors.white,
+                      ),
+                    )
+                  : Image.network(
+                      group.imageURL!,
+                      width: _avatarLength,
+                      height: _avatarLength,
+                      fit: BoxFit.cover,
+                    ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  group.name,
+                  style: TextStyles.title.copyWith(
+                    color: AppColors.textColor,
+                  ),
                 ),
-              )
-            : Image.network(
-                group.imageURL!,
-                width: _avatarLength,
-                height: _avatarLength,
-                fit: BoxFit.cover,
-              ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  timeago.format(group.updatedAt).firstUpperCase,
+                  style: TextStyles.subTitle.copyWith(
+                    color: AppColors.disableColor,
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
-      title: Text(group.name),
-      subtitle: Text(
-        timeago.format(group.updatedAt),
-      ),
-      onTap: () => _onTap(context),
     );
   }
 

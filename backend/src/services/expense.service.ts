@@ -1,5 +1,7 @@
+import { CATEGORY_TABLE, CategoryEntity } from '@/entities/category.entity';
 import { ExpenseEntity } from '@/entities/expense.entity';
 import { GroupEntity } from '@/entities/group.entity';
+import { LocationEntity } from '@/entities/location.entity';
 import { UserEntity } from '@/entities/users.entity';
 import { HttpException } from '@exceptions/HttpException';
 import { Service } from 'typedi';
@@ -9,35 +11,13 @@ import { EntityRepository, Repository } from 'typeorm';
 @EntityRepository()
 export class ExpenseService extends Repository<ExpenseEntity> {
   public async findExpense(id: number): Promise<ExpenseEntity> {
-    // const findExpense: ExpenseEntity = await ExpenseEntity.findOne({ where: { id: id } });
-    const findExpense: ExpenseEntity = await ExpenseEntity.getRepository()
-      .createQueryBuilder('expense_entity')
-      .leftJoinAndSelect('expense_entity.toGroup', 'toGroup')
-      .leftJoinAndSelect('expense_entity.paidBy', 'paidBy')
-      .leftJoinAndSelect('expense_entity.participants', 'participants')
-      .leftJoinAndSelect('expense_entity.createdBy', 'createdBy')
-      .where('expense_entity.id = :id', { id: id })
-      // .select([
-      //     "expense_entity.id",
-      //     "expense_entity.name",
-      //     "expense_entity.description",
-      //     "expense_entity.amount",
-      //     "expense_entity.createdAt",
-      //     "expense_entity.updatedAt",
-      //     "expense_entity.imageURL",
-      //     "toGroup.id",
-      //     "toGroup.name",
-      //     // "paidBy.id",
-      //     // "paidBy.name",
-      //     // "paidBy.imageURL",
-      //     "participants.id",
-      //     "participants.email",
-      //     // "participants.imageURL",
-      //     // "createdBy.id",
-      //     // "createdBy.name",
-      //     // "createdBy.imageURL",
-      // ])
-      .getOne();
+    const findExpense :ExpenseEntity = await ExpenseEntity.findOne(
+      {
+        relations: ['toGroup', 'paidBy', 'participants', 'category', 'createdBy', 'location'],
+        where: { id: id },
+      }
+    )
+    if (!findExpense) throw new HttpException(404, 'Expense not found');
     return findExpense;
   }
 
@@ -50,6 +30,9 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     participants: number[],
     createBy: number,
     imageURL: string,
+    categoryId: string,
+    lat: number,
+    lng: number,
   ): Promise<ExpenseEntity> {
     const findGroup: GroupEntity = await GroupEntity.findOne(groupId);
     if (!findGroup) throw new HttpException(404, 'Group not found');
@@ -59,6 +42,14 @@ export class ExpenseService extends Repository<ExpenseEntity> {
       if (!findParticipant) throw new HttpException(404, 'Participant number' + participant + ' not found');
       newParticipants.push(findParticipant);
     });
+    const findCategory: CategoryEntity = await CategoryEntity.findOne(categoryId);
+    if (!findCategory) throw new HttpException(404, 'Category not found');
+    const newLocation: LocationEntity = new LocationEntity();
+if(lat && lng){
+  newLocation.lat = lat;
+  newLocation.lng = lng;
+  await newLocation.save();
+}
     const findPaidBy: UserEntity = await UserEntity.findOne(paidBy);
     if (!findPaidBy) throw new HttpException(404, 'PaidBy not found');
     const findCreateBy: UserEntity = await UserEntity.findOne(createBy);
@@ -72,6 +63,10 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     newExpense.participants = newParticipants;
     newExpense.imageURL = imageURL;
     newExpense.createdBy = findCreateBy;
+    newExpense.category = findCategory;
+    if(newLocation){
+      newExpense.location = newLocation;
+    }
     await newExpense.save();
     return newExpense;
   }
@@ -85,6 +80,12 @@ export class ExpenseService extends Repository<ExpenseEntity> {
       .where('expense_entity.toGroup = :id', { id: groupId })
       .getMany();
     return findExpenses;
+  }
+
+  public async deleteExpense(expenseId : number) : Promise<void> {
+    const findExpense: ExpenseEntity = await ExpenseEntity.findOne(expenseId);
+    if (!findExpense) throw new HttpException(404, 'Expense not found');
+    await findExpense.remove();
   }
 
   public async updateExpense(
@@ -112,3 +113,25 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     return findExpense;
   }
 }
+
+
+
+// @Entity()
+// export class Pin {
+//   @PrimaryGeneratedColumn()
+//   id: string;
+
+//   @Column({ name: 'town_name' })
+//   townName: string;
+
+//   @Column()
+//   state_id: string;
+
+//   @ManyToOne(() => State, (state) => state.stateId)
+//   state: State;
+// }
+
+// const pin = await pinRepository
+//   .createQueryBuilder('pin')
+//   .innerJoinAndSelect('pin.state', 'state')
+//   .getMany();

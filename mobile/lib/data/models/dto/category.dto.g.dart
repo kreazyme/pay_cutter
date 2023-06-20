@@ -9,12 +9,10 @@ part of 'category.dto.dart';
 CategoryDTO _$CategoryDTOFromJson(Map<String, dynamic> json) => CategoryDTO(
       name: json['name'] as String,
       description: json['description'] as String,
-      amount: (json['amount'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$CategoryDTOToJson(CategoryDTO instance) =>
     <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
-      'amount': instance.amount,
     };

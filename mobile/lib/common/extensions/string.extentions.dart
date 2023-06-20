@@ -14,4 +14,12 @@ extension StringExtension on String? {
       return this!.substring(this!.length - 1);
     }
   }
+
+  String get firstUpperCase {
+    if (this == null || this!.isEmpty) {
+      return '';
+    } else {
+      return this!.substring(0, 1).toUpperCase() + this!.substring(1);
+    }
+  }
 }
