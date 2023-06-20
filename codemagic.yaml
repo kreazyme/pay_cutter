@@ -5,7 +5,7 @@ workflows:
     max_build_duration: 120
     environment:
       groups:
-        - pay_cutter
+        - paycutter
       flutter: stable
     scripts:
       - name: Set up local.properties
