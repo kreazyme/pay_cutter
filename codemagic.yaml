@@ -6,7 +6,7 @@ workflows:
     environment:
       groups:
         - paycutter
-      flutter: stable
+      flutter: 3.7.12
     scripts:
       - name: Set up local.properties
         script: | 
