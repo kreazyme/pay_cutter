@@ -1,11 +1,11 @@
 name: pay_cutter
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: ">=2.19.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -69,13 +69,8 @@ dev_dependencies:
   hive_generator: 2.0.0
   flutter_launcher_icons: ^0.13.1
 flutter:
-
   uses-material-design: true
   assets:
-    - .env.dev
-    - .env.prod
-    - .env.staging
-    - .env.example
     - assets/anim/
     - assets/icons/
     - assets/images/
@@ -101,7 +96,7 @@ flutter_gen:
     flare_flutter: true
     rive: true
     lottie: true
-    
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
