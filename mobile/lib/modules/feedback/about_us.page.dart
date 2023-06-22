@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
-import 'package:pay_cutter/generated/assets.gen.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class AboutUsPage extends StatelessWidget {
-  const AboutUsPage({super.key});
+  AboutUsPage({super.key});
+
+  final controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setBackgroundColor(const Color(0x00000000))
+    ..setNavigationDelegate(
+      NavigationDelegate(
+        onProgress: (int progress) {
+          // Update loading bar.
+        },
+        onPageStarted: (String url) {},
+        onPageFinished: (String url) {},
+        onWebResourceError: (WebResourceError error) {},
+      ),
+    )
+    ..loadRequest(Uri.parse('https://kreazyme.github.io/LandingPage-PBL'));
 
   @override
   Widget build(BuildContext context) {
@@ -11,15 +26,7 @@ class AboutUsPage extends StatelessWidget {
       appBar: const CustomAppbar(
         title: 'About us',
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(120),
-          child: Assets.logo.imgSplash.image(
-            height: double.infinity,
-            width: double.infinity,
-          ),
-        ),
-      ),
+      body: WebViewWidget(controller: controller),
     );
   }
 }

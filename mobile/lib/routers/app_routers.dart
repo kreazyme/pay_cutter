@@ -138,7 +138,7 @@ abstract class AppRouters {
         );
       case aboutUs:
         return MaterialPageRoute(
-          builder: (_) => const AboutUsPage(),
+          builder: (_) => AboutUsPage(),
         );
       case pickLocation:
         return MaterialPageRoute(
