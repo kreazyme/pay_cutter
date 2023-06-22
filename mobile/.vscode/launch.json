@@ -9,7 +9,9 @@
                 "--flavor",
                 "dev",
                 "--target",
-                "lib/root/main_dev.dart"
+                "lib/root/main_dev.dart",
+                "--dart-define",
+                "BASE_URL=http://34.87.149.104",
             ],
             "type": "dart",
             "flutterMode": "debug"
@@ -22,7 +24,9 @@
                 "--flavor",
                 "staging",
                 "--target",
-                "lib/root/main_staging.dart"
+                "lib/root/main_staging.dart",
+                "--dart-define",
+                "BASE_URL=http://34.87.149.104",
             ],
             "type": "dart",
             "flutterMode": "debug"
@@ -35,7 +39,9 @@
                 "--flavor",
                 "prod",
                 "--target",
-                "lib/root/main_prod.dart"
+                "lib/root/main_prod.dart",
+                "--dart-define",
+                "BASE_URL=http://34.87.149.104",
             ],
             "type": "dart",
             "flutterMode": "release"
