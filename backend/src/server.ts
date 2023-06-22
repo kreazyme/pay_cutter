@@ -6,6 +6,7 @@ import { GroupRoute } from './routes/group.route';
 import { ExpenseRoute } from '@routes/expense.route';
 import { DB_PASSWORD } from './config';
 import { CategoryRoute } from './routes/category.route';
+import { FirebasePushRoute } from './routes/push_noti.route';
 
 ValidateEnv();
 
@@ -15,6 +16,7 @@ const app = new App([
     new GroupRoute(),
     new ExpenseRoute(),
     new CategoryRoute(),
+    new FirebasePushRoute(),
 ]);
 
 app.listen();

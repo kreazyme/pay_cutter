@@ -15,6 +15,12 @@ export class UserEntity extends BaseEntity implements User {
   @Unique(['email'])
   email: string;
 
+  @Column({
+    name:'fcm_token',
+    nullable:true,
+  })
+  fcmToken?: string;
+
   @Column()
   @IsNotEmpty()
   name: string;
@@ -31,9 +37,4 @@ export class UserEntity extends BaseEntity implements User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // @Column({
-  //   array: true,
-  // })
-  // @ManyToMany(() => GroupEntity, (group) => group.participants)
-  // groups: GroupEntity[];
 }
