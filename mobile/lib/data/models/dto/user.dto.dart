@@ -8,12 +8,14 @@ class UserDTO {
   final String email;
   final String photoUrl;
   final String googleToken;
+  final String? fcmToken;
 
   const UserDTO({
     required this.name,
     required this.email,
     required this.photoUrl,
     required this.googleToken,
+    required this.fcmToken,
   });
 
   factory UserDTO.fromJson(Map<String, dynamic> json) =>

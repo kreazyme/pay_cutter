@@ -11,6 +11,7 @@ UserDTO _$UserDTOFromJson(Map<String, dynamic> json) => UserDTO(
       email: json['email'] as String,
       photoUrl: json['photoUrl'] as String,
       googleToken: json['googleToken'] as String,
+      fcmToken: json['fcmToken'] as String?,
     );
 
 Map<String, dynamic> _$UserDTOToJson(UserDTO instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$UserDTOToJson(UserDTO instance) => <String, dynamic>{
       'email': instance.email,
       'photoUrl': instance.photoUrl,
       'googleToken': instance.googleToken,
+      'fcmToken': instance.fcmToken,
     };
