@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/data/models/dto/user.dto.dart';
@@ -31,6 +32,7 @@ class FirebaseAuthDataSource {
         email: user?.email ?? '',
         photoUrl: user?.photoURL ?? '',
         googleToken: googleAuth.accessToken ?? '',
+        fcmToken: await FirebaseMessaging.instance.getToken(),
       );
     } catch (error) {
       return null;
