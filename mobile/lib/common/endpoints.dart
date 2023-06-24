@@ -1,5 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 abstract class AppEndpoints {
   static const String _apiURL = String.fromEnvironment('BASE_URL');
 

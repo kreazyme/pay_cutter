@@ -78,7 +78,7 @@ abstract class AppRouters {
           ),
         );
       case detail:
-        GroupModel group = settings.arguments as GroupModel;
+        GroupModel? group = settings.arguments as GroupModel;
         return MaterialPageRoute(
           builder: (_) => DetailChatPage(
             group: group,
