@@ -13,7 +13,7 @@ export class ExpenseService extends Repository<ExpenseEntity> {
   public async findExpense(id: number): Promise<ExpenseEntity> {
     const findExpense :ExpenseEntity = await ExpenseEntity.findOne(
       {
-        relations: ['toGroup', 'paidBy', 'participants', 'category', 'createdBy', 'location'],
+        relations: ['toGroup', 'paidBy', 'participants', 'category', 'createdBy', 'location_id'],
         where: { id: id },
       }
     )

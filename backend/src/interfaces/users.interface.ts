@@ -8,4 +8,5 @@ export interface User {
   photoUrl?: string;
   groups?: GroupEntity[];
   googleToken?: string;
+  fcmToken?: string;
 }

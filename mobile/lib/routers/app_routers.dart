@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/data/models/category.model.dart';
+import 'package:pay_cutter/data/models/expense.model.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 import 'package:pay_cutter/modules/analysis/analysis.page.dart';
@@ -78,10 +79,12 @@ abstract class AppRouters {
           ),
         );
       case detail:
-        GroupModel group = settings.arguments as GroupModel;
+        ParamsWrapper2<GroupModel?, List<ExpenseModel>> params = settings
+            .arguments as ParamsWrapper2<GroupModel?, List<ExpenseModel>>;
         return MaterialPageRoute(
           builder: (_) => DetailChatPage(
-            group: group,
+            group: params.param1!,
+            expenses: params.param2,
           ),
         );
       case shareChat:
@@ -138,7 +141,7 @@ abstract class AppRouters {
         );
       case aboutUs:
         return MaterialPageRoute(
-          builder: (_) => const AboutUsPage(),
+          builder: (_) => AboutUsPage(),
         );
       case pickLocation:
         return MaterialPageRoute(

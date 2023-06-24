@@ -14,6 +14,7 @@ import { Routes } from '@interfaces/routes.interface';
 import { ErrorMiddleware } from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
 import { dbConnection } from './database';
+import * as admin from 'firebase-admin';
 
 export class App {
   public app: express.Application;
@@ -27,9 +28,17 @@ export class App {
 
     this.connectToDatabase();
     this.initializeMiddlewares();
+    this.initializeFirebase();
     this.initializeRoutes(routes);
     this.initializeSwagger();
     this.initializeErrorHandling();
+  }
+
+  private async initializeFirebase() {
+    const serviceAccount = require('../firebase.json');
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
   }
 
   public listen() {

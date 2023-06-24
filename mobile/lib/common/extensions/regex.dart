@@ -1,7 +1,11 @@
 final RegExp checkBill = RegExp(
-  r'tong thanh toan|tong tien|thanh tien|tong cong|tong tien hang|t\.cong',
+  r'tong thanh toan|tong tien|tong cong|tong tien hang|t\.cong',
   multiLine: true,
   caseSensitive: false,
+);
+
+final RegExp recheckBill = RegExp(
+  r'thanh tien|tong',
 );
 
 final RegExp isMoney = RegExp(

@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/common/endpoints.dart';
 import 'package:pay_cutter/common/helper/dio_helper.dart';
 import 'package:pay_cutter/data/models/dto/group.dto.dart';
+import 'package:pay_cutter/data/models/dto/push_noti.dto.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 
 @LazySingleton()
@@ -43,5 +44,12 @@ class GroupDataSource {
       '${AppEndpoints.group}/$id',
     );
     return GroupModel.fromJson(response.body['data']);
+  }
+
+  Future<void> sendPushNoti(PushNotiDTO pushNoti) async {
+    await _dioHelper.post(
+      AppEndpoints.pushNoti,
+      data: pushNoti.toJson(),
+    );
   }
 }

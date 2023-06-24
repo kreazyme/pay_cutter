@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pay_cutter/common/styles/color_styles.dart';
-import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/generated/assets.gen.dart';
 
 class LoginTopWidget extends StatelessWidget {

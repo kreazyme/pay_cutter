@@ -1,0 +1,1 @@
+flutter build apk --release -t lib/root/main_prod.dart --flavor prod --dart-define=BASE_URL=http://34.87.149.104

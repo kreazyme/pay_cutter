@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/enum.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
@@ -45,6 +46,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       emitter(const ProfileState.loading());
       await _authenRepo.logout();
       await _userRepo.logOut();
+      await FirebaseMessaging.instance.deleteToken();
       emitter(const ProfileLogouted());
     } catch (e) {
       emitter(const ProfileState.error());

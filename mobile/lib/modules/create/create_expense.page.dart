@@ -56,7 +56,7 @@ class CreateExpensePage extends StatelessWidget {
     if (state.status?.isError == true) {
       ToastUlti.showError(context, state.error!);
     }
-    if (state.expenseAmount != null || state.expenseAmount != -1) {
+    if (state.expenseAmount != null && state.expenseAmount! > 0) {
       amountController.text = state.expenseAmount.toString();
     }
     if (state.status?.isSuccess == true) {

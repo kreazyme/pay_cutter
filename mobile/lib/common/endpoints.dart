@@ -1,5 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 abstract class AppEndpoints {
   static const String _apiURL = String.fromEnvironment('BASE_URL');
 
@@ -8,6 +6,8 @@ abstract class AppEndpoints {
   static String user = '$_apiURL/users';
 
   static String group = '$_apiURL/groups';
+
+  static String pushNoti = '$_apiURL/push';
 
   static String share = '$_apiURL/groups/join';
 

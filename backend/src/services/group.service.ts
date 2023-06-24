@@ -1,14 +1,16 @@
 import { GroupEntity } from '@/entities/group.entity';
 import { UserEntity } from '@/entities/users.entity';
 import { User } from '@/interfaces/users.interface';
-import { Service } from 'typedi';
+import Container, { Service } from 'typedi';
 import { EntityRepository, Repository } from 'typeorm';
 import { HttpException } from '@exceptions/HttpException';
 import { CATEGORY_TABLE } from '@/entities/category.entity';
+import { PushNotiService } from './push_noti.service';
 
 @Service()
 @EntityRepository()
 export class GroupService extends Repository<GroupEntity> {
+   pushNotiService: PushNotiService = Container.get(PushNotiService);
   public async findMyGroups(userID: number): Promise<GroupEntity[]> {
     console.log(userID);
     const groups: GroupEntity[] = await GroupEntity.getRepository()
@@ -90,6 +92,13 @@ export class GroupService extends Repository<GroupEntity> {
       }
       group.participants.push(findUser);
       await group.save();
+
+      // push notification to all participants
+      const tokens: string[] = group.participants.map((user: UserEntity) => user.fcmToken);
+      const title: string = 'New member';
+      const body: string = `${findUser.name} has joined the group ${group.name}`;
+      this.pushNotiService.pushNotiWithMessage(tokens, body, title);
+
       return group;
     } else {
       throw new HttpException(404, 'Group not found');

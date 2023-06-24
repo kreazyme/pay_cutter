@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
@@ -27,11 +27,22 @@ class DetailProfileWidget extends StatelessWidget {
         ),
         CircleAvatar(
           radius: _height / 2,
-          backgroundColor: Colors.grey,
-          child: imageURL != null
-              ? Image.network(
-                  imageURL!,
-                  fit: BoxFit.cover,
+          backgroundColor: _generateRandomColor(),
+          child: imageURL == null
+              ? Container(
+                  height: _height,
+                  width: _height,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _generateRandomColor(),
+                  ),
+                  child: Center(
+                      child: Text(
+                    name[0].toUpperCase(),
+                    style: TextStyles.h1.copyWith(
+                      color: Colors.white,
+                    ),
+                  )),
                 )
               : Assets.images.imgAvatarDefault.image(
                   height: _height,
@@ -56,10 +67,12 @@ class DetailProfileWidget extends StatelessWidget {
               color: Colors.transparent,
             ),
             IconButton(
-              onPressed: () {
-                log('Edit name');
-              },
-              icon: const Icon(Icons.edit),
+              onPressed: () {},
+              icon: const Icon(
+                Icons.edit,
+                size: 20,
+                color: Colors.black54,
+              ),
             )
           ],
         ),
@@ -70,4 +83,13 @@ class DetailProfileWidget extends StatelessWidget {
       ],
     );
   }
+}
+
+Color _generateRandomColor() {
+  return Color.fromARGB(
+    255,
+    Random().nextInt(256),
+    Random().nextInt(256),
+    Random().nextInt(256),
+  ).withOpacity(0.5);
 }
