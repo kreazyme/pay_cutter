@@ -75,7 +75,10 @@ class _ChatView extends StatelessWidget {
                   onPressed: () => Navigator.pushNamed(
                     context,
                     AppRouters.detail,
-                    arguments: state.group,
+                    arguments: ParamsWrapper2<GroupModel?, List<ExpenseModel>>(
+                      param1: state.group,
+                      param2: state.expenses,
+                    ),
                   ),
                 );
               },
