@@ -18,8 +18,8 @@ class ItemParticipantWidget extends StatelessWidget {
       children: [
         AppAvatar(
           url: participant.avatarUrl,
-          width: 20,
-          height: 20,
+          width: 40,
+          height: 40,
         ),
         const SizedBox(width: 20.0),
         Column(
@@ -28,7 +28,7 @@ class ItemParticipantWidget extends StatelessWidget {
             Text(
               participant.name,
               style: TextStyles.titleBold.copyWith(
-                color: AppColors.textColor,
+                color: AppColors.textColor.withOpacity(0.8),
               ),
             ),
             const SizedBox(height: 5.0),
@@ -41,6 +41,14 @@ class ItemParticipantWidget extends StatelessWidget {
             )
           ],
         ),
+        const Spacer(),
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.more_vert,
+            color: Colors.black54,
+          ),
+        )
       ],
     );
   }

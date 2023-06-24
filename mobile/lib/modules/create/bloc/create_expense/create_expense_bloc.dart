@@ -234,7 +234,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
     );
 
     try {
-      File file = await _pickerGallery();
+      File file = await _pickerGallery(emittter);
       String path = 'expense.${event.groupId}.${DateTime.now().toPathString}';
       String url = await _firebaseUploadDataSoure.uploadImage(
         file,
@@ -257,12 +257,24 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
     }
   }
 
-  Future<File> _pickerGallery() async {
+  Future<File> _pickerGallery(
+    Emitter<CreateExpenseState> emittter,
+  ) async {
     try {
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
-        _scanImage(InputImage.fromFilePath(pickedFile.path));
+        int? txtBill =
+            await _scanImage(InputImage.fromFilePath(pickedFile.path));
+        if (txtBill != null) {
+          debugPrint('-------');
+          emittter(state.copyWith(
+            expenseAmount: txtBill,
+          ));
+          emittter(state.copyWith(
+            expenseAmount: -1,
+          ));
+        }
         return File(pickedFile.path);
       }
       throw Exception('No image selected');
@@ -279,16 +291,12 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.camera);
       if (pickedFile != null) {
-        String? txtBill =
+        int? txtBill =
             await _scanImage(InputImage.fromFilePath(pickedFile.path));
         if (txtBill != null) {
           debugPrint('-------');
-          debugPrint(txtBill);
-          debugPrint(double.tryParse(txtBill).toString());
           emittter(state.copyWith(
-            expenseAmount: int.tryParse(
-              txtBill.replaceAll(',', '').replaceAll('.', ''),
-            ),
+            expenseAmount: txtBill,
           ));
           emittter(state.copyWith(
             expenseAmount: -1,
@@ -302,7 +310,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
     }
   }
 
-  Future<String?> _scanImage(InputImage inputImage) async {
+  Future<int?> _scanImage(InputImage inputImage) async {
     log('Start processing');
     if (!_canProcess) return null;
     if (_isBusy) return null;
@@ -333,9 +341,26 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
               .blocks[recognizedText.blocks.indexOf(element) + 1].text;
         }
       }
+      if (txtBill == null) {
+        recognizedText.blocks
+            .sort((a, b) => a.boundingBox.top.compareTo(b.boundingBox.top));
+        for (var element in recognizedText.blocks.reversed) {
+          String vnText = TiengViet.parse(element.text);
+          if (recheckBill.hasMatch(vnText)) {
+            log('------------------------');
+            log(vnText);
+            txtBill = recognizedText
+                .blocks[recognizedText.blocks.indexOf(element) + 1].text;
+          }
+        }
+      }
       _customPaint = null;
     }
     _isBusy = false;
-    return txtBill;
+    log('End processing');
+    log('------------------------$txtBill');
+    if (txtBill == null) return null;
+    return int.tryParse(
+        txtBill.replaceAll(',', '').replaceAll('.', '').replaceAll('C', '0'));
   }
 }

@@ -68,13 +68,17 @@ class _ChatView extends StatelessWidget {
             }
           },
           actions: [
-            IconButton(
-              icon: const CustomIcon(iconData: Icons.info_outline),
-              onPressed: () => Navigator.pushNamed(
-                context,
-                AppRouters.detail,
-                arguments: params.param1,
-              ),
+            BlocBuilder<ChatBloc, ChatState>(
+              builder: (context, state) {
+                return IconButton(
+                  icon: const CustomIcon(iconData: Icons.info_outline),
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    AppRouters.detail,
+                    arguments: state.group,
+                  ),
+                );
+              },
             )
           ],
         ),
