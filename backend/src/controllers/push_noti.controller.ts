@@ -10,11 +10,13 @@ export class PushNotiController {
             const ids = req.body.ids;
             const isAnonymous = req.body.is_anonymous;
             const sender = req.body.sender;
+            const groupName = req.body.group_name;
 
             await this.pushNoti.pushNotibyListId(
                 ids,
                 isAnonymous,
                 sender,
+                groupName,
             );
             res.status(200).json({message: 'push noti success'});
         }
