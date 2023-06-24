@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/data/datasource/remote/group.datasource.dart';
 import 'package:pay_cutter/data/models/dto/group.dto.dart';
+import 'package:pay_cutter/data/models/dto/push_noti.dto.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
 
 @lazySingleton
@@ -24,5 +25,9 @@ class GroupRepository {
 
   Future<GroupModel> getDetailGroup(int id) async {
     return await _groupDataSource.getDetailGroup(id);
+  }
+
+  Future<void> sendPushNoti(PushNotiDTO input) async {
+    return await _groupDataSource.sendPushNoti(input);
   }
 }

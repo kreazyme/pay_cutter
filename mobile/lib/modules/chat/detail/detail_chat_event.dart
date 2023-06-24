@@ -15,3 +15,10 @@ class DetailChatSaveFile extends DetailChatEvent {
     required this.expenses,
   });
 }
+
+class DetailChatSendPushNoti extends DetailChatEvent {
+  final PushNotiDTO input;
+  const DetailChatSendPushNoti({
+    required this.input,
+  });
+}
