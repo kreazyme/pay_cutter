@@ -21,4 +21,10 @@ export class LocationEntity extends BaseEntity{
     })
     lng: number;
 
+    @Column({
+        name:'address',
+        nullable: true,
+    })
+    address?: string;
+
 }
