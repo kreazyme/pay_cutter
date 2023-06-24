@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_file/open_file.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
+import 'package:pay_cutter/data/models/dto/push_noti.dto.dart';
 import 'package:pay_cutter/data/models/expense.model.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
+import 'package:pay_cutter/data/repository/group_repo.dart';
+import 'package:pay_cutter/data/repository/user_repo.dart';
+import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/chat/detail/detail_chat_bloc.dart';
 import 'package:pay_cutter/modules/chat/widget/detail/detail_item_button.widget.dart';
 import 'package:pay_cutter/modules/chat/widget/detail/detail_profile.widget.dart';
@@ -24,7 +27,9 @@ class DetailChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DetailChatBloc(),
+      create: (context) => DetailChatBloc(
+        groupRepository: getIt.get<GroupRepository>(),
+      ),
       child: BlocListener<DetailChatBloc, DetailChatState>(
         listener: _onListener,
         child: _DetailChatView(
@@ -74,13 +79,32 @@ class DetailChatPage extends StatelessWidget {
   }
 }
 
-class _DetailChatView extends StatelessWidget {
-  const _DetailChatView({
+class _DetailChatView extends StatefulWidget {
+  _DetailChatView({
     required this.group,
     required this.expenses,
   });
   final GroupModel group;
   final List<ExpenseModel> expenses;
+
+  @override
+  State<_DetailChatView> createState() => _DetailChatViewState();
+}
+
+class _DetailChatViewState extends State<_DetailChatView> {
+  final UserRepo _userRepo = getIt.get<UserRepo>();
+  String userName = 'Someone';
+
+  void _getUserName() async {
+    userName = (await _userRepo.getUser()).name;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserName();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,15 +120,15 @@ class _DetailChatView extends StatelessWidget {
             child: Column(
               children: [
                 DetailProfileWidget(
-                  name: group.name,
-                  imageURL: group.imageURL,
+                  name: widget.group.name,
+                  imageURL: widget.group.imageURL,
                 ),
                 DetailItemButtonWidget(
                   onPressed: () {
                     Navigator.pushNamed(
                       context,
                       AppRouters.participants,
-                      arguments: group.participants,
+                      arguments: widget.group.participants,
                     );
                   },
                   title: 'Participants',
@@ -115,7 +139,7 @@ class _DetailChatView extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       AppRouters.shareChat,
-                      arguments: group.id,
+                      arguments: widget.group.id,
                     );
                   },
                   title: 'Share group',
@@ -127,7 +151,19 @@ class _DetailChatView extends StatelessWidget {
                   icon: const Icon(Icons.analytics_outlined),
                 ),
                 DetailItemButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<DetailChatBloc>().add(
+                          DetailChatSendPushNoti(
+                              input: PushNotiDTO(
+                            ids: widget.group.participants
+                                .map((e) => e.userID)
+                                .toList(),
+                            isAnonymous: false,
+                            sender: userName,
+                            groupName: widget.group.name,
+                          )),
+                        );
+                  },
                   title: 'Remind to pay',
                   icon: const Icon(Icons.notifications_on_outlined),
                 ),
@@ -135,8 +171,8 @@ class _DetailChatView extends StatelessWidget {
                   onPressed: () {
                     context.read<DetailChatBloc>().add(
                           DetailChatSaveFile(
-                            expenses: expenses,
-                            groupName: group.name,
+                            expenses: widget.expenses,
+                            groupName: widget.group.name,
                           ),
                         );
                   },

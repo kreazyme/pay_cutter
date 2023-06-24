@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/common/widgets/app_avatar.widget.dart';
-import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
 import 'package:pay_cutter/data/repository/auth_repo.dart';
 import 'package:pay_cutter/data/repository/user_repo.dart';
 import 'package:pay_cutter/generated/assets.gen.dart';

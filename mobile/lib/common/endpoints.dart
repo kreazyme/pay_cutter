@@ -7,6 +7,8 @@ abstract class AppEndpoints {
 
   static String group = '$_apiURL/groups';
 
+  static String pushNoti = '$_apiURL/push';
+
   static String share = '$_apiURL/groups/join';
 
   static String expenses = '$_apiURL/expenses';

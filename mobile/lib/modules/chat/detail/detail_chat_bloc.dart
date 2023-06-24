@@ -4,7 +4,10 @@ import 'package:csv/csv.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_cutter/common/enum.dart';
+import 'package:pay_cutter/data/models/dto/push_noti.dto.dart';
 import 'package:pay_cutter/data/models/expense.model.dart';
+import 'package:pay_cutter/data/repository/group_repo.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tiengviet/tiengviet.dart';
 
@@ -12,8 +15,39 @@ part 'detail_chat_event.dart';
 part 'detail_chat_state.dart';
 
 class DetailChatBloc extends Bloc<DetailChatEvent, DetailChatState> {
-  DetailChatBloc() : super(DetailChatInitial()) {
+  DetailChatBloc({
+    required GroupRepository groupRepository,
+  })  : _groupRepository = groupRepository,
+        super(const DetailChatInitial()) {
     on<DetailChatSaveFile>(_saveFile);
+    on<DetailChatSendPushNoti>(_sendPushNoti);
+  }
+
+  final GroupRepository _groupRepository;
+
+  Future<void> _sendPushNoti(
+    DetailChatSendPushNoti event,
+    Emitter<DetailChatState> emitter,
+  ) async {
+    emitter(
+      const DetailChatChangePushStatus(
+        sendPushStatus: HandleStatus.loading,
+      ),
+    );
+    try {
+      await _groupRepository.sendPushNoti(event.input);
+      emitter(
+        const DetailChatChangePushStatus(
+          sendPushStatus: HandleStatus.success,
+        ),
+      );
+    } catch (_) {
+      emitter(
+        const DetailChatChangePushStatus(
+          sendPushStatus: HandleStatus.error,
+        ),
+      );
+    }
   }
 
   Future<void> _saveFile(
@@ -53,6 +87,7 @@ class DetailChatBloc extends Bloc<DetailChatEvent, DetailChatState> {
     f.writeAsString(csv);
     emit(DetailChatFileSaved(
       filePath: f.path,
+      sendPushStatus: state.sendPushStatus!,
     ));
   }
 

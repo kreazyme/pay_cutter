@@ -37,7 +37,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emitter(const LoginSuccesful());
       }
     } catch (e) {
-      addError(e);
+      print(e);
       emitter(LoginFailure(e.toString()));
     }
   }
