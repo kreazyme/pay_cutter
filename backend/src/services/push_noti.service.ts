@@ -12,6 +12,7 @@ export class PushNotiService extends Repository<UserEntity>{
         ids: number[],
         isAnonymous: boolean,
         sender: string,
+        groupName: string,
     ): Promise<void> {
         try {
             if (ids == null) {
@@ -28,7 +29,7 @@ export class PushNotiService extends Repository<UserEntity>{
                 message = {
                     notification: {
                         title: `Remind to pay for ${sender}`,
-                        body: `Please pay for ${sender}`,
+                        body: `Maybe you forgot to pay for ${sender} in ${groupName}!. Check your debit list now!`,
                     },
                     tokens: listToken,
                 }
