@@ -41,7 +41,12 @@ export class UserService extends Repository<UserEntity> {
         const createUserData: User = await UserEntity.create({ ...userData }).save();
         return createUserData;
       }
-      return findUser;
+      else{
+        // update fcm token
+        await UserEntity.update(findUser.id, { ...userData });
+        const updateUser: User = await UserEntity.findOne({ where: { id: findUser.id } });
+        return updateUser;
+      }
     }
   }
 
