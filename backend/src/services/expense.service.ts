@@ -33,6 +33,7 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     categoryId: string,
     lat: number,
     lng: number,
+    address: string,
   ): Promise<ExpenseEntity> {
     const findGroup: GroupEntity = await GroupEntity.findOne(groupId);
     if (!findGroup) throw new HttpException(404, 'Group not found');
@@ -45,11 +46,12 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     const findCategory: CategoryEntity = await CategoryEntity.findOne(categoryId);
     if (!findCategory) throw new HttpException(404, 'Category not found');
     const newLocation: LocationEntity = new LocationEntity();
-if(lat && lng){
-  newLocation.lat = lat;
-  newLocation.lng = lng;
-  await newLocation.save();
-}
+    if(lat && lng){
+      newLocation.lat = lat;
+      newLocation.lng = lng;
+      newLocation.address = address;
+      await newLocation.save();
+    }
     const findPaidBy: UserEntity = await UserEntity.findOne(paidBy);
     if (!findPaidBy) throw new HttpException(404, 'PaidBy not found');
     const findCreateBy: UserEntity = await UserEntity.findOne(createBy);
@@ -72,13 +74,20 @@ if(lat && lng){
   }
 
   public async getExpensesByGroup(groupId: number): Promise<ExpenseEntity[]> {
-    const findExpenses: ExpenseEntity[] = await ExpenseEntity.getRepository()
-      .createQueryBuilder('expense_entity')
-      .leftJoinAndSelect('expense_entity.paidBy', 'paidBy')
-      .leftJoinAndSelect('expense_entity.participants', 'participants')
-      .leftJoinAndSelect('expense_entity.createdBy', 'createdBy')
-      .where('expense_entity.toGroup = :id', { id: groupId })
-      .getMany();
+    // const findExpenses: ExpenseEntity[] = await ExpenseEntity.getRepository()
+    //   .createQueryBuilder('expense_entity')
+    //   .leftJoinAndSelect('expense_entity.paidBy', 'paidBy')
+    //   .leftJoinAndSelect('expense_entity.participants', 'participants')
+    //   .leftJoinAndSelect('expense_entity.createdBy', 'createdBy')
+    //   .leftJoinAndSelect('expense_entity.location_id', 'location_id')
+    //   .where('expense_entity.toGroup = :id', { id: groupId })
+    //   .getMany();
+    const findExpenses: ExpenseEntity[] = await ExpenseEntity.find(
+      {
+        relations: ['toGroup', 'paidBy', 'participants', 'category', 'createdBy', 'location'],
+        where: { toGroup: groupId },
+      }
+    )
     return findExpenses;
   }
 
