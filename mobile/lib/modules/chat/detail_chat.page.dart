@@ -146,7 +146,13 @@ class _DetailChatViewState extends State<_DetailChatView> {
                   icon: const Icon(Icons.share),
                 ),
                 DetailItemButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouters.analysis,
+                      arguments: widget.expenses,
+                    );
+                  },
                   title: 'Analytics',
                   icon: const Icon(Icons.analytics_outlined),
                 ),

@@ -67,8 +67,11 @@ abstract class AppRouters {
           builder: (_) => const Placeholder(),
         );
       case analysis:
+        List<ExpenseModel> expense = settings.arguments as List<ExpenseModel>;
         return MaterialPageRoute(
-          builder: (_) => const AnalysisPage(),
+          builder: (_) => AnalysisPage(
+            expenses: expense,
+          ),
         );
       case chat:
         ParamsWrapper2<GroupModel, bool> params =

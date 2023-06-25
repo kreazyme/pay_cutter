@@ -118,6 +118,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
       ExpenseModel result =
           await _expenseRepository.createExpense(event.data.copyWith(
         paidBy: userId,
+        categoryId: state.categorySelected!.id,
       ));
       emittter(state.copyWith(
         status: HandleStatus.success,
