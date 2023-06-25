@@ -18,6 +18,14 @@ class CategoryModel {
     required this.updatedAt,
   });
 
+  factory CategoryModel.other() => CategoryModel(
+        id: 0,
+        name: 'Others',
+        description: 'Others',
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
+
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$CategoryModelFromJson(json);
 

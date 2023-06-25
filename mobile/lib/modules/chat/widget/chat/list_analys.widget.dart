@@ -23,7 +23,7 @@ class ListAnalysWidget extends StatefulWidget {
 }
 
 class _ListAnalysWidgetState extends State<ListAnalysWidget> {
-  List<_ItemAnalys> balancing = [];
+  List<ItemAnalysModel> balancing = [];
   double xPadding = 0;
   double yPadding = 0;
 
@@ -34,8 +34,8 @@ class _ListAnalysWidgetState extends State<ListAnalysWidget> {
 
   void _calculateDebit() {
     balancing = [];
-    List<_ItemAnalys> spending = [];
-    List<_ItemAnalys> debt = [];
+    List<ItemAnalysModel> spending = [];
+    List<ItemAnalysModel> debt = [];
     for (var expense in widget.expenses) {
       List<int> ids = spending.map((e) => e.id).toList();
       if (ids.contains(expense.createdBy.userID)) {
@@ -46,7 +46,7 @@ class _ListAnalysWidgetState extends State<ListAnalysWidget> {
           }
         }).toList();
       } else {
-        spending.add(_ItemAnalys(
+        spending.add(ItemAnalysModel(
           name: expense.createdBy.name,
           total: expense.amount,
           id: expense.createdBy.userID,
@@ -68,7 +68,7 @@ class _ListAnalysWidgetState extends State<ListAnalysWidget> {
           }).toList();
         } else {
           debt.add(
-            _ItemAnalys(
+            ItemAnalysModel(
               name: paiding.name,
               total: -amountPerPerson,
               id: paiding.userID,
@@ -110,7 +110,7 @@ class _ListAnalysWidgetState extends State<ListAnalysWidget> {
     });
   }
 
-  void _addItemToBalance(_ItemAnalys item) {
+  void _addItemToBalance(ItemAnalysModel item) {
     if (balancing.isEmpty) {
       balancing.add(item);
     } else {
@@ -162,20 +162,20 @@ class _ListAnalysWidgetState extends State<ListAnalysWidget> {
   }
 }
 
-class _ItemAnalys {
+class ItemAnalysModel {
   final String name;
   int total;
   final Color color;
   final int id;
 
-  _ItemAnalys addColor() => _ItemAnalys(
+  ItemAnalysModel addColor() => ItemAnalysModel(
         name: name,
         total: total,
         id: id,
         color: _generateRandomColor(),
       );
 
-  _ItemAnalys({
+  ItemAnalysModel({
     required this.name,
     required this.total,
     required this.id,
@@ -189,7 +189,7 @@ class _ItemAnalysWidget extends StatefulWidget {
     required this.size,
   });
 
-  final _ItemAnalys item;
+  final ItemAnalysModel item;
   final double size;
 
   @override
