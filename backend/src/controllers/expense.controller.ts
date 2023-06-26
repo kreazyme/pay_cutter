@@ -21,8 +21,8 @@ export class ExpenseController {
         userID,
         req.body.imageURL,
         req.body.categoryId,
-        Number(req.body.lat),
-        Number(req.body.lng),
+        req.body.lat,
+        req.body.lng,
         req.body.address,
       );
       res.status(201).json({ data: findExpense, message: 'created' });

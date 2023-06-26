@@ -31,8 +31,8 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     createBy: number,
     imageURL: string,
     categoryId: string,
-    lat: number,
-    lng: number,
+    lat: string,
+    lng: string,
     address: string,
   ): Promise<ExpenseEntity> {
     const findGroup: GroupEntity = await GroupEntity.findOne(groupId);
