@@ -17,14 +17,11 @@ abstract class ToastUlti {
             const SizedBox(
               width: 10,
             ),
-            Text(
+            Expanded(
+                child: Text(
               message ?? 'Update Sucessfully',
               style: TextStyles.body,
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(),
-            ),
+            )),
             IconButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();

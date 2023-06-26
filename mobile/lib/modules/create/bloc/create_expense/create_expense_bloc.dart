@@ -103,6 +103,7 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
   ) {
     emittter(state.copyWith(
       location: event.location,
+      address: event.address,
     ));
   }
 
@@ -115,11 +116,20 @@ class CreateExpenseBloc extends Bloc<CreateExpenseEvent, CreateExpenseState> {
         status: HandleStatus.loading,
       ));
       int userId = (await _userRepo.getUser()).userID;
-      ExpenseModel result =
-          await _expenseRepository.createExpense(event.data.copyWith(
-        paidBy: userId,
-        categoryId: state.categorySelected!.id,
-      ));
+      var data = event.data;
+      if (state.location != null) {
+        data = event.data.copyWith(
+          lat: state.location?.latitude,
+          lng: state.location?.longitude,
+          address: state.address,
+        );
+      }
+      ExpenseModel result = await _expenseRepository.createExpense(
+        data.copyWith(
+          paidBy: userId,
+          categoryId: state.categorySelected!.id,
+        ),
+      );
       emittter(state.copyWith(
         status: HandleStatus.success,
         expense: result,
