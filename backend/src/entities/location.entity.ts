@@ -12,14 +12,16 @@ export class LocationEntity extends BaseEntity{
     id: number;
 
     @Column({
-        name:'lat'
+        name:'lat',
+        type:'real'
     })
-    lat: number;
+    lat: string;
 
     @Column({
-        name:'lng'
+        name: 'lng',
+        type: 'real'
     })
-    lng: number;
+    lng: string;
 
     @Column({
         name:'address',
