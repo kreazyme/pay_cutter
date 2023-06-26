@@ -18,4 +18,7 @@ abstract class AppEndpoints {
   static String joinGroup = '$_apiURL/groups/join';
 
   static String category = '$_apiURL/categories';
+
+  static String reverseGeocoding =
+      'https://maps.googleapis.com/maps/api/geocode/json';
 }

@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:pay_cutter/common/endpoints.dart';
 import 'package:pay_cutter/common/helper/dio_helper.dart';
+import 'package:pay_cutter/common/shared/app_enviroment.dart';
 import 'package:pay_cutter/data/models/dto/expense.dto.dart';
 import 'package:pay_cutter/data/models/expense.model.dart';
 
@@ -39,5 +40,12 @@ class ExpenseDataSource {
     await _dioHelper.delete(
       '${AppEndpoints.expenses}/$id',
     );
+  }
+
+  Future<String> reverseGecoding(double lat, double lng) async {
+    final result = await _dioHelper.get(
+      '${AppEnviroment.MAP_URL}?at=$lat%2C$lng&lang=en-US&apiKey=${AppEnviroment.MAP_KEY}',
+    );
+    return result.body['items']['title'];
   }
 }

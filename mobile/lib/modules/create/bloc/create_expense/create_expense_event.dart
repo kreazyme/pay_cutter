@@ -103,12 +103,15 @@ class CreateExpenseChangeAmount extends CreateExpenseEvent {
 
 class CreateExpenseChangeLocation extends CreateExpenseEvent {
   final LatLng location;
+  final String address;
   const CreateExpenseChangeLocation({
     required this.location,
+    required this.address,
   });
 
   @override
   List<Object> get props => [
         location,
+        address,
       ];
 }

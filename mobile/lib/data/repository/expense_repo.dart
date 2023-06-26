@@ -25,4 +25,7 @@ class ExpenseRepository {
   Future<void> deleteExpense(int id) async {
     await _expenseDataSource.deleteExpense(id);
   }
+
+  Future<String> reverseGecoding(double lat, double lng) =>
+      _expenseDataSource.reverseGecoding(lat, lng);
 }

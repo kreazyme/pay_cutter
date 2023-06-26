@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pay_cutter/data/models/category.model.dart';
+import 'package:pay_cutter/data/models/location.model.dart';
 import 'package:pay_cutter/data/models/user/user.model.dart';
 
 part 'expense.model.g.dart';
@@ -16,6 +17,7 @@ class ExpenseModel {
   final List<UserModel> participants;
   final String? imageURL;
   final CategoryModel? category;
+  final LocationModel? location;
 
   ExpenseModel({
     required this.id,
@@ -28,6 +30,7 @@ class ExpenseModel {
     required this.participants,
     this.imageURL,
     this.category,
+    this.location,
   });
 
   factory ExpenseModel.fromJson(Map<String, dynamic> json) =>
