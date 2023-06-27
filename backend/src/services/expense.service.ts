@@ -74,15 +74,15 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     if(newLocation){
       newExpense.location = newLocation;
     }
-    var listToken : string[] = newParticipants.map(participant => participant.fcmToken).filter(token => token !== null);
-    if(listToken.length > 0){
+    await newExpense.save();
+    var listToken: string[] = newParticipants.map(participant => participant.fcmToken).filter(token => token !== null);
+    if (listToken.length > 0) {
       this.pushNotiService.pushNotiWithMessage(
         listToken,
         'New expense',
         'You have a new expense in ' + findGroup.name,
-        );
+      );
     }
-    await newExpense.save();
     return newExpense;
   }
 
