@@ -4,12 +4,17 @@ import { GroupEntity } from '@/entities/group.entity';
 import { LocationEntity } from '@/entities/location.entity';
 import { UserEntity } from '@/entities/users.entity';
 import { HttpException } from '@exceptions/HttpException';
-import { Service } from 'typedi';
+import Container, { Service } from 'typedi';
 import { EntityRepository, Repository } from 'typeorm';
+import { PushNotiService } from './push_noti.service';
 
 @Service()
 @EntityRepository()
 export class ExpenseService extends Repository<ExpenseEntity> {
+
+
+  pushNotiService: PushNotiService = Container.get(PushNotiService);
+
   public async findExpense(id: number): Promise<ExpenseEntity> {
     const findExpense :ExpenseEntity = await ExpenseEntity.findOne(
       {
@@ -68,6 +73,14 @@ export class ExpenseService extends Repository<ExpenseEntity> {
     newExpense.category = findCategory;
     if(newLocation){
       newExpense.location = newLocation;
+    }
+    var listToken : string[] = newParticipants.map(participant => participant.fcmToken).filter(token => token !== null);
+    if(listToken.length > 0){
+      this.pushNotiService.pushNotiWithMessage(
+        listToken,
+        'New expense',
+        'You have a new expense in ' + findGroup.name,
+        );
     }
     await newExpense.save();
     return newExpense;
