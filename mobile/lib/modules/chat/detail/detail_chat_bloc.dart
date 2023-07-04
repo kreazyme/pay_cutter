@@ -41,6 +41,12 @@ class DetailChatBloc extends Bloc<DetailChatEvent, DetailChatState> {
           sendPushStatus: HandleStatus.success,
         ),
       );
+      await Future.delayed(const Duration(microseconds: 20));
+      emitter(
+        const DetailChatChangePushStatus(
+          sendPushStatus: HandleStatus.initial,
+        ),
+      );
     } catch (_) {
       emitter(
         const DetailChatChangePushStatus(

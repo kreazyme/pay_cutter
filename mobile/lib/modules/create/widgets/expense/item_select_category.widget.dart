@@ -21,9 +21,10 @@ class ItemSelectCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(4),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Colors.blueGrey[50],
-        borderRadius: BorderRadius.circular(4),
+        color: AppColors.backgroundColor,
+        borderRadius: BorderRadius.circular(8),
       ),
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,

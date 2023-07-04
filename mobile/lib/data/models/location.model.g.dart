@@ -8,9 +8,9 @@ part of 'location.model.dart';
 
 LocationModel _$LocationModelFromJson(Map<String, dynamic> json) =>
     LocationModel(
-      lat: (json['lat'] as num).toDouble(),
-      lng: (json['lng'] as num).toDouble(),
-      address: json['address'] as String,
+      lat: (json['lat'] as num?)?.toDouble(),
+      lng: (json['lng'] as num?)?.toDouble(),
+      address: json['address'] as String?,
     );
 
 Map<String, dynamic> _$LocationModelToJson(LocationModel instance) =>

@@ -119,9 +119,10 @@ class _ParticipantChartWidgetState extends State<ParticipantChartWidget> {
       );
     }
     for (var element in userCredit) {
-      List<int> listId = userCredit.map((e) => e.id).toList();
+      List<int> listId = userChart.map((e) => e.id).toList();
       if (listId.contains(element.id)) {
-        userChart[listId.indexOf(element.id)].credit = element.amount;
+        userChart[userChart.indexWhere((chart) => chart.id == element.id)]
+            .credit = element.amount;
       } else {
         userChart.add(
           _UserChartModel(

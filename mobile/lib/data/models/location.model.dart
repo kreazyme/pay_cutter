@@ -4,9 +4,9 @@ part 'location.model.g.dart';
 
 @JsonSerializable()
 class LocationModel {
-  final double lat;
-  final double lng;
-  final String address;
+  final double? lat;
+  final double? lng;
+  final String? address;
 
   const LocationModel({
     required this.lat,

@@ -208,7 +208,7 @@ class _ItemChatWidgetState extends State<ItemChatWidget> {
                   ),
                 ),
               ),
-            if (widget.expense.location != null)
+            if (widget.expense.location?.address != null)
               Container(
                 padding: const EdgeInsets.symmetric(
                   vertical: 4,
@@ -227,7 +227,7 @@ class _ItemChatWidgetState extends State<ItemChatWidget> {
                         ),
                         Expanded(
                             child: Text(
-                          widget.expense.location!.address,
+                          widget.expense.location!.address!,
                           style: TextStyles.body.copyWith(
                             color: AppColors.textColor,
                           ),
@@ -245,8 +245,8 @@ class _ItemChatWidgetState extends State<ItemChatWidget> {
                               MaterialPageRoute(
                                 builder: (context) => ViewMapWidget(
                                     location: LatLng(
-                                  widget.expense.location!.lat,
-                                  widget.expense.location!.lng,
+                                  widget.expense.location!.lat!,
+                                  widget.expense.location!.lng!,
                                 )),
                               ));
                         },
