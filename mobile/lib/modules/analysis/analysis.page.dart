@@ -1,10 +1,24 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_cutter/common/styles/color_styles.dart';
+import 'package:pay_cutter/common/styles/text_styles.dart';
+import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
+import 'package:pay_cutter/data/models/expense.model.dart';
 import 'package:pay_cutter/modules/analysis/bloc/analysis_bloc.dart';
-import 'package:pay_cutter/modules/analysis/widgets/chart.widget.dart';
+import 'package:pay_cutter/modules/analysis/widgets/category_chart.widget.dart';
+import 'package:pay_cutter/modules/analysis/widgets/date_chart.widget.dart';
+import 'package:pay_cutter/modules/analysis/widgets/debit_chart_widget.dart';
+import 'package:pay_cutter/modules/analysis/widgets/participants_chart.widget.dart';
 
 class AnalysisPage extends StatelessWidget {
-  const AnalysisPage({super.key});
+  const AnalysisPage({
+    super.key,
+    required this.expenses,
+  });
+
+  final List<ExpenseModel> expenses;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +26,9 @@ class AnalysisPage extends StatelessWidget {
         create: (context) => AnalysisBloc(),
         child: BlocListener<AnalysisBloc, AnalysisState>(
           listener: _onListener,
-          child: const _AnalysisView(),
+          child: _AnalysisView(
+            expenses: expenses,
+          ),
         ));
   }
 
@@ -22,18 +38,61 @@ class AnalysisPage extends StatelessWidget {
 }
 
 class _AnalysisView extends StatelessWidget {
-  const _AnalysisView();
+  const _AnalysisView({
+    required this.expenses,
+  });
+  final List<ExpenseModel> expenses;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Analysis'),
-      ),
-      body: const SizedBox(
-        width: 300,
-        height: 300,
-        child: ChartWidget(),
+      appBar: const CustomAppbar(title: 'Analysis'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            DebiCharttWidget(
+              expenses: expenses,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.backgroundColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  const Text(
+                    'Chart by Category',
+                    style: TextStyles.titleBold,
+                  ),
+                  Container(
+                    height: 400,
+                    padding: const EdgeInsets.only(right: 52),
+                    child: CategoryChartWidget(
+                      expenses: expenses,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ParticipantChartWidget(
+              expenses: expenses,
+            ),
+            // SizedBox(
+            //   height: 400,
+            //   child: DateChartWidget(
+            //     expenses: expenses,
+            //   ),
+            // ),
+            const SizedBox(
+              height: 100,
+            ),
+          ],
+        ),
       ),
     );
   }

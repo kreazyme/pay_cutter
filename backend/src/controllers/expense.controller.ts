@@ -23,6 +23,7 @@ export class ExpenseController {
         req.body.categoryId,
         req.body.lat,
         req.body.lng,
+        req.body.address,
       );
       res.status(201).json({ data: findExpense, message: 'created' });
     } catch (error) {

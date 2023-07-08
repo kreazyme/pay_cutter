@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_cutter/common/styles/color_styles.dart';
 import 'package:pay_cutter/common/styles/text_styles.dart';
 import 'package:pay_cutter/common/widgets/custome_appbar.widget.dart';
+import 'package:pay_cutter/common/widgets/toast/toast_ulti.dart';
 import 'package:pay_cutter/data/models/dto/push_noti.dto.dart';
 import 'package:pay_cutter/data/models/expense.model.dart';
 import 'package:pay_cutter/data/models/group.model.dart';
@@ -12,6 +13,7 @@ import 'package:pay_cutter/generated/di/injector.dart';
 import 'package:pay_cutter/modules/chat/detail/detail_chat_bloc.dart';
 import 'package:pay_cutter/modules/chat/widget/detail/detail_item_button.widget.dart';
 import 'package:pay_cutter/modules/chat/widget/detail/detail_profile.widget.dart';
+import 'package:pay_cutter/modules/chat/widget/detail/dialog_remind.widget.dart';
 import 'package:pay_cutter/routers/app_routers.dart';
 
 class DetailChatPage extends StatelessWidget {
@@ -44,6 +46,9 @@ class DetailChatPage extends StatelessWidget {
     BuildContext context,
     DetailChatState state,
   ) {
+    if (state.sendPushStatus?.isSuccess == true) {
+      Navigator.pop(context);
+    }
     if (state is DetailChatFileSaved) {
       showDialog(
         context: context,
@@ -80,7 +85,7 @@ class DetailChatPage extends StatelessWidget {
 }
 
 class _DetailChatView extends StatefulWidget {
-  _DetailChatView({
+  const _DetailChatView({
     required this.group,
     required this.expenses,
   });
@@ -92,17 +97,21 @@ class _DetailChatView extends StatefulWidget {
 }
 
 class _DetailChatViewState extends State<_DetailChatView> {
-  final UserRepo _userRepo = getIt.get<UserRepo>();
-  String userName = 'Someone';
-
-  void _getUserName() async {
-    userName = (await _userRepo.getUser()).name;
+  void _showRemindPopup(BuildContext c) {
+    showDialog(
+        useRootNavigator: false,
+        context: context,
+        builder: (_) => BlocProvider<DetailChatBloc>.value(
+              value: c.read<DetailChatBloc>(),
+              child: DialogRemindWidget(
+                group: widget.group,
+              ),
+            ));
   }
 
   @override
   void initState() {
     super.initState();
-    _getUserName();
   }
 
   @override
@@ -146,23 +155,19 @@ class _DetailChatViewState extends State<_DetailChatView> {
                   icon: const Icon(Icons.share),
                 ),
                 DetailItemButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouters.analysis,
+                      arguments: widget.expenses,
+                    );
+                  },
                   title: 'Analytics',
                   icon: const Icon(Icons.analytics_outlined),
                 ),
                 DetailItemButtonWidget(
                   onPressed: () {
-                    context.read<DetailChatBloc>().add(
-                          DetailChatSendPushNoti(
-                              input: PushNotiDTO(
-                            ids: widget.group.participants
-                                .map((e) => e.userID)
-                                .toList(),
-                            isAnonymous: false,
-                            sender: userName,
-                            groupName: widget.group.name,
-                          )),
-                        );
+                    _showRemindPopup(context);
                   },
                   title: 'Remind to pay',
                   icon: const Icon(Icons.notifications_on_outlined),

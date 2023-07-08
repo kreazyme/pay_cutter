@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pay_cutter/common/extensions/string.extentions.dart';
+import 'package:pay_cutter/common/ultis/params_wrapper_ultis.dart';
 import 'package:pay_cutter/modules/create/bloc/create_expense/create_expense_bloc.dart';
 import 'package:pay_cutter/routers/app_routers.dart';
 
@@ -64,10 +65,12 @@ class ExpenseImageWidget extends StatelessWidget {
                     onPressed: () async {
                       var result = await Navigator.pushNamed(
                           context, AppRouters.pickLocation);
-                      if (result == null || result is! LatLng) return;
+                      if (result == null ||
+                          result is! ParamsWrapper2<LatLng, String>) return;
                       context.read<CreateExpenseBloc>().add(
                             CreateExpenseChangeLocation(
-                              location: result,
+                              location: result.param1,
+                              address: result.param2,
                             ),
                           );
                     },

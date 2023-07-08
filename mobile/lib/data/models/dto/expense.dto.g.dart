@@ -17,6 +17,9 @@ ExpenseDTO _$ExpenseDTOFromJson(Map<String, dynamic> json) => ExpenseDTO(
           (json['participants'] as List<dynamic>).map((e) => e as int).toList(),
       image: json['imageURL'] as String?,
       categoryId: json['categoryId'] as int?,
+      address: json['address'] as String?,
+      lat: (json['lat'] as num?)?.toDouble(),
+      lng: (json['lng'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$ExpenseDTOToJson(ExpenseDTO instance) =>
@@ -28,6 +31,9 @@ Map<String, dynamic> _$ExpenseDTOToJson(ExpenseDTO instance) =>
       'paidBy': instance.paidBy,
       'groupId': instance.groupId,
       'participants': instance.participants,
+      'lat': instance.lat,
+      'lng': instance.lng,
+      'address': instance.address,
       'categoryId': instance.categoryId,
       'imageURL': instance.image,
     };

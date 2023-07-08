@@ -18,6 +18,12 @@ ExpenseModel _$ExpenseModelFromJson(Map<String, dynamic> json) => ExpenseModel(
           .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       imageURL: json['imageURL'] as String?,
+      category: json['category'] == null
+          ? null
+          : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
+      location: json['location'] == null
+          ? null
+          : LocationModel.fromJson(json['location'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ExpenseModelToJson(ExpenseModel instance) =>
@@ -31,4 +37,6 @@ Map<String, dynamic> _$ExpenseModelToJson(ExpenseModel instance) =>
       'createdBy': instance.createdBy,
       'participants': instance.participants,
       'imageURL': instance.imageURL,
+      'category': instance.category,
+      'location': instance.location,
     };

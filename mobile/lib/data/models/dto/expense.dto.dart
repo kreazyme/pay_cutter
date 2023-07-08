@@ -13,6 +13,9 @@ class ExpenseDTO {
   final int? paidBy;
   final int groupId;
   final List<int> participants;
+  final double? lat;
+  final double? lng;
+  final String? address;
 
   @JsonKey(name: 'categoryId')
   final int? categoryId;
@@ -30,6 +33,9 @@ class ExpenseDTO {
     required this.participants,
     required this.image,
     this.categoryId,
+    this.address,
+    this.lat,
+    this.lng,
   });
 
   ExpenseDTO copyWith({
@@ -42,6 +48,9 @@ class ExpenseDTO {
     List<int>? participants,
     String? image,
     int? categoryId,
+    double? lat,
+    double? lng,
+    String? address,
   }) {
     return ExpenseDTO(
       name: name ?? this.name,
@@ -53,6 +62,9 @@ class ExpenseDTO {
       participants: participants ?? this.participants,
       image: image ?? this.image,
       categoryId: categoryId ?? this.categoryId,
+      lat: lat ?? this.lat,
+      lng: lng ?? this.lng,
+      address: address ?? this.address,
     );
   }
 
