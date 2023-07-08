@@ -9,6 +9,7 @@ import 'package:pay_cutter/data/models/expense.model.dart';
 import 'package:pay_cutter/modules/analysis/bloc/analysis_bloc.dart';
 import 'package:pay_cutter/modules/analysis/widgets/category_chart.widget.dart';
 import 'package:pay_cutter/modules/analysis/widgets/date_chart.widget.dart';
+import 'package:pay_cutter/modules/analysis/widgets/debit_chart_widget.dart';
 import 'package:pay_cutter/modules/analysis/widgets/participants_chart.widget.dart';
 
 class AnalysisPage extends StatelessWidget {
@@ -51,6 +52,9 @@ class _AnalysisView extends StatelessWidget {
           children: [
             const SizedBox(
               height: 20,
+            ),
+            DebiCharttWidget(
+              expenses: expenses,
             ),
             Container(
               decoration: BoxDecoration(
